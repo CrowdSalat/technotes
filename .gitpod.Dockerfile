@@ -5,4 +5,4 @@ FROM gitpod/workspace-full
 # RUN brew install bastet
 #
 # More information: https://www.gitpod.io/docs/config-docker/
-RUN pip install -y mkdocs mkdocs-material
+RUN sudo pip install -y mkdocs mkdocs-material
