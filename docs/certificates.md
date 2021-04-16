@@ -1,5 +1,16 @@
 # Certificates and encryption
 
+## certificate expiration
+
+- validity period: when this period ends the certificate and all derived certs are expired 
+- renewal period: period at the end of the validity period where the old certificate is replaced by a new one with a new validity period. The private key stays unchanged. 
+- renewal (in contrast to replacing) keeps the private key of a certificate and only recreate the public certificate with a new validity period
+
+
+## wildcard certificate 
+
+- star works only for one subdomain.
+
 ## file types
 
 - .pem: 
@@ -14,9 +25,47 @@
 - .pfx - pkcs12
 - .csr (certificate signing request): temporary 
 
-## generate (self signed)
+## default locations
 
-### certificate and private key in pem format
+### Linux
+
+[Source: Where does Go lang search for certificates](https://golang.org/src/crypto/x509/root_linux.go)
+
+- Debian/Ubuntu/Gentoo etc: "/etc/ssl/certs/ca-certificates.crt"
+- Fedora/RHEL 6: "/etc/pki/tls/certs/ca-bundle.crt" 
+- OpenSUSE: "/etc/ssl/ca-bundle.pem"
+- OpenELEC: "/etc/pki/tls/cacert.pem"
+- CentOS/RHEL 7: "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+- Alpine Linux: "/etc/ssl/cert.pem"
+
+### CentOS/RHEL 7
+
+[Source](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/security_guide/sec-shared-system-certificates)
+
+- to add a certficate as ca add the pem or der file to 
+  - /etc/pki/ca-trust/source/anchors/ (higher precedence) or
+  - /usr/share/pki/ca-trust-source/anchors/ (lower precedence)
+  - and run `update-ca-trust` 
+- *if you ever feel tempted to edit /etc/pki/ca-trust/extracted/ directly (instead of generating it) double check if you use the right format BEGIN/END CERTIFICATE vs. BEGIN/END TRUSTED CERTIFICATE and the file right name. See the following listing.*
+
+```
+# list certs
+trust list 
+
+# add pem or der certs to: /etc/pki/ca-trust/source/anchors/ or /usr/share/pki/ca-trust-source/anchors/
+update-ca-trust
+
+# see manpage: https://www.unix.com/man-page/centos/8/update-ca-trust/
+# updates certs in the following folders: 
+## /etc/pki/ca-trust/extracted/openssl/ca-bundle.trust.crt
+## /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+## /etc/pki/ca-trust/extracted/pem/email-ca-bundle.pem
+## /etc/pki/ca-trust/extracted/pem/objsign-ca-bundle.pem
+## /etc/pki/ca-trust/extracted/java/cacerts
+## and then in /etc/pki/tls/certs/ca-bundle.crt
+```
+
+## generate certificate and private key in pem format (self signed)
 
 ```shell
 # create 
@@ -30,7 +79,11 @@ openssl x509 -in  my.crt -text -noout
 openssl rsa -in my.crt -text -noout
 ```
 
-### Java truststore and keystore
+### ssh key
+
+To generate ssh keys run `ssh-keygen` which generates ~/.ssh/id_rsa.pub and ~/.ssh/id_rsa. The private and public key do no use the pem format. The name of the owner is at the end of the pub file.
+
+## Java truststore and keystore
 
 - A Java keystore holds your private Keys + and your certificate
 - A Java truststore holds the certificates you trust when you connect yourself to a server   
@@ -64,17 +117,6 @@ keytool -importkeystore -srckeystore keystore.p12 -destkeystore keystore.jks -sr
 keytool -keystore truststore.jks -alias full-chain.crt -import -file full-chain.crt -noprompt -storepass changeit
 ```
 
-### ssh key
-
-To generate ssh keys run `ssh-keygen` which generates ~/.ssh/id_rsa.pub and ~/.ssh/id_rsa. The private and public key do no use the pem format. The name of the owner is at the end of the pub file.
-
-### x.509 certificates
-
-Fields:
-
-- common name (cn):
-- 
-
 ## tools
 
 ### mkcert
@@ -84,3 +126,12 @@ Fields:
 ### vscode opensslutils
 
 [opensslutils](https://marketplace.visualstudio.com/items?itemName=ffaraone.opensslutils)
+
+## trusted certficcate format
+
+There is a difference between:
+
+- BEGIN/END CERTIFICATE 
+- BEGIN/END TRUSTED CERTIFICATE
+
+see [manpage of x509](https://www.unix.com/man-page/centos/1/x509/) for further information.
