@@ -5,6 +5,11 @@
 - Spellchecker for txt and md: TODO maybe [LanguageTool Linter](https://github.com/davidlday/vscode-languagetool-linter)  
 - Linters:
     - md: [markdownlint](https://github.com/DavidAnson/vscode-markdownlint)
+- Remote Connect
+    - [SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+    - [Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+    - [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
+- [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv) - highlight and queries
 
 
 ## assisting tools
