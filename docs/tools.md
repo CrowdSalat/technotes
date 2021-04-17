@@ -1,5 +1,11 @@
 # helpful stuff
 
+## compare tools
+
+- [StackShare](https://github.com/ncskier/myapp)
+- [CNCF landscape](https://landscape.cncf.io/)
+- [ThoughtWorks Technology Radar](https://www.thoughtworks.com/radar/platforms)
+
 ## vs code pluings
 
 - Spellchecker for txt and md: TODO maybe [LanguageTool Linter](https://github.com/davidlday/vscode-languagetool-linter)  
