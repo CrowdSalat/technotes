@@ -34,10 +34,13 @@ If you want to delete passwords or other sensible stuff from git history use [bf
 
 Afterwards use force push to change history: `git push --force`
 
-## ignore certs
+## certs
 
-- via system env variable: env GIT_SSL_NO_VERIFY=true
-- or via cli: git config http.sslVerify "false"
+- ignore:
+  - via system env variable: `env GIT_SSL_NO_VERIFY=true`
+  - or via cli: `git config --global http.sslVerify "false"`
+- Windows:
+  - `git config --global http.sslbackend channel`
 
 ## tag
 
