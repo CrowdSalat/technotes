@@ -28,6 +28,19 @@ With stash. Allows to revert changes, but not recommended with many files:
 - Permanently deleting files: `git stash drop`
 - Revert changes: `git stash pop`
 
+## revert or delete commits
+
+- [interactive wizard](https://sethrobertson.github.io/GitFixUm/fixup.html)
+
+```shell
+# rework last commit ()
+git reset HEAD^
+
+# delete last commit
+git reset --hard HEAD^
+
+```
+
 ## clean files in history
 
 If you want to delete passwords or other sensible stuff from git history use [bfg](https://rtyley.github.io/bfg-repo-cleaner/). It does not touch your current commit (HEAD) just older commits.
