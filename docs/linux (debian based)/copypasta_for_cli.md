@@ -53,3 +53,17 @@ echo 'source <(kubectl completion bash)' >>~/.bashrc && source ~/.bashrc
 ```shell
 echo 'source <(helm completion bash)' >>~/.bashrc && source ~/.bashrc
 ```
+
+### k3d 
+
+bash auto-completion
+
+```shell
+echo 'source <(k3d completion bash)' >>~/.bashrc && source ~/.bashrc
+```
+
+Create cluster
+
+```shell
+k3d cluster create
+```
