@@ -115,6 +115,15 @@ keytool -importkeystore -srckeystore keystore.p12 -destkeystore keystore.jks -sr
 
 ## (not recommended) truststore as jks 
 keytool -keystore truststore.jks -alias full-chain.crt -import -file full-chain.crt -noprompt -storepass changeit
+
+
+# read p12 truststore
+PASSWORD="bla"
+openssl pkcs12 -info -in truststore.p12 -passin pass:$PASSWORD
+
+# read p12 keystore 
+# if -nodes is not set openssl will prompt "Enter PEM pass phrase" which will then used to encryp the private key
+openssl pkcs12 -info -in keystore.p12 -passin pass:$PASSWORD -nodes
 ```
 
 ## tools
