@@ -6,6 +6,25 @@
 echo 'export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/' >> ~/.bashrc && source ~/.bashrc && brew help
 ```
 
+## docker - on debian
+
+[You cannot use linuxbrew to install docker engine](https://github.com/Linuxbrew/brew/issues/723). SO you need to install it manually. Brew can however be used to install docker cli with bashcompletion.
+
+```shell
+# install docker 
+## you may want to check the script before running it
+## source: https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# allow current user to manage docker
+## source: https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script
+sudo groupadd docker
+sudo usermod -aG docker $USER
+## log out current user
+docker run hello-world
+```
+
 ## bash completion
 
 ### any binary installed with brew
@@ -25,12 +44,12 @@ source ~/.bashrc
 
 ### kubectl - bash auto-completion
 
-```
+```shell
 echo 'source <(kubectl completion bash)' >>~/.bashrc && source ~/.bashrc
 ```
 
 ### helm - bash auto-completion
 
-```
+```shell
 echo 'source <(helm completion bash)' >>~/.bashrc && source ~/.bashrc
 ```
