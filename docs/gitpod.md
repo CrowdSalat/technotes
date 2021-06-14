@@ -1,35 +1,67 @@
 # Gitpod
 
+- [Dashboard](https://gitpod.io/workspaces/)
+- [Gitpodifying — The Ultimate Guide](https://www.gitpod.io/blog/gitpodify/)
 
-Gitpod is a online ide which is based on [Theia](https://theia-ide.org/). It allows to define ephemeral development workspaces based on a git repository and and a container image
+## start a workspace
 
-## features
+To start workspace in gitpod:
 
-- every workspace runs in a container. So you can start developing with a working and prebuild workspace. 
-- you can share your workspace with others online 
-- adapt the workspace for you needs
-    - general configuration is in [.gitpod](https://www.gitpod.io/docs/config-gitpod-file/) file
-    - you can also create your [own container image](https://www.gitpod.io/docs/config-docker/) for the workspace
-    - you can test your changes of the theano config with the 'Test drive configuration' option in the 'Project Setup' view
+  1. use gitpod firefox or chrome extension
+  2. prefix git repository url with: `gitpod.io/#`
 
-## create a new workspace 
+## configure workspace (gitpodify your project)
 
-Keep in mind that the gitpod copies every file of a git project into /workspace/<git_project_name>. So if your Docker image installs stuff you should do it globally or use a different Dockerfile for dev and for production.
+1. .gitpod.yml in the opened repository (run `gp init` to create one)
+2. .gitpod.yaml in the central [definitely-gp](https://github.com/gitpod-io/definitely-gp) repository
+3. automagically inferred gitpod config
 
-### wihout config
+To scaffold a .gitpod.yml use [gitpod cli](https://www.gitpod.io/docs/command-line-interface/) in a started gitpod workspace: `gp init`
 
-1. To start a **new theano workspace** open `https://www.gitpod.io/#<URL_TO_REPO>` in your browser e.g. `https://www.gitpod.io/#https://github.com/CrowdSalat/technotes`. You can also [address a specific branch or commit](https://www.gitpod.io/docs/context-urls/) 
-2. You may need to request additional rights from your git provider to read and later write to the repository. You can grant rights to gitpod [https://gitpod.io/access-control/](https://gitpod.io/access-control/). 
-3. Start developing as you are used to
+### configure used container image
 
-### with config
+- configure custom image in .gitpod.Dockerfile and reference it in .gitpod.yml:
+- configure image from Dockerhub: `image: image:tag`
+- if non image is set the default [gitpod workspace image](https://github.com/gitpod-io/workspace-images/blob/master/full/Dockerfile) is used 
 
-1. To start a **new theano workspace** open: `https://www.gitpod.io/#<URL_TO_REPO>` in your browser e.g. `https://www.gitpod.io/#https://github.com/CrowdSalat/technotes`. You can also [address a specific branch or commit](https://www.gitpod.io/docs/context-urls/)
-2. You may need to request additional rights from your git provider to read and later write to the repository. You can grant rights to gitpod [https://gitpod.io/access-control/](https://gitpod.io/access-control/). 
-3. Use theano 'Project Setup' (symbol on the right side) to configure the workspace:
-    - .gitpod.yml defines which commands should be initially run in the workspace
-    - .gitpod.Dockerfile is used to **define the container image** in which the workspace runs. Theres is a list of usable base images from gitpod which it recommend you.
-    - **Use 'Test drive configuration' to test you setup**. It will create a branch in you repo and create a new theano workspace from it. If the workspace builds from this without errors this step can be seen as succesful.
-    - if you are happy with you theano config changes **create a pull request** to remote master and merge it to master 
-4. [delete your old workspace container](https://gitpod.io/workspaces/) and create a new one from master
-4. Start developing as you are used to
+```yaml
+# your own image
+image:
+  file: .gitpod.Dockerfile
+
+# dockerhub image
+image: node:alpine
+```
+
+*For compatibility reasons you may want to use a gitpod workspace image as base image*
+
+### configure prebuild and start command
+
+[Start tasks](https://www.gitpod.io/docs/config-start-tasks) contains different kinds of commands (before (command), init (command), (plain) command).
+
+are executed in a defined order and only in defined start modes.
+
+- Init command is run when creating a workspace (container) not when restarting or creating a snapshot
+- (Plain) commands are run when starting a workspace (container)
+- You can configure that the init command is run every commit. This is called [prebuild](https://www.gitpod.io/docs/prebuilds/) and can be configured with git webhooks or vscode extensions. 
+
+```yaml
+tasks:
+  - init: | 
+      yarn
+      yarn build
+    command: yarn dev --host 0.0.0.0
+    # to execute task in parallel just add an additional entry to the tasks list (blocking is currently not natively supported)
+  - command: echo "hello concurrency, i do not need yarn build so i can be run concurrently"
+
+```
+
+## configure used extension 
+
+[Official documentation](https://www.gitpod.io/docs/vscode-extensions/)
+
+
+To add a extension just go to the extension tab, click on the extension you want to add and click 'Add to .gitpod.yml' from the menu symbol. 
+
+
+To view build in extension type @builtin in the extension tab search bar.

@@ -11,8 +11,6 @@ Outline of features:
 
 - [Reference](https://kubernetes.io/docs/reference/)
 - [glossary](https://kubernetes.io/docs/reference/glossary/?fundamental=true)
-- 
-
 
 ## Components 
 

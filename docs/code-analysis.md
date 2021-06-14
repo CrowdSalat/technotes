@@ -9,6 +9,7 @@ You may find additional tools on the website [of shields](https://shields.io/) w
 - Security
   - [lgtm](https://lgtm.com/) (is joining github)
   - Analyse Containers, Filesystem, Git Repos [Trivy](https://github.com/aquasecurity/trivy)
+  - Security for dependecies, code, containers and infrastructure-code [Snyk](https://support.snyk.io/hc/en-us?utm_campaign=docs&utm_medium=github&utm_source=full_docs)
   - check git repos for secrets [gitguardian](https://www.gitguardian.com/)
   - security check for used libraries [dependabot](https://dependabot.com/)
 - Test coverage (may need additional client library which produce the reports in ci)
