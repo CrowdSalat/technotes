@@ -84,3 +84,12 @@ git config --global credential.helper "store"
 # and then set it via
 # git config --global credential.helper "manager-core"
 ```
+
+## ssh remember passphrase
+
+In git bash or bash:
+
+```
+eval `ssh-agent -s`
+ssh-add ~/.ssh/*_rsa
+```
