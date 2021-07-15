@@ -129,7 +129,13 @@ ssh-copy-id -i ~/.ssh/mykey user@host
 
 ### Add private ssh key to user 
 
-e.g. authentication on another machine where the public/private key pair is authorized
+e.g. for authentication on another machine where the public/private key pair is authorized
+
+```shell
+ssh-keygen -t rsa -b 4096
+```
+
+### Allow user to use sudo
 
 ```Shell
 # either in /etc/sudoers.d/local
@@ -142,14 +148,6 @@ sudo adduser $USER sudo
 ## opens /etc/sudoers but with syntax check
 sudo visudo  
 ```
-
-### Allow user to use sudo
-
-```Shell
-
-TODO
-```
-
 ### tar - unzip files
 
 You have the following tar file: softwarename-1.2.3.tar.gz
@@ -157,7 +155,6 @@ You have the following tar file: softwarename-1.2.3.tar.gz
 - Unzip with wildcard (e.g. to omit version): `tar xzvf softwarename-*.tar.gz` -> folder: softwarename-1.2.3
 - Unzip to a target folder: `tar xzvf softwarename-1.2.3.tar.gz -C /opt` -> folder: /opt/softwarename-1.2.3
 - Unzip to a target folder and set a new folder name: `tar xzvf softwarename-1.2.3.tar.gz && mv softwarename-1.2.3/* /opt/softwarename` -> folder: /opt/softwarename
-
 
 ### systemd - run an application as a service
 

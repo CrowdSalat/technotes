@@ -85,11 +85,19 @@ git config --global credential.helper "store"
 # git config --global credential.helper "manager-core"
 ```
 
+## ssh generate keys
+
+```shell
+ssh-keygen -t rsa -b 4096
+```
+
 ## ssh remember passphrase
 
 In git bash or bash:
 
-```
+```shell
+# check if ssh-agent is running
 eval `ssh-agent -s`
+# configure password caching
 ssh-add ~/.ssh/*_rsa
 ```

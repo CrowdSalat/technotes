@@ -67,3 +67,21 @@ Create cluster
 ```shell
 k3d cluster create
 ```
+
+### git
+
+```shell
+# alias
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
+# ssh keygen
+ssh-keygen -t rsa -b 4096
+
+# remember ssh password
+ssh-add ~/.ssh/*_rsa
+
+
+```
