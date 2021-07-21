@@ -58,3 +58,35 @@ helm pull <chart_name> --untar
 ## notes on certificates
 
 Not all cli command support ignoring or setting ca certs (*e.g. `helm dependency update` does not*) so you might consider to add the needed certificates system wide on os/container level.
+
+## snippets
+
+[Helm template guide](https://helm.sh/docs/chart_template_guide/) gives a quick overview of the flow control and the available template functions. Under the hood helm uses a mix of [Go template language](https://pkg.go.dev/text/template?utm_source=godoc) and [Sprig template library](https://masterminds.github.io/sprig/).
+
+### range
+
+- [Different examples with result](https://kb.novaordis.com/index.php/Helm_Template_range)
+  - iterate over inline array
+  - iterate over array
+  - iterate over dictionary 
+  - iterate over complex type
+
+```go
+// count loop
+{{- range  until (.Value.upperBound | int) }}
+    count: {{ . }}
+{{- end }}
+
+```
+
+### compare numbers (eq, ne, lt, gt, le, ge)
+
+If you want to compare a value with a integer literal it might say that you cannot compare types. In this case add a decimal place to it.
+
+```go
+// change
+{{- if eq .Value.number 1 }}
+// to
+{{- if eq .Value.number 1.0 }}
+```
+
