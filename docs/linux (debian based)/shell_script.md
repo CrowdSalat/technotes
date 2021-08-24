@@ -35,6 +35,12 @@ set -o xtrace
 BASEDIR="$(dirname "$0")"
 
 ```
+### Filter lists and pipe input
+
+```shell
+# delete pods which contains example in name
+kubectl get pod | grep "example" | awk '${print $1}' | xargs kubectl delete pod 
+```
 
 ### JSON parsing
 
