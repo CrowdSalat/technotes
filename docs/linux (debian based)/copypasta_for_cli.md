@@ -88,6 +88,12 @@ Create cluster
 k3d cluster create
 ```
 
+Add image from local container host to k3d cluster
+
+```shell
+k3d image import IMAGENAME --cluster local-cluster
+```
+
 ### git
 
 ```shell
