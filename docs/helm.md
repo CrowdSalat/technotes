@@ -90,3 +90,6 @@ If you want to compare a value with a integer literal it might say that you cann
 {{- if eq .Value.number 1.0 }}
 ```
 
+### runtime values
+
+Runtime values can be accessed with the [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) function. The lookup values will only be visible when calling install. Helm template will not substitute these values. It might not work with argocd, because argo uses helm template and kubectl apply and not helm install.

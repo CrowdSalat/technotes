@@ -16,6 +16,7 @@
     - [Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
     - [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
 - [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv) - highlight and queries
+- [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case) - change between different cases (camel, snake etc.)
 
 
 ## assisting tools
