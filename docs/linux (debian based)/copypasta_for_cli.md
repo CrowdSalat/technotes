@@ -24,7 +24,27 @@ sudo usermod -aG docker $USER
 ## log out current user
 docker run hello-world
 ```
+## k8s ecosystem
 
+```
+# kubectl
+brew install kubernetes-cli
+kubectl version
+
+# kubectl package manager
+brew install krew
+/home/linuxbrew/.linuxbrew/bin/kubectl-krew install krew
+echo 'export PATH=${PATH}:~/.krew/bin/' >> ~/.bashrc && source ~/.bashrc
+
+## for changing context Usage: kubectl ctx
+kubectl krew install ctx
+
+## for changing namespace Usage: kubectl ns
+kubectl krew install ns
+
+## for merging k8s config files. Usage: kubectl konfig
+kubectl krew install konfig
+```
 ## bash completion
 
 ### any binary installed with brew
@@ -66,6 +86,12 @@ Create cluster
 
 ```shell
 k3d cluster create
+```
+
+Add image from local container host to k3d cluster
+
+```shell
+k3d image import IMAGENAME --cluster local-cluster
 ```
 
 ### git
