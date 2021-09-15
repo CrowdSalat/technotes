@@ -96,8 +96,6 @@ ssh-keygen -t rsa -b 4096
 In git bash or bash:
 
 ```shell
-# check if ssh-agent is running
-eval `ssh-agent -s`
-# configure password caching
+echo 'eval `ssh-agent -s`' >> ~/.bashrc && source ~/.bashrc
 ssh-add ~/.ssh/*_rsa
 ```
