@@ -39,7 +39,7 @@ BASEDIR="$(dirname "$0")"
 
 ```shell
 # delete pods which contains example in name
-kubectl get pod | grep "example" | awk '${print $1}' | xargs kubectl delete pod 
+kubectl get pod | grep "example" | awk '{print $1}' | xargs kubectl delete pod 
 ```
 
 ### JSON parsing
