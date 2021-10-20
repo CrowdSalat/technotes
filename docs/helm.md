@@ -45,6 +45,18 @@ helm uninstall <my_release_name>
 
 # download helm sources of chart to local folder
 helm pull <chart_name> --untar
+
+
+## debug chart
+# like template but also resolve lookups
+helm install tmp . --dry-run --debug
+
+# show manifest of a installed release tmp
+helm get manifest tmp
+
+# show values of a installed release tmp
+helm get values tmp
+
 ```
 
 ## umbrella chart pattern
@@ -90,6 +102,23 @@ If you want to compare a value with a integer literal it might say that you cann
 {{- if eq .Value.number 1.0 }}
 ```
 
+### variables
+
+
+
+```shell
+# variable declaration and initiation
+{{- $random := ( randAlphaNum 5 | quote) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  # variable usage
+  name: name-{{ $random }}
+....
+```
+
 ### runtime values
 
 Runtime values can be accessed with the [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) function. The lookup values will only be visible when calling install. Helm template will not substitute these values. It might not work with argocd, because argo uses helm template and kubectl apply and not helm install.
+
+You can find an nice example how to lookup a password [here}{https://codersociety.com/de/blog/articles/helm-best-practices#11-use-the-lookup-function-to-avoid-secret-regeneration}.
