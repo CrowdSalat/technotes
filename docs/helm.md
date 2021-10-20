@@ -46,17 +46,11 @@ helm uninstall <my_release_name>
 # download helm sources of chart to local folder
 helm pull <chart_name> --untar
 
-
-## debug chart
-# like template but also resolve lookups
-helm install tmp . --dry-run --debug
-
 # show manifest of a installed release tmp
 helm get manifest tmp
 
 # show values of a installed release tmp
 helm get values tmp
-
 ```
 
 ## umbrella chart pattern
