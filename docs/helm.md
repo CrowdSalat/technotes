@@ -96,9 +96,24 @@ If you want to compare a value with a integer literal it might say that you cann
 {{- if eq .Value.number 1.0 }}
 ```
 
+### access dotted values
+
+'''shell
+# values.yaml
+ca.password: bla
+
+---
+
+# template
+apiVersion: v1
+kind: Secret
+metadata:
+  # variable usage
+  name: {{ index .Values "ca.password" }}
+....
+'''
+
 ### variables
-
-
 
 ```shell
 # variable declaration and initiation
