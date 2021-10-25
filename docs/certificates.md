@@ -70,13 +70,31 @@ update-ca-trust
 ```shell
 # create 
 ## with subject prompt
-openssl req -x509 -newkey rsa:4096 -keyout my.key -out my.crt -days 365
+openssl req -x509 -newkey rsa:4096 -keyout my.key -out my.crt 
 ## without subject prompt
-openssl req -x509 -newkey rsa:4096 -keyout my.key -out my.crt -days 365 -subj /CN=example.de
+openssl req -x509 -newkey rsa:4096 -keyout my.key -out my.crt -subj "/CN=example.de"
+## without encrypted private key and without subject prompt
+openssl req --nodes -x509 -newkey rsa:4096 -keyout my.key -out my.crt -subj "/CN=example.de"
 
 # read 
 openssl x509 -in  my.crt -text -noout
 openssl rsa -in my.crt -text -noout
+
+# create long way
+openssl genrsa -out bla.key.pem 2048
+# create signing requets for ca (unsigned certificate)
+openssl req -new -key ca.key.pem -subj "/CN=example.de" -out bla.csr
+# sign ca certificate
+openssl x509 -req -in bla.csr -signkey bla.key.pem -out bla.crt.pem
+```
+
+## pem headers examples
+
+```shell
+-----BEGIN CERTIFICATE-----
+-----BEGIN CERTIFICATE REQUEST-----
+-----BEGIN RSA PRIVATE KEY-----
+-----BEGIN ENCRYPTED PRIVATE KEY-----
 ```
 
 ### ssh key
