@@ -16,7 +16,9 @@ wsl --set-version Ubuntu-20.04 2
 wsl --unregister Ubuntu-20.04
 ```
 
-# WORKAROUND: No Internet connection in WSL2
+## Troubleshoot
+
+### WORKAROUND: No Internet connection in WSL2
 
 Run: `sudo bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'` or add the command to you bashrc. 
 
@@ -42,7 +44,9 @@ sudo rm /etc/resolv.conf
 # start wsl and add new name server
 sudo bash -c 'echo "nameserver 1.1.1.1" > /etc/resolv.conf'
 ```
-# time not set correctly
+### time not set correctly
+
+Some auth methods of CLIs like aws, azure or gcloud depend on a working clock.
 
 ```shell
 # check time
@@ -50,16 +54,13 @@ date
 
 # see https://github.com/microsoft/WSL/issues/4245
 sudo hwclock -s
+
+# or alternativly
+sudo apt install ntpdate 
+sudo ntpdate pool.ntp.org
 ```
 
-# symlink kubeconfig
-
-```
-mkdir -p ~/.kube
-ln -s /mnt/c/Users/__USER__/.kube/config ~/.kube/config
-```
-
-# Git under WSL
+## Git under WSL
 
 [Official doc](https://docs.microsoft.com/de-de/windows/wsl/tutorials/wsl-git)
 
