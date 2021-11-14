@@ -1,7 +1,7 @@
 # Dockerfile
 
-[Docker file reference](https://docs.docker.com/engine/reference/builder/)
-[Nice summary of run, cmd and entypoint](https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
+- [Docker file reference](https://docs.docker.com/engine/reference/builder/)
+- [Nice summary of run, cmd and entypoint](https://goinbigdata.com/docker-run-vs-cmd-vs-entrypoint/)
 
 ## Create image form dockerfile
 
@@ -73,7 +73,7 @@ Java:
 
 # dockerfile vs. command line
 
-## -p vs EXPORT
+## -p vs EXPOSE
 
 EXPORT does not actually publish the given port. It is a documentation for the user. The user of a image needs to export the port via -p flag when running docker run.
 
