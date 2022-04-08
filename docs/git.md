@@ -47,6 +47,16 @@ If you want to delete passwords or other sensible stuff from git history use [bf
 
 Afterwards use force push to change history: `git push --force`
 
+## git submodules
+
+```shell
+# intiliaze existing git submodules 
+git clone <parent>
+git submodule init && git submodule update
+# or
+git clone --recurse-submodules <parent>
+```
+
 ## certs
 
 - ignore:
@@ -93,9 +103,40 @@ ssh-keygen -t rsa -b 4096
 
 ## ssh remember passphrase
 
-In git bash or bash:
+In bash:
 
 ```shell
 echo 'eval `ssh-agent -s`' >> ~/.bashrc && source ~/.bashrc
 ssh-add ~/.ssh/*_rsa
+```
+
+For WSL:
+
+```shell
+sudo apt install keychain
+echo "eval `keychain --quiet --eval --agents ssh id_rsa`" >> ~/.bashrc  && source ~/.bashrc
+```
+
+## work with gpg
+
+Sign commitsa
+
+```bash
+# for one commit
+git co -S -m ""
+# for all
+git config --global commit.gpgsign true
+
+# in vscode add to settings json:
+"git.enableCommitSigning": true
+```
+
+create and configure gpg keys:
+ 
+- [Gitlab doc](https://docs.gitlab.com/ee/user/project/repository/gpg_signed_commits/#add-a-gpg-key-to-your-account)
+
+Save passphrase for twelve hours
+
+```bash
+echo "default-cache-ttl 43200" > ~/.gnupg/gpg-agent.conf
 ```
