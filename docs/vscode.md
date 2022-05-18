@@ -1,5 +1,11 @@
 # VS Code
 
+## Debugging
+
+Vscode expetcs a launch.json and a task.json file in .vscode directory in the root your selected vscode workspace. The preLaunchTask field in the launch.json refers to a label of a task in task.json. 
+
+For debugging with firefox you need an [additional vscode extension](https://marketplace.visualstudio.com/items?itemName=firefox-devtools.vscode-firefox-debug). There is an official microsoft [recipes for debugging repo](https://github.com/microsoft/vscode-recipes/tree/master) on github.
+
 ## Remote SSH and SCP
 
 [Official documentation](https://code.visualstudio.com/docs/remote/ssh)
