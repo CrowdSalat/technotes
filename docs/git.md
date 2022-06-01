@@ -40,7 +40,16 @@ git reset HEAD^
 git reset --hard HEAD^
 
 ```
+## change old commit 
 
+[Source](https://stackoverflow.com/a/27721031)
+
+```shell
+export COMMIT_TO_FIX=27d97f1ab2299564dc100a21c6473002af6c6857
+git add <fixed_files>
+git commit --fixup=${COMMIT_TO_FIX}
+git rebase --interactive --autosquash ${COMMIT_TO_FIX}^
+```
 ## clean files in history
 
 If you want to delete passwords or other sensible stuff from git history use [bfg](https://rtyley.github.io/bfg-repo-cleaner/). It does not touch your current commit (HEAD) just older commits.
