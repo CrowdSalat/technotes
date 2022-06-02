@@ -1,0 +1,12 @@
+# Yubikey 5 series
+
+## setup
+
+[Offical setup page](https://www.yubico.com/de/setup/)
+
+```shell
+# cli
+brew install ykman
+# ui
+## see https://www.yubico.com/support/download/yubikey-manager/
+```
