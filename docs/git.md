@@ -38,17 +38,20 @@ git reset HEAD^
 
 # delete last commit
 git reset --hard HEAD^
-
 ```
+
 ## change old commit 
 
-[Source](https://stackoverflow.com/a/27721031)
+[Source](https://stackoverflow.com/a/2719636/6872190)
 
 ```shell
-export COMMIT_TO_FIX=27d97f1ab2299564dc100a21c6473002af6c6857
-git add <fixed_files>
-git commit --fixup=${COMMIT_TO_FIX}
-git rebase --interactive --autosquash ${COMMIT_TO_FIX}^
+git rebase -i HEAD~10
+# mark commit with 'e' or 'edit'
+# change files and add to stage
+git add <stuff>
+git commit --amend --no-edit
+git rebase --continue
+
 ```
 ## clean files in history
 
@@ -59,11 +62,11 @@ Afterwards use force push to change history: `git push --force`
 ## git submodules
 
 ```shell
-# intiliaze existing git submodules 
-git clone <parent>
-git submodule init && git submodule update
-# or
-git clone --recurse-submodules <parent>
+# init submodule
+git submodule update --init --recursive
+
+# point submodule to HEAD
+git submodule update --remote --merge
 ```
 
 ## certs
