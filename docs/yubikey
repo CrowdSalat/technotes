@@ -1,5 +1,8 @@
 # Yubikey 5 series
 
+- [Guide](https://github.com/drduh/YubiKey-Guide)
+- [Simple use cases](https://ocramius.github.io/blog/yubikey-for-ssh-gpg-git-and-local-login/)
+
 ## setup
 
 [Offical setup page](https://www.yubico.com/de/setup/)
