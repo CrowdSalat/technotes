@@ -1,5 +1,30 @@
 # Linux filesystem
 
+## disk suage
+
+```shell
+# show disk usage
+ncdu
+
+# show disk usage
+du -sch
+
+```
+
+## symbolic links vs. hard links
+
+symbolic links (/soft links/symlinks) and hard links
+
+
+```shell
+# soft link (symlink)
+ln -s source.file link.file
+
+
+# hard link
+ln source.file link.file
+```
+
 ## hierarchy
 
 1. disk
@@ -50,7 +75,6 @@ lvscan
 # -L50G is target size 50 GB
 lvextend -L50G /dev/<volume group>/<logical volume> 
 
-
 # 4.
 lvscan
 ```
@@ -85,18 +109,4 @@ vgs
 # list logical volume
 lvs
 
-```
-
-## symbolic links vs. hard links
-
-symbolic links (/soft links/symlinks) and hard links
-
-
-```shell
-# soft link (symlink)
-ln -s source.file link.file
-
-
-# hard link
-ln source.file link.file
 ```
