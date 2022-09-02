@@ -1,5 +1,82 @@
 # Git
 
+## initial setup 
+
+### mac
+
+```shell
+## base config
+MAIL_ADDRESS="jan.weyrich@viadee.de"
+git config --global user.name "Jan Weyrich"
+git config --global user.email "$MAIL_ADDRESS"
+
+## alias
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
+## generate ssh key
+ssh-keygen -t rsa -b 4096 -C "$MAIL_ADDRESS"
+
+# add ssh key agent for passwort prompt
+# see https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
+
+## gpg
+brew install gpg2 gnupg pinentry-mac
+
+gpg --full-generate-key
+
+# config for git
+gpg -K --keyid-format SHORT
+gpg --armor --export 8627004B > ~/gpg-public.pem
+git config --global user.signingkey 8627004B
+git config --global gpg.program $(which gpg)
+git config --global commit.gpgsign true
+echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
+source ~/.zshrc
+
+# for pw prompt see here: https://unixb0y.de/blog/articles/2019-01/gpg-password-macos-keychain
+echo 'use-agent' > ~/.gnupg/gpg.conf
+echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+```
+
+### linux
+
+```shell
+# config
+export MAIL_ADDRESS="jan.weyrich@viadee.de"
+git config --global user.name "Jan Weyrich"
+git config --global user.email "$MAIL_ADDRESS"
+
+# alias
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
+# ssh
+ssh-keygen -t rsa -b 4096 -C "$MAIL_ADDRESS"
+echo 'eval `ssh-agent -s`' >> ~/.bashrc && source ~/.bashrc
+ssh-add ~/.ssh/*_rsa
+
+# gpg
+
+gpg --full-generate-key
+gpg --armor --export 7C37CF3A > ~/gpg-public.pem
+git config --global gpg.program $(which gpg)
+git config --global commit.gpgsign true
+
+## save passphrase for twelve hours
+echo "default-cache-ttl 43200" > ~/.gnupg/gpg-agent.conf
+
+
+## view ssh pub key
+cat ~/.ssh/id_rsa.pub
+## view gpg pub key
+gpg --armor --export 7C37CF3A > ~/gpg-public.pem
+```
+
 ## wording
 
 - [Good references](https://stackoverflow.com/a/3690796)
