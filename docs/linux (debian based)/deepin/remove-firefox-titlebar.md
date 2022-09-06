@@ -19,3 +19,5 @@ MimeType=text/html;text/xml;application/xhtml+xml;application/xml;application/vn
 StartupWMClass=Firefox
 StartupNotify=true
 ```
+
+Reason is [Client-side decoration](https://en.wikipedia.org/wiki/Client-side_decoration).
