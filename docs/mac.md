@@ -116,8 +116,9 @@ gpg --full-generate-key
 
 # config for git
 gpg -K --keyid-format SHORT
-gpg --armor --export 8627004B > ~/gpg-public.pem
-git config --global user.signingkey 8627004B
+export gpg_id=8627004B
+gpg --armor --export $gpg_id > ~/gpg-public.pem
+git config --global user.signingkey $gpg_id
 git config --global gpg.program $(which gpg)
 git config --global commit.gpgsign true
 echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
