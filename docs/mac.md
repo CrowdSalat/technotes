@@ -2,8 +2,8 @@
 
 ## moving from linux to mac
 
-- [macos - how does the window system work](https://apple.stackexchange.com/questions/339214/whats-the-difference-between-minimize-and-hide-between-maximize-and-fullscreen)
 - [moving to zsh](https://scriptingosx.com/2019/06/moving-to-zsh/)
+- [macos - how does the window system work](https://apple.stackexchange.com/questions/339214/whats-the-difference-between-minimize-and-hide-between-maximize-and-fullscreen)
 
 ## install snippets
 
@@ -56,6 +56,12 @@ brew install --cask google-cloud-sdk
 ```shell
 
 # oh my zsh stuff... 
+
+# activate completion in zsh
+autoload -Uz compinit && compinit
+
+# add brew to path
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # for git
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
