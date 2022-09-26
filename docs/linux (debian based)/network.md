@@ -31,9 +31,12 @@ The -i flag can be omitted if the standard file names id_rsa (private key) and i
 #generate a private and public key pair in ~/.ssh/ folder
 ssh-keygen
 
-# copy your public key to a known_host file on a remote machine
+# your user: copy your public key to the authorized_keys file in your home directory on a remote machine
 # allows access with your private key instead of a password
 ssh-copy-id -i ~/.ssh/id_rsa user@host
+
+# other user:  copy your public key to the authorized_keys file in another home direcotry
+cat ~/id_rsa.pub | ssh your_user@remote.server.com “sudo tee -a /USER/.ssh/authorized_keys”
 
 # connect use rsa private key saved under ~/.ssh/ instead of password
 ssh -i ~/.ssh/id_rsa <user>@<ip or url>
