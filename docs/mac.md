@@ -116,9 +116,9 @@ gpg --full-generate-key
 
 # config for git
 gpg -K --keyid-format SHORT
-export gpg_id=8627004B
-gpg --armor --export $gpg_id > ~/gpg-public.pem
-git config --global user.signingkey $gpg_id
+export GPG_SEC_ID=8627004B
+gpg --armor --export $GPG_SEC_ID > ~/gpg-public.pem
+git config --global user.signingkey $GPG_SEC_ID
 git config --global gpg.program $(which gpg)
 git config --global commit.gpgsign true
 echo 'export GPG_TTY=$(tty)' >> ~/.zshrc
@@ -127,6 +127,15 @@ source ~/.zshrc
 # for pw prompt see here: https://unixb0y.de/blog/articles/2019-01/gpg-password-macos-keychain
 echo 'use-agent' > ~/.gnupg/gpg.conf
 echo "pinentry-program /opt/homebrew/bin/pinentry-mac" > ~/.gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
+
+# check with
+echo "test" | gpg --clearsign
+
+# if you got: gpg: signing failed: No pinentry
+# you may want to try with:
+echo "/opt/homebrew/bin/pinentry" > ~/.gnupg/gpg-agent.conf
+gpgconf --kill gpg-agent
 ```
 
 ## colima 
