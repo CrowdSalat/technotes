@@ -49,6 +49,7 @@ brew install docker
 # cloud
 brew install awscli
 brew install --cask google-cloud-sdk
+brew install azure-cli
 ```
 
 ## ~/.zshrc snippets
