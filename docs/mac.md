@@ -61,6 +61,13 @@ brew install azure-cli
 
 
 ```
+## ~/.zprofile
+
+```shell
+## brew completion when zsh is installed
+## source: https://docs.brew.sh/Shell-Completion
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+```
 
 ## ~/.zshrc snippets
 
@@ -77,7 +84,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 # for git
 ssh-add --apple-use-keychain ~/.ssh/id_rsa
 
-# brew stuff
+# brew completion
 if type brew &>/dev/null
 then
   FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
