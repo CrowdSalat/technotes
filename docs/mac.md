@@ -41,15 +41,25 @@ pyenv install 2.7.14
 
 pyenv local 2.8.0
 
-# provides container runtime in vm
+# docker & Kubernetes
+## Option 1: Rancher Desktop
+brew install --cask rancher
+echo "# rancher desktop" >> ~/.zshrc
+echo "export PATH=$PATH:$HOME/.rd/bin" >> ~/.zshrc
+source ~/.zshrc
+
+## Option 2: colima provides container runtime in vm
 brew install colima
-# docker cli
+##  docker cli
 brew install docker
 
 # cloud
 brew install awscli
 brew install --cask google-cloud-sdk
 brew install azure-cli
+
+
+
 ```
 
 ## ~/.zshrc snippets
