@@ -4,4 +4,5 @@ theme:
         scheme: slate
         primary: teal
 site_name: Technotes
+repo_url: https://github.com/CrowdSalat/technotes
     
