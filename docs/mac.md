@@ -53,6 +53,10 @@ brew install colima
 ##  docker cli
 brew install docker
 
+## docker mac fix
+# problems wth keychain when running docker login:
+# to fix: brew install docker-credential-helper
+
 # cloud
 brew install awscli
 brew install --cask google-cloud-sdk
@@ -173,6 +177,22 @@ Could not get testcontainers to work with colima. Here are some links with furth
 - https://stackoverflow.com/questions/70749679/how-can-i-use-testcontainer-in-mac-os-with-out-docker-desktop
 
 ## m1 compatibility problems
+
+## docker build
+
+```
+echo "# for docker build on m1" >> ~/.zshrc
+echo "export DOCKER_BUILDKIT=0" >> ~/.zshrc
+echo "export COMPOSE_DOCKER_CLI_BUILD=0" >> ~/.zshrc
+
+source ~/.zshrc
+```
+
+```shell
+failed to solve with frontend dockerfile.v0: failed to create LLB definition: rpc error: code = Unknown desc = error getting credentials - err: docker-credential-osxkeychain resolves to executable in current directory (./docker-credential-osxkeychain), out: ``
+```
+
+[Source](https://stackoverflow.com/a/66695181)
 
 ### terraform
 
