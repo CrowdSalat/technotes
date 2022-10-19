@@ -167,8 +167,17 @@ git submodule update --remote --merge
 ## tag
 
 ```shell 
-git tag -a 1.2.3 -m "message
-git push --follow-tags
+# create tag and push (beware push only tags not commits)
+
+git tag 1.2.3
+#git tag -a 1.2.3 -m "message"
+git push --tags
+
+# delte remote tag
+git push --delete oririn 1.2.3
+
+# delete local
+git tag -d 1.2.3
 
 ```
 
