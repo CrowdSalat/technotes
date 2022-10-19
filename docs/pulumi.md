@@ -2,14 +2,17 @@
 
 ## use custom backend
 
-- setup with standard login. The initial project nearly setups an backend. Run pulumi up and then switch the backend to newly created resources. s
+- setup with standard login. The initial project nearly setups an backend. Run pulumi up and then switch the backend to newly created resources. 
 - otherwise here is a gist for creating the resources with a bash scripts
-    - azure
-    - gcp
-
-
-## linter for pulumi and save actions
-## gitops for pulumi
+    - [azure gist](https://gist.github.com/CrowdSalat/07a07e923ed29933eaf9abe54bf1f83b)
+    - [gcp gist](https://gist.github.com/CrowdSalat/07a07e923ed29933eaf9abe54bf1f83b)
+- Login to [selfmanaged backend](https://www.pulumi.com/docs/intro/concepts/state/#using-a-self-managed-backend)
+  - azure: 
+    - set AZURE_STORAGE_KEY and STORAGE_ACCOUNT_NAME
+    - run `pulumi login azblob://<container-path>`
+  - gcp:
+    - set GOOGLE_PROJECT and GOOGLE_CREDENTIALS
+    - run  `pulumi login gs://<my-pulumi-state-bucket>`
 
 ## access stack name within code
 
