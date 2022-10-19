@@ -158,6 +158,9 @@ echo "test" | gpg --clearsign
 # you may want to try with:
 echo "/opt/homebrew/bin/pinentry" > ~/.gnupg/gpg-agent.conf
 gpgconf --kill gpg-agent
+
+## save passphrase for twelve hours
+echo "default-cache-ttl 43200" >> ~/.gnupg/gpg-agent.conf
 ```
 
 ## colima 
