@@ -62,8 +62,6 @@ brew install awscli
 brew install --cask google-cloud-sdk
 brew install azure-cli
 
-
-
 ```
 ## ~/.zprofile
 
@@ -162,6 +160,14 @@ gpgconf --kill gpg-agent
 ## save passphrase for twelve hours
 echo "default-cache-ttl 43200" >> ~/.gnupg/gpg-agent.conf
 ```
+
+## completion stopped working
+
+```shell
+rm -f ~/.zcompdump; compinit
+```
+
+[Source](https://docs.brew.sh/Shell-Completion)
 
 ## colima 
 
