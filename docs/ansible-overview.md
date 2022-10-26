@@ -166,3 +166,35 @@ all:
             ansible_host: 192.168.0.5
             ansible_user: pi
 ```
+
+## test stuff locally
+
+run `ansible-playbook filename`
+
+```yaml
+- name: My play
+  hosts: localhost
+  # to prevent ssh
+  connection: local
+  tasks:
+    - name: Caculate Free Harddrive Memory
+      assert:
+        that:
+          - not {{ item.mount == '/' and (item.size_available < 8589934592 ) }}
+      with_items: "{{ ansible_facts['mounts'] }}"
+```
+
+## running anisble in pipeline
+
+Container images for ansible
+
+[2.9-2.13](https://github.com/willhallonline/docker-ansible)
+[2.3-2.11](https://github.com/cytopia/docker-ansible)
+
+
+Container image requirements:
+
+- bash (execute deploy.sh script)
+- ansible
+- git + ssh-agent (to check out ansible galaxy roles from git)
+  - [See workaround for token access](gitlab.md)
