@@ -198,3 +198,26 @@ Container image requirements:
 - ansible
 - git + ssh-agent (to check out ansible galaxy roles from git)
   - [See workaround for token access](gitlab.md)
+
+## ansible output config
+
+
+In ansible.cfg
+
+```ini
+[default]
+... 
+
+# more human readable log
+stdout_callback = yaml
+force_color = true
+
+# print summary of task with execution times at the end of play
+callback_whitelist = profile_tasks
+
+[callback_profile_tasks]
+sort_order = none
+task_output_limit = 200
+```
+
+Worked with ansible 2.8
