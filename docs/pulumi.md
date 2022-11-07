@@ -57,7 +57,7 @@ pulumi refresh
 - Login to [selfmanaged backend](https://www.pulumi.com/docs/intro/concepts/state/#using-a-self-managed-backend)
   - azure: 
     - set AZURE_STORAGE_KEY and STORAGE_ACCOUNT_NAME
-    - run `pulumi login azblob://<container-path>`
+    - run `pulumi login azblob://<container-blob-name>`
   - gcp:
     - set GOOGLE_PROJECT and GOOGLE_CREDENTIALS
     - run  `pulumi login gs://<my-pulumi-state-bucket>`
