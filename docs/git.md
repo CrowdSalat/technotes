@@ -91,6 +91,10 @@ cat ~/.ssh/id_rsa.pub
 gpg --armor --export 7C37CF3A > ~/gpg-public.pem
 ```
 
+## configure output behavior (disable pager)
+
+https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
+
 ## wording
 
 - [Good references](https://stackoverflow.com/a/3690796)
