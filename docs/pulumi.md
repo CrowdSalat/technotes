@@ -25,6 +25,7 @@ Use pulumi.concat or pulumi.interpolate. For deails [see](https://www.pulumi.com
 In doubt use native because.
 
 - it exposes the full api of a provider (beware of breaking api changes)
+  - in case of azure it only exposes the ARM api which is a (unified) subset of the rest api
 - it allows to configure the location for the whole stack: `pulumi config set azure-native:location WestUS2`
 
 [Pulumi blog](https://www.pulumi.com/blog/full-coverage-of-azure-resources-with-azure-native/)
