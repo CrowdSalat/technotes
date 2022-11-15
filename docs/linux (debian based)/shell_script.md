@@ -56,6 +56,7 @@ kubectl get pod | grep "example" | awk '{print $1}' | xargs kubectl delete pod
     - complete exmaple: `curl -X POST -H 'Content-Type:application/json' -d @RELATIVE/OR/FULLPATH/example.json  $URL`
 - to show error but no progress bar run curl: `curl -sS http://`. -s for silent mode (suppress progress bar and error) and -S for explicitly showing  error.
 - to download stuff follow redirects and set output name: `curl -L https://github.com/stedolan/jq/releases/download/jq-1.6/jq-linux64 -o /usr/bin/jq`
+- Check firewall: `curl --connect-timeout 10 --show-error bla.de`. Connection error 28 indicates that a firewall blocks the call
 
 ### string replacement
 
