@@ -17,7 +17,9 @@
 - subscription: part of a directory
 - account: me and belongs to one or more directory and has access to one or more subscriptions
 - tenant id belongs to directory
-- Object Id is the principal id
+- Object Id = principal id
+- Object Id != client id
+- application ≈ managed identity ≈ service principal
 
 ```shell
 az login
@@ -229,7 +231,9 @@ jobs:
 
 If you want to use a service principal with pulumi you need to configure the following configs [Source](https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#authenticate-using-a-service-principal)
 
-```
+Depends on backend. **If you use multiple backends e.g. azure and azure-native you need to fullfill all login requirements.**
+
+```shell
 pulumi config set azure-native:clientId ""
 pulumi config set azure-native:clientSecret "" --secret
 pulumi config set azure-native:tenantId ""
@@ -288,8 +292,8 @@ ContainerAppConsoleLogs_CL
 let endDateTime = now();
 let startDateTime = ago(1h);
 ContainerAppConsoleLogs_CL
-| where TimeGenerated < endDateTime
 | where TimeGenerated >= startDateTime
+| where TimeGenerated < endDateTime
 | sort by TimeGenerated desc  
 
 ```
@@ -308,6 +312,8 @@ source /opt/homebrew/etc/bash_completion.d/az
 ```
 
 ## pulumi examples
+
+[Official List](https://github.com/pulumi/pulumi-azure-native/tree/master/examples)
 
 ### work with userAssignedIdentities in typescript
 
@@ -344,3 +350,51 @@ userAssignedIdentities: {
   /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}: {}
 }
 ```
+
+### add firewall rule for azure service
+
+To confgure IaC as the azure portal checkbox "Allow public access from any Azure service within Azure to this serve" does you need to add the firewall rule with start ip and end ip address 0.0.0.0
+
+See example in ARM:
+
+```bicep
+        {
+            "type": "Microsoft.DBforPostgreSQL/flexibleServers/firewallRules",
+            "apiVersion": "2022-01-20-preview",
+            "name": "[concat(parameters('flexibleServers_dev_fairmanager_postgres_name'), '/allow_all_azure_resources')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.DBforPostgreSQL/flexibleServers', parameters('flexibleServers_dev_fairmanager_postgres_name'))]"
+            ],
+            "properties": {
+                "startIpAddress": "0.0.0.0",
+                "endIpAddress": "0.0.0.0"
+            }
+        },
+```
+
+or pulumi 
+
+```typescript
+import * as dbforpostgresql from "@pulumi/azure-native/dbforpostgresql";
+
+const pgFirewallRules = [
+    { firewallRuleName: "AllowAllAzureServicesAndResourcesWithinAzureIps", startIpAddress: "0.0.0.0", endIpAddress: "0.0.0.0" },
+]
+
+pgFirewallRules.forEach((rule, index) => {
+    new dbforpostgresql.FirewallRule(`${stack}-postgres-firewall-${index}`, {
+        resourceGroupName: resourceGroup.name,
+        serverName: pgServer.name,
+        firewallRuleName: rule.firewallRuleName,
+        endIpAddress: rule.endIpAddress,
+        startIpAddress: rule.startIpAddress,
+    });
+});
+
+```
+
+### application gateway
+
+If you can, avoid this resource at all. It is tedious complex to configure. Use frontdoor instead if possible.
+
+Pitfall: If you got multiple Level 7 routing mechanism e.g. application gateway which points on container apps you need to ensure that the host header is correct otherwise you get a 404 on the gateway probes. In doubt override the host name in the backend setting of the application gateway to the exact dns name of the target application.
