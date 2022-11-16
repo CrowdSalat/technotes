@@ -16,6 +16,8 @@
 - directory: company
 - subscription: part of a directory
 - account: me and belongs to one or more directory and has access to one or more subscriptions
+- tenant id belongs to directory
+- Object Id is the principal id
 
 ```shell
 az login
@@ -126,14 +128,13 @@ It may happen that a container is killed but you got no log entry other than "ki
 
 Troubleshooting:s set the memory and cpu to max (or check in metrics if the memory metric is too high before it collapesesz
 
+## pipelines user for az and pulumi
 
-## pipelines user for az
-
-[How to create and use](https://github.com/Azure/login#configure-deployment-credentials)
+[How to create and use a service principal](https://github.com/Azure/login#configure-deployment-credentials)
 
 `az ad sp create-for-rbac --name="myapp-service-principal" --role="Contributor" --scopes="/subscriptions/BLA" --years=10 --sdk-auth`
 
-Create sp with `--sdk-auth` flag so your output looks something like this. Action does not work with the normal outoput of four properties.
+Create sp with `--sdk-auth` flag so your output looks something like this. Action does not work with the normal outoput of four properties. 
 
 ```json
  {
@@ -150,6 +151,9 @@ Create sp with `--sdk-auth` flag so your output looks something like this. Actio
  }
  ```
 
+### example for az
+
+Add the following to a Action Secret `AZURE_CREDENTIALS`:
 
 Pipeline example:
 
@@ -220,10 +224,50 @@ jobs:
               az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_RESOURCE_GROUP }} --image ${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}
 ```
 
+### example for pulumi
+
+
+If you want to use a service principal with pulumi you need to configure the following configs [Source](https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#authenticate-using-a-service-principal)
+
+```
+pulumi config set azure-native:clientId ""
+pulumi config set azure-native:clientSecret "" --secret
+pulumi config set azure-native:tenantId ""
+pulumi config set azure-native:subscriptionId ""
+```
+
+```
+name: Pulumi
+on:
+  - pull_request
+jobs:
+  preview:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+      - run: npm install
+      # see https://github.com/pulumi/actions
+      # or for full parameter overview https://github.com/pulumi/actions/blob/master/action.yml
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: staging
+          comment-on-pr: true
+          cloud-url: azblob://fairmanager-pulumistate
+          #github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+```
+
 ## azure logs
 
 [KQL reference](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
-
 
 Examples:
 
@@ -261,4 +305,42 @@ ContainerAppConsoleLogs_CL
 # https://medium.com/@MyDiemHo/enable-azure-cli-autocomplete-in-oh-my-zsh-93e79019a20d
 autoload -U +X bashcompinit && bashcompinitsource 
 source /opt/homebrew/etc/bash_completion.d/az
+```
+
+## pulumi examples
+
+### work with userAssignedIdentities in typescript
+
+As long as this [issue](https://github.com/pulumi/pulumi-azure-native/issues/812) is not implemented you may need to workaround limitations of dynamic properties in typescript in conjunction with pulumi.Output<String> type.
+
+```typescript
+const userIdentity = new managedidentity.UserAssignedIdentity("uai", {
+    resourceGroupName: resourceGroup.name,
+    location: resourceGroup.location,
+});
+// userIdentity.id is from type pulumi.Output<String>
+
+// this does not work
+...
+userAssignedIdentities: {
+  [userIdentity.id]: {}
+}
+...
+
+// this does
+...
+identity: {
+        type: containerinstance.ResourceIdentityType.UserAssigned,
+        userAssignedIdentities: userIdentity.id.apply(id => {
+            const dict: { [key: string] : object } = {};
+            dict[id] = {};
+            return dict;
+        }),
+    },
+...
+
+// translates to this:
+userAssignedIdentities: {
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}: {}
+}
 ```
