@@ -398,3 +398,5 @@ pgFirewallRules.forEach((rule, index) => {
 If you can, avoid this resource at all. It is tedious complex to configure. Use frontdoor instead if possible.
 
 Pitfall: If you got multiple Level 7 routing mechanism e.g. application gateway which points on container apps you need to ensure that the host header is correct otherwise you get a 404 on the gateway probes. In doubt override the host name in the backend setting of the application gateway to the exact dns name of the target application.
+
+[Here is a gist](https://gist.github.com/CrowdSalat/376cb24dc11e031b3daf83e38b89f419) which contains pulumi code to create an application gateway with TLS and the necessary certificate generation as well as a vault to save the certificate. At this point it is not possible to import a certificate to a vault via pulumi. [See this issue.](https://github.com/pulumi/pulumi-azure-native/issues/742).
