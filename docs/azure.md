@@ -400,3 +400,13 @@ If you can, avoid this resource at all. It is tedious complex to configure. Use 
 Pitfall: If you got multiple Level 7 routing mechanism e.g. application gateway which points on container apps you need to ensure that the host header is correct otherwise you get a 404 on the gateway probes. In doubt override the host name in the backend setting of the application gateway to the exact dns name of the target application.
 
 [Here is a gist](https://gist.github.com/CrowdSalat/376cb24dc11e031b3daf83e38b89f419) which contains pulumi code to create an application gateway with TLS and the necessary certificate generation as well as a vault to save the certificate. At this point it is not possible to import a certificate to a vault via pulumi. [See this issue.](https://github.com/pulumi/pulumi-azure-native/issues/742).
+
+## pitfalls
+
+Reason: You gave azure an resource group id but it expected a resourge group name.
+
+Message:
+
+```shell
+ error: cannot check existence of resource '/subscriptions/SUBID/resourceGroups/%2Fsubscriptions%2FSUBID%2FresourceGroups%2FRGNAME/providers/Microsoft.Network/applicationGateways/staging-fairmanager-gateway': status code 400, {"error":{"code":"InvalidApiVersionParameter","message":"The api-version '2020-11-01' is invalid. The supported versions are '2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'."}}
+```
