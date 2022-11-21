@@ -18,6 +18,18 @@ Initially created with cli and a box name e.g: `vagrant init opensuse/Tumbleweed
 
 You can find public available boxes on [app.vagrantup.com](https://app.vagrantup.com/boxes/search).
 
+## SSH into vagrant box without 'vagrant ssh'
+
+```shell
+# save the config to a file
+vagrant ssh-config > vagrant-ssh
+
+# run ssh with the file.
+ssh -F vagrant-ssh default
+```
+
+[Source](https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh)
+
 ## autocompletion
 
 ```shell
