@@ -123,6 +123,17 @@ With stash. Allows to revert changes, but not recommended with many files:
 - Permanently deleting files: `git stash drop`
 - Revert changes: `git stash pop`
 
+## checkout remote branch
+
+```shell
+git fetch
+
+git switch BRANCH_NAME
+
+# or
+git checkouto -B BRANCH_NAME origin/BRANCH_NAME 
+```
+
 ## revert or delete commits
 
 - [interactive wizard](https://sethrobertson.github.io/GitFixUm/fixup.html)
@@ -140,7 +151,7 @@ git reset --hard HEAD^
 [Source](https://stackoverflow.com/a/2719636/6872190)
 
 ```shell
-git rebase -i HEAD~10
+git rebase --interactive HEAD~10
 # mark commit with 'e' or 'edit'
 # change files and add to stage
 git add <stuff>
