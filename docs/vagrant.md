@@ -30,6 +30,21 @@ ssh -F vagrant-ssh default
 
 [Source](https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh)
 
+## connect with ansible to vagrant box
+
+
+```shell
+vagrant ssh-config > vagrant-ssh.cfg
+```
+
+You can refence the ssh config in ansible by adding the following to a host_var file:
+
+```yaml
+ansible_ssh_common_args: '-F ./host_vars/VAGRANT/vagrant-ssh.cfg'
+# must match host in vagrant-ssh.cfg
+ansible_ssh_host: default
+```
+
 ## autocompletion
 
 ```shell
