@@ -184,6 +184,10 @@ run `ansible-playbook filename`
       with_items: "{{ ansible_facts['mounts'] }}"
 ```
 
+## test ansible in vagrant
+
+[see](../vagrant)
+
 ## running anisble in pipeline
 
 Container images for ansible
