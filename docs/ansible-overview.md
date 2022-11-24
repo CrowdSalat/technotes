@@ -188,6 +188,10 @@ run `ansible-playbook filename`
 
 [see](../vagrant)
 
+## restart failed task
+
+Seems not to be possible, but you can use `--start-at-task` parameter of ansible-playbook cli.
+
 ## running anisble in pipeline
 
 Container images for ansible
