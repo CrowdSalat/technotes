@@ -123,3 +123,17 @@ ssl.keystore.type=PEM
 ssl.keystore.key=
 ssl.keystore.certificate.chain= 
 ```
+
+### ACLs (autorization)
+
+With ACLs you can permit [operations](https://docs.confluent.io/current/kafka/authorization.html#operations) on resources (topic, Cluster, ..) Follow the [instruction link](https://docs.confluent.io/current/kafka/authorization.html) to setup ACLs, but read the following keypoints and pitfalls before you do it:
+
+- [Define a Authorizer for the broker: `authorizer.class.name=kafka.security.authorizer.AclAuthorizer`](https://docs.confluent.io/current/kafka/authorization.html#authorizer)
+- When a client connects via mTLS the principal will be the certificate 'subject'/'distinguished name'. [If you want to use only the a part of it you need to configure the `ssl.principal.mapping.rules`](https://docs.confluent.io/current/kafka/authorization.html#tls-ssl-principal-user-names)
+- A valid `ssl.principal.mapping.rules` to extract the CN from a cert is: `RULE: ^.*[Cc][Nn]=(([a-zA-Z0-9\.\-\-]*).*$/$1/L), DEFAULT`.*The leading `^.*` and the trailing `.*$` seems to be needed. Do not forget to append th DEFAULT rule after a comma at the end*
+- If you want to debug if you Authorizer and your mapping rule work you should look into the `kafka-authorizer.log`. You may need to set the log level of the authorizer to DEBUG in the [log4j.xml](./config/log4j.xml) file.
+- Use `allow.everyone.if.no.acl.found=true` when you want to dry run your setup.
+- when defining a `super.user` you might want to set the whole 'distinguished name' as well as the CN in case your `ssl.principal.mapping.rules` does not work: `super.user=User:CN=bla,OU=bla;User:bla`. The `User` and the `;` enclose one entry.
+- To add ACLs you can use the [kafka-acl](https://kafka.apache.org/documentation/#security_authz_cli) command. If an authorizer is active you will also need an certificate for the admin user or the use you want to use when creating ACLs
+- If you setup an authorizer you need to allow the broker of your cluster to operate on reosurce 'Cluster' or it may not function as expected
+- Information on ACLs is stored in zookeeper (so you might want to activate [ZooKeepers security](https://kafka.apache.org/documentation/#zk_authz) as well)
