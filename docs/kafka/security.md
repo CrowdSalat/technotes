@@ -47,8 +47,8 @@ listener=INTERNAL:localhost:9092
 # the listeners which get send to zookeeper and the clients. if not set will equal to listener
 # advertised.listener=
 
-# The first is the listener name (e.g. security) the second is the protocol (PLAINTEXT, SSL, ...)
-listener.security.protocol.map=
+# The first is the listener name (e.g. INTERNAL) the second is the protocol (PLAINTEXT, SSL, ...)
+listener.security.protocol.map=INTERNAL:SSL
 ```
 
 If SSL protocol is activated for one listener you must locate the private/public key pair and you should set a accepted TLS Version. This can be achieved for all listeners with the ssl.\* properties. If you want to adress a specific listener you need to prefix the properties with the listener.name.<listener_name> e.g. listener.name.internal.ssl.\*.
