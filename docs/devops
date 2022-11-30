@@ -2,6 +2,8 @@
 
 ## Four key metrics
 
+[Good overview](https://tamerlan.dev/an-introduction-to-dora-metrics/)
+
 velocity: 
 
 - Deployment Frequency—How often an organization successfully releases to production
