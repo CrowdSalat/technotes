@@ -12,6 +12,7 @@
   - Security for dependecies, code, containers and infrastructure-code [Snyk](https://support.snyk.io/hc/en-us?utm_campaign=docs&utm_medium=github&utm_source=full_docs)
   - check git repos for secrets [gitguardian](https://www.gitguardian.com/)
   - security check for used libraries [dependabot](https://dependabot.com/)
+  - [kiks](https://kics.io/) scans IaC code for vulnerabilities
 - Test coverage (may need additional client library which produce the reports in ci)
   - [codecov](https://github.com/aquasecurity/trivy)
   - [coverall](https://coveralls.io/)
