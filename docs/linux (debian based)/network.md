@@ -71,8 +71,8 @@ nmap -p- <ip_address>
 # remote machine: check if tcp port 8080 is open 
 nmap -p 8080 <ip_address>
 
-# remote machine: start webservcer on port and check from browser on local machine
-mkdir tmp && cd tmp && echo "Hello Webserver page"
+# remote machine: start webserver on port and check from browser on local machine
+mkdir tmp && cd tmp && echo "Hello, you reached Jans webserver" > index.html
 python3 -m http.server 8080 
 cd -
 ```
