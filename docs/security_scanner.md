@@ -7,13 +7,28 @@ A software bill of materials (SBOM) is an industry standard mechanism of surfaci
 Standards:
 
 - [spdx from linux foundation](https://spdx.dev/)
-  - [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator) 
 - [cyclone dx from owasp](https://cyclonedx.org/)
 - [syft from/with grype](https://github.com/anchore/syft)
+
+Tools:
+
+- [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator)
+- [cyclonedx cli](https://github.com/CycloneDX/cyclonedx-cli) from owasp currently supports BOM analysis, modification, diffing, merging, format conversion, signing and verification.
 
 ## Scanner
 
 - [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
 - [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
-- [Clair](https://github.com/quay/clair) from redhat
-- [Dependency track](https://dependencytrack.org/) - sbom scanner from owasp
+- [Clair](https://github.com/quay/clair) container image scannerfrom redhat
+- [Dependency track](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
+
+
+## Databases
+
+- [Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/)
+- [Open Source Vulnerabilities Database (OSV)](https://osv.dev/)
+- [National Vulnerability Database (NVD)](https://nvd.nist.gov/)
+
+## Common Platform Enumeration (CPE) 
+
+Is a structured naming scheme for information technology systems, software, and packages.
