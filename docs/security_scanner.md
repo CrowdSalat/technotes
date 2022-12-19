@@ -2,7 +2,7 @@
 
 ## SBOM
 
-A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/).
+A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/). An SBOM can be created based on the source code, at build-time, at runtime, on the binary, or on a container image or filesystem.
 
 Standards:
 
