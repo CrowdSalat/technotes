@@ -2,7 +2,7 @@
 
 ## SBOM
 
-A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/). An SBOM can be created based on the source code, at build-time, at runtime, on the binary, or on a container image or filesystem.
+A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/). An SBOM can be created based on the source code, binaries (language-specific artifacts or container images) or dynamically at runtime.
 
 ### formats
 
@@ -22,11 +22,10 @@ A software bill of materials (SBOM) is an industry standard mechanism of surfaci
 
 These scanners usually allow to scan binaries, but some also allow to start form a existing SBOM file.
 
-- [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
-- [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
-- [Clair](https://github.com/quay/clair) container image scanner from redhat
 - [DependencyCheck](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
-
+- [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
+- [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
+- [Clair](https://github.com/quay/clair) a vulnerability scanner for container images from redhat
 
 ## vulnerability databases
 
