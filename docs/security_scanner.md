@@ -16,6 +16,7 @@ Tools:
 - [cyclonedx cli](https://github.com/CycloneDX/cyclonedx-cli) from owasp currently supports BOM analysis, modification, diffing, merging, format conversion, signing and verification.
 - [DependencyTrack](https://dependencytrack.org/) continuous SBOM analysis platform
 - [cve-bin-tool from intel](https://github.com/intel/cve-bin-tool#scanning-an-sbom-file-for-known-vulnerabilities) allows to check binary or sbom for CVEs
+- [spdx-to-osv cli](https://github.com/spdx/spdx-to-osv/) allows to find Open Source Vulnerabilities in SBOM
 
 ## Scanner
 
