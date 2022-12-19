@@ -2,7 +2,7 @@
 
 ## SBOM
 
-A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/)
+A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/).
 
 Standards:
 
@@ -17,6 +17,8 @@ Tools:
 
 ## Scanner
 
+These scanners usually allow to scan binaries, but some also allow to start form a existing SBOM file.
+
 - [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
 - [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
 - [Clair](https://github.com/quay/clair) container image scannerfrom redhat
@@ -28,6 +30,7 @@ Tools:
 - [Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/)
 - [Open Source Vulnerabilities Database (OSV)](https://osv.dev/)
 - [National Vulnerability Database (NVD)](https://nvd.nist.gov/)
+- [Sonatype oss index](https://ossindex.sonatype.org/)
 
 ## Common Platform Enumeration (CPE) 
 
