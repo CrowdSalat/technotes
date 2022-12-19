@@ -14,6 +14,7 @@ Tools:
 
 - [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator)
 - [cyclonedx cli](https://github.com/CycloneDX/cyclonedx-cli) from owasp currently supports BOM analysis, modification, diffing, merging, format conversion, signing and verification.
+- [DependencyTrack](https://dependencytrack.org/) continuous SBOM analysis platform
 - [cve-bin-tool from intel](https://github.com/intel/cve-bin-tool#scanning-an-sbom-file-for-known-vulnerabilities) allows to check binary or sbom for CVEs
 
 ## Scanner
@@ -23,7 +24,7 @@ These scanners usually allow to scan binaries, but some also allow to start form
 - [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
 - [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
 - [Clair](https://github.com/quay/clair) container image scannerfrom redhat
-- [Dependency track](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
+- [DependencyCheck](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
 
 
 ## Databases
