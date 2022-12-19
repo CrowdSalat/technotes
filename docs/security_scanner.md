@@ -10,7 +10,9 @@ A software bill of materials (SBOM) is an industry standard mechanism of surfaci
 - [cyclone dx from owasp](https://cyclonedx.org/)
 - [syft from/with grype](https://github.com/anchore/syft)
 
-### SBOM Tools
+### SBOM tools
+
+Software Composition Analysis (SCA)
 
 - [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator)
 - [cyclonedx cli](https://github.com/CycloneDX/cyclonedx-cli) from owasp currently supports BOM analysis, modification, diffing, merging, format conversion, signing and verification.
