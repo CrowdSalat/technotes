@@ -7,6 +7,7 @@ A software bill of materials (SBOM) is an industry standard mechanism of surfaci
 Standards:
 
 - [spdx from linux foundation](https://spdx.dev/)
+  - [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator) 
 - [cyclone dx from owasp](https://cyclonedx.org/)
 - [syft from/with grype](https://github.com/anchore/syft)
 
