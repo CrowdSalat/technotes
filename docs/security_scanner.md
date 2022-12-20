@@ -36,10 +36,19 @@ These scanners usually allow to scan binaries, but some also allow to start form
 spdx-sbom-generator
 ## creates: bom-Java-Maven.spdx
 
-# scan spdx sbom for vulnerabilities
+# scan spdx or cyclonedx sbom for vulnerabilities
 trivy sbom bom-Java-Maven.spdx
-## or
+## or 
 grype sbom:/bom-Java-Maven.spdx
+
+## generate sbom from jar
+syft --output cyclonedx-json name.jar > sbom-cyclonedx.json
+syft --output spdx-json name.jar > sbom-spdx.json
+
+## scan jar for vulnerabilities
+grype name.jar
+
+trivy name.jar
 ```
 
 ## vulnerability databases
