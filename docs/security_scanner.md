@@ -29,6 +29,19 @@ These scanners usually allow to scan binaries, but some also allow to start form
 - [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
 - [Clair](https://github.com/quay/clair) a vulnerability scanner for container images from redhat
 
+### examples
+
+```shell
+# generate spdx sbom from maven project
+spdx-sbom-generator
+## creates: bom-Java-Maven.spdx
+
+# scan spdx sbom for vulnerabilities
+trivy sbom bom-Java-Maven.spdx
+## or
+grype sbom:/bom-Java-Maven.spdx
+```
+
 ## vulnerability databases
 
 - [Common Vulnerabilities and Exposures (CVE)](https://cve.mitre.org/)
