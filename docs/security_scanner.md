@@ -47,8 +47,6 @@ syft --output spdx-json name.jar > sbom-spdx.json
 
 ## scan jar for vulnerabilities
 grype name.jar
-
-trivy name.jar
 ```
 
 ## vulnerability databases
