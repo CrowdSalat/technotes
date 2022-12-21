@@ -199,7 +199,6 @@ Container images for ansible
 [2.9-2.13](https://github.com/willhallonline/docker-ansible)
 [2.3-2.11](https://github.com/cytopia/docker-ansible)
 
-
 Container image requirements:
 
 - bash (execute deploy.sh script)
@@ -208,7 +207,6 @@ Container image requirements:
   - [See workaround for token access](gitlab.md)
 
 ## ansible output config
-
 
 In ansible.cfg
 
@@ -229,3 +227,9 @@ task_output_limit = 200
 ```
 
 Worked with ansible 2.8
+
+## change user
+
+`become` without `become_user` runs a command with a prepended sudo. When you add `become_user` it runs `sudo -u <become_user> <command>`. Even though `sudo su - <user>` works without password prompt `sudo -u <user>` might not work without password prompt.
+
+[Backround](https://stackoverflow.com/questions/53541277/ansible-become-user-asks-for-password-even-though-it-is-configured-passwordless)
