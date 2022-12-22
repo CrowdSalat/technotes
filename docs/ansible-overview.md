@@ -232,4 +232,7 @@ Worked with ansible 2.8
 
 `become` without `become_user` runs a command with a prepended sudo. When you add `become_user` it runs `sudo -u <become_user> <command>`. Even though `sudo su - <user>` works without password prompt `sudo -u <user>` might not work without password prompt.
 
-[Backround](https://stackoverflow.com/questions/53541277/ansible-become-user-asks-for-password-even-though-it-is-configured-passwordless)
+To run `sudo su - <become_user> <command>` add `become_exe='sudo su -'` to ansible.cfg and add `become_method: su`.
+See [here](https://www.coveros.com/ansible-privledge-escalation-using-sudo-su/) or [here](https://stackoverflow.com/questions/50512402/can-ansible-use-sudo-su-if-the-sudo-user-is-not-allowed-to-run-arbitrary-scr)
+
+
