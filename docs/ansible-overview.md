@@ -182,6 +182,31 @@ run `ansible-playbook filename`
         that:
           - not {{ item.mount == '/' and (item.size_available < 8589934592 ) }}
       with_items: "{{ ansible_facts['mounts'] }}"
+    - name: Print all Hostvars
+      debug:
+        msg: "{{ hostvars }}"
+```
+
+## access dicitonary
+
+Define dictionary: 
+
+```yaml
+example:
+  key1: val1
+  key2: val2
+  
+selected_key: key1
+
+```
+
+```yaml
+    - name: print val1 by using literal key
+      debug:
+        msg: "{{ example ['key1']}"
+  - name: print val1 by using variable key
+      debug:
+        msg: "{{ example [ selected_key ]}"
 ```
 
 ## test ansible in vagrant
