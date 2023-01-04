@@ -235,4 +235,14 @@ Worked with ansible 2.8
 To run `sudo su - <become_user> <command>` add `become_exe='sudo su -'` to ansible.cfg and add `become_method: su`.
 See [here](https://www.coveros.com/ansible-privledge-escalation-using-sudo-su/) or [here](https://stackoverflow.com/questions/50512402/can-ansible-use-sudo-su-if-the-sudo-user-is-not-allowed-to-run-arbitrary-scr)
 
+## becoming unpriviliged user
 
+```
+Failed to set permissions on the temporary files Ansible needs to create when becoming an unprivileged user (rc: 1, err: chown: changing ownership of '/var/tmp/ansible-tmp-1672820952.604988-42392-112740864206926/': Operation not permitted
+    chown: changing ownership of '/var/tmp/ansible-tmp-1672820952.604988-42392-112740864206926/AnsiballZ_command.py': Operation not permitted
+    }). For information on working around this, see https://docs.ansible.com/ansible/become.html#becoming-an-unprivileged-user
+```
+- You can put the `allow_world_readable_tmpfiles` in the ansible.cfg configuration file
+- Or make sure the setfacl tool (provided by the acl package) is installed on the remote host.
+
+[Source](https://github.com/georchestra/ansible/issues/55)
