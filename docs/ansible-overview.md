@@ -273,3 +273,7 @@ Failed to set permissions on the temporary files Ansible needs to create when be
 - Or make sure the setfacl tool (provided by the acl package) is installed on the remote host.
 
 [Source](https://github.com/georchestra/ansible/issues/55)
+
+## update bashrc
+
+Use lineinfile module.
