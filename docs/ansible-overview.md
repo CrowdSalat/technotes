@@ -255,9 +255,11 @@ Worked with ansible 2.8
 
 ## change user
 
-`become` without `become_user` runs a command with a prepended sudo. When you add `become_user` it runs `sudo -u <become_user> <command>`. Even though `sudo su - <user>` works without password prompt `sudo -u <user>` might not work without password prompt.
+- `become` without `become_user` runs a command with a prepended sudo. 
+- When you add `become_user` it runs `sudo -u <become_user> /bin/sh -c <command>`. *Even though `sudo su - <user>` works without password prompt `sudo -u <user>` might not work without password prompt.*
+- If you add `become_method: su` it runs `su  <become_user> -c /bin/sh -c <command>`
 
-To run `sudo su - <become_user> <command>` add `become_exe='sudo su -'` to ansible.cfg and add `become_method: su`.
+To run `sudo su - <become_user> /bin/sh -c <command>` add `become_exe='sudo su -'` to ansible.cfg and add `become_method: su`.
 See [here](https://www.coveros.com/ansible-privledge-escalation-using-sudo-su/) or [here](https://stackoverflow.com/questions/50512402/can-ansible-use-sudo-su-if-the-sudo-user-is-not-allowed-to-run-arbitrary-scr)
 
 ## becoming unpriviliged user
