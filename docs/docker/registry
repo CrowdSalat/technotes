@@ -1,0 +1,5 @@
+# Registry
+
+## trust cert of registry without trusting it 
+
+Place the ca certificate inside /etc/docker/certs.d/<docker registry>/ca.crt. Inlcude the port number in the path if you need to specify it when pulling. E.g: `/etc/docker/certs.d/my-registry.example.com:5000/ca.crt`
