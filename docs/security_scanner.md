@@ -60,3 +60,7 @@ grype name.jar
 ## Common Platform Enumeration (CPE) 
 
 Is a structured naming scheme for information technology systems, software, and packages.
+
+## Lists
+
+- [DevSecOps](https://github.com/sottlmarek/DevSecOps)
