@@ -14,6 +14,7 @@ A software bill of materials (SBOM) is an industry standard mechanism of surfaci
 
 Software Composition Analysis (SCA)
 
+- [cdxgen](https://github.com/AppThreat/cdxgen) - cli to create CycloneDX for different package managers (no build binaries needed)
 - [CLI to generate spdx sbom for different package managers](https://github.com/opensbom-generator/spdx-sbom-generator)
 - [cyclonedx cli](https://github.com/CycloneDX/cyclonedx-cli) from owasp currently supports BOM analysis, modification, diffing, merging, format conversion, signing and verification.
 - [DependencyTrack](https://dependencytrack.org/) continuous SBOM analysis platform from owasp
