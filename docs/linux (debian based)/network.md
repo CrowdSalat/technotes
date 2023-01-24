@@ -53,6 +53,15 @@ chmod 644 ~/.ssh/id_rsa.pub
 chmod 600 ~/.ssh/id_rsa
 ```
 
+## known_hosts
+
+```shell
+# remove old entry from known_host
+ssh-keygen -R SERVER_NAME -f ~/.ssh/known_hosts
+# add new key to known_hosts
+ssh-keyscan SERVER_NAME >> ~/.ssh/known_hosts
+```
+
 ## check open ports
 
 ```shell
