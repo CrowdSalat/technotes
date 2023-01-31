@@ -16,29 +16,11 @@
 
 ### install
 
-- [official guide](https://docs.ansible.com/ansible/latest/installation_guide/intro_installation.html#installing-ansible-on-debian)
-- (optional) For an ansible Web-UI you may want to take a look at Ansible Tower respective it open source version [AWX](https://github.com/ansible/awx) 
-
-#### control node:
-
-Add the following line to **/etc/apt/sources.list**:
-
-deb http://ppa.launchpad.net/ansible/ansible/ubuntu trusty main
-
-```shell
-sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 93C4A3FD7BB9C367
-sudo apt update
-sudo apt install ansible
-```
-
-#### managed node
-
-- open ssh port
-- python installed (for most modules)
-- pip installed (for most modules)
-
-
-**Remember that the managed nodes need to have ssh activated and python and pip installed.**
+- control node: intall ansible
+- managed node
+  - open ssh port
+  - python installed (for most modules)
+  - pip installed (for most modules)
 
 ### create inventory
 
@@ -135,6 +117,7 @@ start docker container via playbook:
       image: "{{ container_image }}"
       state: present
 ```
+
 *This example uses the [pip](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html), [docker_image](https://docs.ansible.com/ansible/latest/collections/community/general/docker_image_module.html) and the [docker_container](https://docs.ansible.com/ansible/latest/collections/community/general/docker_container_module.html) module with a set of arguments.*
 
 **Note: there was an error while using dokcer_image module [No module named ssl_match_hostname](https://github.com/docker/docker-py/issues/1502). The solution was to run `sudo apt-get remove python-configparser`**
