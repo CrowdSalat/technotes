@@ -219,17 +219,15 @@ Seems not to be possible, but you can use `--start-at-task` parameter of ansible
 
 ## running anisble in pipeline
 
-Container images for ansible
-
-[2.9-2.13](https://github.com/willhallonline/docker-ansible)
-[2.3-2.11](https://github.com/cytopia/docker-ansible)
+- Container images for ansible: [2.3-2.13](https://github.com/cytopia/docker-ansible)
+- To use Ansible galaxy hosted on git you might need a [workaround for authentification via token access](gitlab.md)
+- set `host_key_checking` in ansible.cfg to false otheriwse you will get a "Host key verification failed"
 
 Container image requirements:
 
-- bash (execute deploy.sh script)
-- ansible
-- git + ssh-agent (to check out ansible galaxy roles from git)
-  - [See workaround for token access](gitlab.md)
+  - bash (execute deploy.sh script)
+  - ansible
+  - git + ssh-agent (to check out ansible galaxy roles from git)
 
 ## ansible output config
 
