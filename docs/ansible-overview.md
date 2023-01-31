@@ -221,7 +221,7 @@ Seems not to be possible, but you can use `--start-at-task` parameter of ansible
 
 - Container images for ansible: [2.3-2.13](https://github.com/cytopia/docker-ansible)
 - To use Ansible galaxy hosted on git you might need a [workaround for authentification via token access](gitlab.md)
-- set `host_key_checking` in ansible.cfg to false otheriwse you will get a "Host key verification failed"
+- set `host_key_checking` in ansible.cfg to false otheriwse you will get a "Host key verification failed" or set env variable ANSIBLE_HOST_KEY_CHECKING in the variables part of the pipeline
 
 Container image requirements:
 
