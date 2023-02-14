@@ -134,3 +134,32 @@ do
   ssh "$server" "$command"
 done
 ```
+
+## remove old ssh key of host for multiple users
+
+```shell
+#!/bin/bash
+
+echo "Current user: $(whoami)"
+
+HOST="myhost.example.de"
+
+USERS=(
+"user1"
+"user2"
+)
+echo "Reset $HOST SSH Hostkey"
+
+for USER in "${USERS[@]}"
+do
+    echo "Reset SSH Hostkey for user $USER"
+    HOME_DIR="/home1/users/$USER"
+
+    echo "Remove $HOST from ${HOME_DIR}/.ssh/known_hosts"
+    sudo ssh-keygen -R "$HOST" -f ${HOME_DIR}/.ssh/known_hosts
+   
+    echo "Add $HOST to ${HOME_DIR}/.ssh/known_hosts"
+    sudo ssh-keyscan "$HOST" | sudo tee --append ${HOME_DIR}/.ssh/known_hosts
+
+done
+```
