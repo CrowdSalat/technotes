@@ -68,8 +68,11 @@ ssh-keyscan SERVER_NAME >> ~/.ssh/known_hosts
 # local machine: check for open ports and which process is listening on them
 sudo netstat -lptu 
 
+# or
+sudo lsof -i -P -n 
+
 # local machine: check which process listens on port
-lsof -i :8080
+sudo lsof -i :8080
 
 # remote machine: check for open tcp ports (scans the first 1000 ports)
 nmap <ip_address>
