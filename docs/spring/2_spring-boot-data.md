@@ -169,6 +169,7 @@ Spring data rest exposes the query methods for every entity as rest webservices.
 - creates endpoint for every entity
 - appends an s
 - exposes the repository methods as a Rest Webservice
+- custom methods can be found unter <repoName>s/search/<customQueryMethodName>
 
 The mapping is described [here](https://docs.spring.io/spring-data/rest/docs/3.2.5.RELEASE/reference/html/#repository-resources).
 
