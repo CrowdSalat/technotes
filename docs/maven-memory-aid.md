@@ -2,6 +2,10 @@
 
 [CLI options reference](https://maven.apache.org/ref/3.1.0/maven-embedder/cli.html)
 
+## cli completion
+
+[Bash completion](https://github.com/juven/maven-bash-completion#installation)
+
 ## useful commands
 
 - ``mvn exec:java -Dexec.mainClass=de.weyrich.MainClassName`` 
