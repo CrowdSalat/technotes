@@ -3,13 +3,20 @@
 ## orientation
 
 - information on service: Look into the FAQ
-- automatic analysis: advisor recommendations
+- general health of service: [Service Health](https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues)
+- [availability of service](https://azure.microsoft.com/de-de/explore/global-infrastructure/products-by-region/)
+- automatic analysis of resources: advisor recommendations
 - create graphic: Resource Visualizer (part of Resource Group)
 - IaC:
-  -  Azure Resource Manager templates (ARM templates)
-  -  in most resources under 'Export template'
+  - Azure Resource Manager templates (ARM templates)
   -  can be used to be copie to pulumi azure native provider
+  - UI Azure Portal: in most resources under 'Export template'
+  - CLI az: 
+     -  `az <service> list <resourcename>`
+     -  `az <service> show <resourcename>`
+     -  sometimes as yaml: `az <service> export <resourcename>`
 - audit and see erros in deployment: Monitor | Activity log
+- [AWS to Azure services comparison](https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services)
 
 ## terms
 
@@ -24,8 +31,12 @@
 ```shell
 az login
 az account list
-az account set --subscription=<id>
+e --subscription=<id>
 ```
+
+## management groups
+
+Management groups provide a governance scope above subscriptions. You organize subscriptions into management groups; the governance conditions you apply cascade by inheritance to all associated subscriptions.
 
 ## collect logging in resorce group 
 
@@ -403,10 +414,17 @@ Pitfall: If you got multiple Level 7 routing mechanism e.g. application gateway 
 
 ## pitfalls
 
-Reason: You gave azure an resource group id but it expected a resourge group name.
+Reason: You gave azure an resource group id but it expected a resoure group name.
 
 Message:
 
 ```shell
  error: cannot check existence of resource '/subscriptions/SUBID/resourceGroups/%2Fsubscriptions%2FSUBID%2FresourceGroups%2FRGNAME/providers/Microsoft.Network/applicationGateways/staging-fairmanager-gateway': status code 400, {"error":{"code":"InvalidApiVersionParameter","message":"The api-version '2020-11-01' is invalid. The supported versions are '2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'."}}
 ```
+
+## container instances
+
+They change their IP Adresse. To expose them in a application gateway you need to:
+
+- set dns-name-label when they have public ip addresses.
+- if they are in a private vnet you can add a private dns zone and configure a init container which adds its ip adress to the dns
