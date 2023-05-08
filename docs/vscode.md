@@ -34,6 +34,7 @@ trouble shooting:
 - Spellchecker for txt and md: TODO maybe [LanguageTool Linter](https://github.com/davidlday/vscode-languagetool-linter)  
 - Linters:
     - md: [markdownlint](https://github.com/DavidAnson/vscode-markdownlint)
+    - [Bash script](https://marketplace.visualstudio.com/items?itemName=timonwong.shellcheck)
 - Remote Connect
     - [SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
     - [Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
