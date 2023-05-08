@@ -4,7 +4,8 @@
 
 ## cli completion
 
-[Bash completion](https://github.com/juven/maven-bash-completion#installation)
+- [Bash completion](https://github.com/juven/maven-bash-completion#installation)
+- [oh-myzsh plugin for completion](https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/mvn) but it is a bit slow
 
 ## useful commands
 
