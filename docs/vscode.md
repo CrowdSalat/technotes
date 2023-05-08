@@ -28,3 +28,16 @@ Host alias
 trouble shooting:
 
 - you can restart the vs code server on the remote server with prompt `> Remote-SSH: Kill VS Code SErver on Host...` (CTRL + SHIFT+P). This might be necessary if you add a user to a new group.
+
+## useful extensions
+
+- Spellchecker for txt and md: TODO maybe [LanguageTool Linter](https://github.com/davidlday/vscode-languagetool-linter)  
+- Linters:
+    - md: [markdownlint](https://github.com/DavidAnson/vscode-markdownlint)
+- Remote Connect
+    - [SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+    - [Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+    - [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
+- [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv) - highlight and queries
+- [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case) - change between different cases (camel, snake etc.)
+- [Render Linebreaks](https://marketplace.visualstudio.com/items?itemName=medo64.render-crlf)

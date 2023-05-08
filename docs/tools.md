@@ -6,19 +6,6 @@
 - [CNCF landscape](https://landscape.cncf.io/)
 - [ThoughtWorks Technology Radar](https://www.thoughtworks.com/radar/platforms)
 
-## vs code pluings
-
-- Spellchecker for txt and md: TODO maybe [LanguageTool Linter](https://github.com/davidlday/vscode-languagetool-linter)  
-- Linters:
-    - md: [markdownlint](https://github.com/DavidAnson/vscode-markdownlint)
-- Remote Connect
-    - [SSH](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
-    - [Container](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
-    - [WSL](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-wsl)
-- [Rainbow CSV](https://marketplace.visualstudio.com/items?itemName=mechatroner.rainbow-csv) - highlight and queries
-- [change-case](https://marketplace.visualstudio.com/items?itemName=wmaurer.change-case) - change between different cases (camel, snake etc.)
-
-
 ## assisting tools
 
 - [Subnet calculator](https://cidr-rechner.de/)
