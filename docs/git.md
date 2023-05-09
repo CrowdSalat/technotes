@@ -159,11 +159,24 @@ git commit --amend --no-edit
 git rebase --continue
 
 ```
+
 ## clean files in history
 
 If you want to delete passwords or other sensible stuff from git history use [bfg](https://rtyley.github.io/bfg-repo-cleaner/). It does not touch your current commit (HEAD) just older commits.
 
-Afterwards use force push to change history: `git push --force`
+```shell
+# easy install (instead of working with bfg.jar)
+brew install bfg
+
+# example how to erase  password
+
+# in git repo directory
+echo "supersecret" > passwords.txt
+bfg --replace-text passwords.txt
+# push changed git history
+git push --force
+```
+
 
 ## git submodules
 
