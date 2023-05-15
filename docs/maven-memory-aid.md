@@ -14,6 +14,16 @@
 - ``mvn help:effective-settings`` print settings.
 - ``mvn help:effective-pom`` creates a pom which is used after the interpolation, inheritance and use of active profiles.
 
+## when maven ignores local m2
+
+Sometimes maven ignores local artifacts in .m2 directory. Depending on the version it might help to delete `_maven.repositories` or `_remote.repositories` in the artifact direcotry in .m2 direcotry.
+
+[Explanation](https://stackoverflow.com/a/16870552/2652728)
+
+```shell
+find ~/.m2/repository -name _maven.repositories -exec rm -v {} \;
+find ~/.m2/repository -name _remote.repositories -exec rm -v {} \;
+```
 
 ## maven and ci
 
@@ -114,13 +124,12 @@ The use of dependencyManagement only makes sense if it is used in a parent pom. 
 
 Works like dependencies/ dependencyManagementsee only for plugins.
 
-## goals and phases 
+## goals and phases
 There is a nice overview under: [https://www.baeldung.com/maven-goals-phases](https://www.baeldung.com/maven-goals-phases)
 
 ``mvn help:describe -Dcmd=package`` shows the lifecylce phases of a project and which maven plugins run when.
 
 ## SNAPTSHOT-version vs version
-
 
 ## use case
 Source: [https://stackoverflow.com/questions/5901378/what-exactly-is-a-maven-snapshot-and-why-do-we-need-it](https://stackoverflow.com/questions/5901378/what-exactly-is-a-maven-snapshot-and-why-do-we-need-it)
@@ -135,6 +144,7 @@ The difference between a "real" version and a snapshot version is that snapshots
 Usually, snapshot dependencies should only exist during development and no released version (i.e. no non-snapshot) should have a dependency on a snapshot version.
 
 ## behaviour
+
 Source: [https://stackoverflow.com/questions/5901378/what-exactly-is-a-maven-snapshot-and-why-do-we-need-it](https://stackoverflow.com/questions/5901378/what-exactly-is-a-maven-snapshot-and-why-do-we-need-it)
 
 
