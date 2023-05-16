@@ -182,3 +182,10 @@ Interact with a service:
 - Restart service: `systemctl restart`
 - At system startup: `systemctl enable`
 - At system startup: `systemctl disable`
+
+## memomory consumption
+
+```shell
+# memory usage in kb
+ps aux --sort -rss | head
+```
