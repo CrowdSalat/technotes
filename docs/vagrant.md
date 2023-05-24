@@ -1,6 +1,5 @@
 # Vagrant
 
-
 ## concept
 
 [Source](https://documentation.suse.com/sles/15-SP2/html/SLES-all/cha-libvirt-manage-vagrant.html#sec-libvirt-vagrant-intro)
@@ -18,6 +17,14 @@ Initially created with cli and a box name e.g: `vagrant init opensuse/Tumbleweed
 
 You can find public available boxes on [app.vagrantup.com](https://app.vagrantup.com/boxes/search).
 
+## reaload provosion
+
+```shell
+vagrant reload --provision 
+# or 
+vagrant destroy -f && vagrant up
+```
+
 ## SSH into vagrant box without 'vagrant ssh'
 
 ```shell
@@ -31,7 +38,6 @@ ssh -F vagrant-ssh default
 [Source](https://stackoverflow.com/questions/10864372/how-to-ssh-to-vagrant-without-actually-running-vagrant-ssh)
 
 ## connect with ansible to vagrant box
-
 
 ```shell
 vagrant ssh-config > vagrant-ssh.cfg
@@ -56,7 +62,7 @@ vagrant box list
 
 Add the following to Vagrantfile 
 
-```
+```shell
   # 4 gb, 2 cores
   config.vm.provider "virtualbox" do |v|
     v.memory = 4000
@@ -68,7 +74,7 @@ Add the following to Vagrantfile
 
 Is controled by vm image. If you want to increase the size you ned to run a  provision script by adding the following to Vagrantfile: 
 
-```
+```shell
   config.vm.provision "shell", path: "./increase_swap_space.sh"
 ```
 
@@ -85,18 +91,30 @@ grep -q "swapfile" /etc/fstab
 
 # if not then create it
 if [ $? -ne 0 ]; then
-	echo 'swapfile not found. Adding swapfile.'
-	fallocate -l ${swapsize}M /swapfile
-	chmod 600 /swapfile
-	mkswap /swapfile
-	swapon /swapfile
-	echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+    echo 'swapfile not found. Adding swapfile.'
+    fallocate -l ${swapsize}M /swapfile
+    chmod 600 /swapfile
+    mkswap /swapfile
+    swapon /swapfile
+    echo '/swapfile none swap defaults 0 0' >> /etc/fstab
 else
-	echo 'swapfile found. No changes made.'
+    echo 'swapfile found. No changes made.'
 fi
 
 # output results to terminal
 cat /proc/swaps
 cat /proc/meminfo | grep Swap
-
 ```
+
+## forward port
+
+```shell
+config.vm.network "forwarded_port", guest: 8080, host: 8080
+```
+
+## Copy files
+
+```shell
+config.vm.provision "file", source: "~/.gitconfig", destination: ".gitconfig"
+```
+
