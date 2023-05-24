@@ -162,3 +162,8 @@ Maven: Failed to read artifact descriptor
 Cause: The parent pom project needs to be build so the pom can be uploaded into local and/or remote repo
 
 Solution: run ``mvn install`` or ``mvn deploy`` to save the pom in local or remote repo.
+
+## create remote repo from m2 directory
+
+- [Artpie](https://github.com/artipie/artipie)
+- [How to](https://dzone.com/articles/private-remote-maven-repository-with-artipie-1)
