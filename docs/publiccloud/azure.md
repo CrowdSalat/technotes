@@ -21,9 +21,9 @@
 ## terms
 
 - directory: company
+- tenant id belongs to directory
 - subscription: part of a directory
 - account: me and belongs to one or more directory and has access to one or more subscriptions
-- tenant id belongs to directory
 - Object Id = principal id
 - Object Id != client id
 - application ≈ managed identity ≈ service principal
@@ -34,11 +34,31 @@ az account list
 e --subscription=<id>
 ```
 
+## scopes
+
+RBAC and Policies can be applied to:
+
+1. management groups
+2. subscriptions
+3. resource groups
+4. individual resources. 
+
+Lower levels inherit settings from higher levels.
+
 ## management groups
 
 Management groups provide a governance scope above subscriptions. You organize subscriptions into management groups; the governance conditions you apply cascade by inheritance to all associated subscriptions.
 
-## collect logging in resorce group 
+## azure policy vs. azure rbac (governence)
+
+- Azure RBAC - manages who has access to Azure resources, what areas they have access to and what they can do with those resources. 
+- Azure Policy – focus on resource properties during deployment and for already existing resources. They are able to block or allow specific values for the properties or add properties like tags after deployment.
+
+![Azure RBAC and Policy](../img/azure_rbac_policy.png)
+
+[Source: Governance 101: The Difference Between RBAC and Policies](https://techcommunity.microsoft.com/t5/itops-talk-blog/governance-101-the-difference-between-rbac-and-policies/ba-p/1015556)
+
+## collect logging in resource group
 
 If you want to access all logs on resource group level you need to create a log analytic workspace.
 
