@@ -1,5 +1,25 @@
 # Python
 
+## using pyenv
+
+```shell
+# install and configure path
+brew install pyenv
+echo "$(pyenv init --path)" >> ~/.zshrc
+
+# list installable versions
+pyenv install --list
+
+# install
+pyenv install 3.9.16
+
+# list installed versions
+pyenv versions
+
+# set as python executable
+pyenv global 3.9.16
+```
+
 ## set python 3 as default
 
 The last number is the priority. Greater number is higher priority. 
