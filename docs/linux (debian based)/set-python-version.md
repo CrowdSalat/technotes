@@ -11,13 +11,18 @@ echo "$(pyenv init --path)" >> ~/.zshrc
 pyenv install --list
 
 # install
-pyenv install 3.9.16
-
+pyenv install 3.9.16 
+pyenv install 2.7.18
 # list installed versions
 pyenv versions
 
-# set as python executable
-pyenv global 3.9.16
+# set path for python executables
+pyenv global 3.9.16 2.7.18
+
+# check versions
+python2 --version
+python3 --version
+python --version
 ```
 
 ## set python 3 as default
