@@ -1,6 +1,6 @@
 # Python
 
-## using pyenv
+## install using pyenv
 
 ```shell
 # install and configure path
@@ -23,6 +23,19 @@ pyenv global 3.9.16 2.7.18
 python2 --version
 python3 --version
 python --version
+```
+
+## create minimal webserver with python
+
+```shell
+# serve current dir on port 8000
+python3 -m http.server
+
+# serve current dir on custom port
+python3 -m http.server 9999
+
+# serve custom dir on custom port
+python3 -m http.server 8001 --directory /opt/oh/my/content
 ```
 
 ## set python 3 as default
