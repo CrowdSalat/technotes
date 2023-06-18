@@ -1,0 +1,9 @@
+# Go lang
+
+## vs code support
+
+Add support for compilation and auto complete:
+
+- Install [Go from vs code marketplace](https://marketplace.visualstudio.com/items?itemName=golang.Go)
+- CTRL + P -> ">Go Install/Update Tools" -> select all
+                                        
