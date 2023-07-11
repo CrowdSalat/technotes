@@ -6,7 +6,7 @@
 
 ```shell
 ## base config
-MAIL_ADDRESS="jan.weyrich@viadee.de"
+MAIL_ADDRESS="jan.weyrich@example.de"
 git config --global user.name "Jan Weyrich"
 git config --global user.email "$MAIL_ADDRESS"
 
@@ -59,7 +59,7 @@ echo "default-cache-ttl 43200" >> ~/.gnupg/gpg-agent.conf
 
 ```shell
 # config
-export MAIL_ADDRESS="jan.weyrich@viadee.de"
+export MAIL_ADDRESS="jan.weyrich@example.de"
 git config --global user.name "Jan Weyrich"
 git config --global user.email "$MAIL_ADDRESS"
 

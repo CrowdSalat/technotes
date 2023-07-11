@@ -118,7 +118,7 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 ## base config
-MAIL_ADDRESS="jan.weyrich@viadee.de"
+MAIL_ADDRESS="jan.weyrich@example.de"
 git config --global user.name "Jan Weyrich"
 git config --global user.email "$MAIL_ADDRESS"
 

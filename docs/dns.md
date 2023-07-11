@@ -10,7 +10,7 @@ dig weyrich.dev +trace
 dig weyrich.dev +all
 
 # use specific dns to resolve url
-dig @ns1-09.azure-dns.com bla.viadee.cloud
+dig @ns1-09.azure-dns.com bla.example.cloud
 ```
 
 ## DNS Zones
