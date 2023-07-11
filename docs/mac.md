@@ -63,6 +63,7 @@ brew install --cask google-cloud-sdk
 brew install azure-cli
 
 ```
+
 ## ~/.zprofile
 
 ```shell
@@ -187,9 +188,13 @@ Could not get testcontainers to work with colima. Here are some links with furth
 
 ## m1 compatibility problems
 
+## multi-arch build for arm and x86 
+
+[See Docker build](./docker/docker-build.md)
+
 ## docker build
 
-```
+```shell
 echo "# for docker build on m1" >> ~/.zshrc
 echo "export DOCKER_BUILDKIT=0" >> ~/.zshrc
 echo "export COMPOSE_DOCKER_CLI_BUILD=0" >> ~/.zshrc
