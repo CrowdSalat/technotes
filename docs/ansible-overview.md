@@ -1,5 +1,7 @@
 # ansible
 
+[My ansible boilerplate](https://github.com/CrowdSalat/boilerplate/tree/main/ansible/test-playbook)
+
 ## concepts
 
 - Ansible runs agentless. The remote machine just needs ssh installed (and for many modules python and pip).
