@@ -260,3 +260,26 @@ Failed to set permissions on the temporary files Ansible needs to create when be
 ## update bashrc
 
 Use lineinfile module.
+
+## hostvars naming convention of variables in roles
+
+Do not use dictionaries e.g. my.var.a, my.bla.b. If you access a top level part of the dictionary like my you likely overwrite all entries e.g. var, bla.
+
+You can change this default behavior by setting hash_behaviour=merge in ansible.cfg
+
+[Source](https://stackoverflow.com/questions/25129728/ansible-override-single-dictionary-key)
+
+## roles accessing templates in playbooks
+
+The following path are searched by the template module (paths get printed as an error when it cannot find a template):
+
+Searched template file: template.yml.j2'
+
+Searched in:
+
+./../role/templates/template.yml.j2
+./../role/template.yml.j2
+./../role/tasks/templates/template.yml.j2
+./../role/tasks/template.yml.j2
+./../playbook/templates/template.yml.j2
+./../playbook/template.yml.j2
