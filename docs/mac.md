@@ -67,9 +67,8 @@ brew install azure-cli
 ## ~/.zprofile
 
 ```shell
-## brew completion when zsh is installed
-## source: https://docs.brew.sh/Shell-Completion
-FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
+# for brew
+eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
 ## ~/.zshrc snippets
@@ -185,6 +184,7 @@ Could not get testcontainers to work with colima. Here are some links with furth
 
 - https://github.com/testcontainers/testcontainers-java/issues/5034#issuecomment-1036433226
 - https://stackoverflow.com/questions/70749679/how-can-i-use-testcontainer-in-mac-os-with-out-docker-desktop
+
 
 ## m1 compatibility problems
 
