@@ -15,6 +15,11 @@ Configuration in Traefik can refer to two different things:
 - The fully dynamic routing configuration (referred to as the [dynamic configuration](https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-dynamic-configuration))
 - The startup configuration (referred to as the [static configuration](https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-static-configuration))
 
+## activate dashboard 
+
+- [insecure](https://doc.traefik.io/traefik/operations/dashboard/#insecure-mode)
+- [with auth ](https://doc.traefik.io/traefik/operations/dashboard/#secure-mode)
+
 ## simple reverse proxy example
 
 static conf
@@ -25,17 +30,26 @@ entryPoints:
     address: ':80'
 providers:
   file:
-    filename: /path/to/dynamic/conf.toml
+    filename: /path/to/dynamic/conf.yaml
 ```
 
-dynamic conf (proxy)
+dynamic conf (reverse-proxy)
 
 ```yaml
+# /path/to/dynamic/conf.yaml
 http:
   routers:
     my-router:
       rule: PathPrefix(`/`)
       service: my-service
+      middlewares:
+        - stripPath
+  middlewares:
+    stripPath:
+      stripPrefix:
+        prefixes:
+          - "test"
+        forceSlash: false
   services:
     my-service:
       loadBalancer:
