@@ -44,6 +44,7 @@ http:
       service: my-service
       middlewares:
         - stripPath
+  # examples for path resultin blue box "Behavior examples": https://doc.traefik.io/traefik/middlewares/http/stripprefix/#forceslash
   middlewares:
     stripPath:
       stripPrefix:
