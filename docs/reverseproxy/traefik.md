@@ -15,10 +15,20 @@ Configuration in Traefik can refer to two different things:
 - The fully dynamic routing configuration (referred to as the [dynamic configuration](https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-dynamic-configuration))
 - The startup configuration (referred to as the [static configuration](https://doc.traefik.io/traefik/getting-started/configuration-overview/#the-static-configuration))
 
-## activate dashboard 
+## activate dashboard
 
 - [insecure](https://doc.traefik.io/traefik/operations/dashboard/#insecure-mode)
 - [with auth ](https://doc.traefik.io/traefik/operations/dashboard/#secure-mode)
+
+## TLS
+
+- HTTPs is configured at the router level (so in dynamic config) (routers.<name>.tls=true)
+- TLS certs can be provided in a seperate dynmic config file
+- Traefik searches though certificates (tls.certificates) for the right cert
+- When no cert is found it serves a default certificate
+- You can override the default certificate by creating a certificate store named default
+
+[Traefik Proxy 2.x and TLS 101](https://traefik.io/blog/traefik-2-tls-101-23b4fbee81f1/)
 
 ## simple reverse proxy example
 
