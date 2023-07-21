@@ -65,6 +65,11 @@ update-ca-trust
 ## and then in /etc/pki/tls/certs/ca-bundle.crt
 ```
 
+### (open)Suse
+
+- add pem certs to /usr/share/pki/anchors
+- run `sudo update-ca-certificates`
+
 ## generate certificate and private key in pem format (self signed)
 
 ```shell
