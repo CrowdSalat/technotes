@@ -119,3 +119,11 @@ Spot instances:
 ## service catalog (curated IaC)
 
 AWS Service Catalog lets you centrally manage your cloud resources to achieve governance at scale of your infrastructure as code (IaC) templates, written in CloudFormation or Terraform.
+
+## Aurora Serverless (v2) vs. Aurora XX-Compatible
+
+It is the same service in AWS RDS (relational database service), but a different confiuration. Aurora Serverless automatically scales storage and computing resources. The prices is mostly driven by used ACU (aurora compute units). One ACU is roughly 2GB of used RAM. The minimum amount in IDLE is 0,5 ACU and the scale down takes at least 2 Minutes after scaling up.
+
+If you want to have regional failover instances you can add additional "serverless" instances in other AZs or regions.
+
+[Aurora v1 vs v2](https://aws.amazon.com/de/blogs/aws/amazon-aurora-serverless-v2-is-generally-available-instant-scaling-for-demanding-workloads/)
