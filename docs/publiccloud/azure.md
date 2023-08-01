@@ -448,3 +448,7 @@ They change their IP Adresse. To expose them in a application gateway you need t
 
 - set dns-name-label when they have public ip addresses.
 - if they are in a private vnet you can add a private dns zone and configure a init container which adds its ip adress to the dns
+
+## Policies
+
+[Overview of Azure Policies](https://www.azadvertizer.net/)
