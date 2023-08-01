@@ -451,4 +451,6 @@ They change their IP Adresse. To expose them in a application gateway you need t
 
 ## Policies
 
-[Overview of Azure Policies](https://www.azadvertizer.net/)
+- [Overview of Azure Policies](https://www.azadvertizer.net/)
+-[Azure Policy](https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit) is a service in Azure which allows you create polices which enforce and control the properties of a resource
+- An [Azure initiative](https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit) is a collection of Azure policy definitions that are grouped together towards a specific goal or purpose in mind.
