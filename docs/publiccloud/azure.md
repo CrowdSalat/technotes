@@ -454,3 +454,11 @@ They change their IP Adresse. To expose them in a application gateway you need t
 - [Overview of Azure Policies](https://www.azadvertizer.net/)
 -[Azure Policy](https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit) is a service in Azure which allows you create polices which enforce and control the properties of a resource
 - An [Azure initiative](https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit) is a collection of Azure policy definitions that are grouped together towards a specific goal or purpose in mind.
+
+## private endpoints
+
+The domains  of a private endpoint have a public DNS entry and a public IP. If you want to use the endpoint you must override this on the client machiines. If you are inside an Azure vnet you can use a private DNS zone. Otherwise you can [follow this guide](https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#on-premises-workloads-using-a-dns-forwarder).
+
+## private dns zones
+
+Are linked to one or more vnet. They are account global and can be linked to vnets in different ressource groups or subscriptions. The [main features are](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview#capabilities) auto registration of VMs in the network, forward and reverse lookup for all VMs which are in the connected Vnets.
