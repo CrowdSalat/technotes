@@ -25,7 +25,7 @@ Software Composition Analysis (SCA)
 
 These scanners usually allow to scan binaries, but some also allow to start form a existing SBOM file.
 
-- [DependencyCheck](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
+- OWASP [DependencyCheck](https://jeremylong.github.io/DependencyCheck/dependency-check-cli/index.html) scanner from owasp (cli or build plugins for maven, gradle, etc.)
 - [Trivy](https://github.com/aquasecurity/trivy) multi purpose scanner.
 - [Grype](https://github.com/anchore/grype) a vulnerability scanner for container images and filesystems
 - [Clair](https://github.com/quay/clair) a vulnerability scanner for container images from redhat
