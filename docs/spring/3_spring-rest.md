@@ -1,5 +1,7 @@
 # Spring Boot rest (with HATEOAS)
 
+[Example of Unittest for SpringBoot Rest Controller](https://github.com/CrowdSalat/boilerplate/tree/main/springboot/resttest)
+
 ## rest general principles 
 
 Representational State Transfer (REST) is a collection of (six) architectural constraints:
