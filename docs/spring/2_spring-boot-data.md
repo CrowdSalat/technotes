@@ -191,6 +191,14 @@ logging when entity is created and who created it.
 
 *for user info you need to wire up the AuditorAware<> interface from spring security* 
 
+## spring config server
+
+If a [spring config server](https://docs.spring.io/spring-cloud-config/docs/current/reference/html/) is used, the clients must have the following things set:
+
+1. spring.application.name which corresponds to the the directory in the config git Repository in which the appliyation.yaml lays
+2. spring.cloud.config.server.git.uri which points to the endpoit
+3. The spring-cloud-dependencies an a explizit version for it
+
 ## further notable repositories
 
 [Full list]
