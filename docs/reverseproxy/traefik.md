@@ -73,3 +73,22 @@ http:
 ## systemd service file
 
 Can be found [here](https://github.com/traefik/traefik/blob/master/contrib/systemd/traefik.service).
+
+## rewrite location header (after redirect)
+
+If a server behind traefik send an redirect (302) you may need to intercept it otherwise the domain or the protocol can be switched (like with proxy_redirect in nginx or ProxyPassReverse in apache)
+
+Possible solutions:
+
+1. Use RedirectRegex Middleware (caveats browser sees second redirect and might create a loop)
+2. use [traefik-plugin-rewrite-headers traefik plugin](https://plugins.traefik.io/plugins/628c9eb5108ecc83915d7758/rewrite-header) (supposedly breaks websockets)
+3. There is an [open issue in traefik](https://github.com/traefik/traefik/issues/5809) to support it out of the box
+
+[Source](https://stackoverflow.com/questions/58536983/can-traefik-rewrite-the-location-header-of-redirect-responses-302)
+
+## chain of proxies
+
+You might want to forward existing X-Forwarded-* Headers or create some of you own, when they are not there.
+
+1. Traefik creates The X-Forwarded-* Headers by default. The list of created X-Forwarded headers can be found [here](https://doc.traefik.io/traefik/getting-started/faq/#what-are-the-forwarded-headers-when-proxying-http-requests).
+2. To keep existing X-Forwarded Headers you need to configure trusted IPs on the endpoint ([forwardedHeaders.trustedIPs](https://doc.traefik.io/traefik/routing/entrypoints/#forwarded-headers))
