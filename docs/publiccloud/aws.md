@@ -72,11 +72,11 @@ aws ecr get-login-password --region eu-central-1 | docker login --username AWS -
 
 ### EC2
 
-- An EC2 Instance is based on a Amazon Machine Image (AMI)
-- User data only run once at the instance first start of an instance (can be used to execute scripts)
-- EC2 Instance Connect allows to connect to an EC2 Instance in the browser (if the Amazon Linux is used) but port 22 still needs to be open
-- ECS2 Instace role is a link to a iam role
-- Placement groups allows to control where EC2 Instance are started (cluster, spread, (network) partition)
+- An EC2 Instance is based on a **Amazon Machine Image (AMI)**
+- **User data** only run once at the instance first start of an instance (can be used to execute scripts)
+- **EC2 Instance Connect** allows to connect to an EC2 Instance in the browser (if Amazon Linux is used) but port 22 still needs to be open
+- **ECS2 Instace role** is a link to a iam role
+- **Placement groups** allows to control where EC2 Instance are started (cluster, spread, (network) partition)
 
 Storage:
 
@@ -115,6 +115,8 @@ Spot instances:
 - you can set a max price you are willing to pay for a Spot Instance Request. But if the average price rises above your max price you will loose all you spot instances.
 - with Spot Block you can reserve an spot instance for a time range (1h-6h)
 - a Spot Fleet is a set of Spot Instances and optionally On-Demand Instances that is launched based on criteria that you specify.
+
+### 
 
 ## service catalog (curated IaC)
 
