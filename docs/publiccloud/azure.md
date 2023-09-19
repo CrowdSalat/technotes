@@ -462,3 +462,9 @@ The domains  of a private endpoint have a public DNS entry and a public IP. If y
 ## private dns zones
 
 Are linked to one or more vnet. They are account global and can be linked to vnets in different ressource groups or subscriptions. The [main features are](https://learn.microsoft.com/en-us/azure/dns/private-dns-overview#capabilities) auto registration of VMs in the network, forward and reverse lookup for all VMs which are in the connected Vnets.
+
+## VPN
+
+-	A Virtual Network Gateway is the Azure-side component of a VPN connection. It acts as a gateway for connecting your Azure virtual network to one or more on-premises networks.
+-	A Local Network Gateway represents the on-premises network that you want to connect to your Azure virtual network.
+-	A Connection in Azure represents the actual link or tunnel between a Virtual Network Gateway (VNG) and a Local Network Gateway (LNG).
