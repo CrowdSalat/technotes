@@ -7,6 +7,7 @@
 
 ## links 
 
+- [small bites, nicely visualized](https://serverlessland.com/event-driven-architecture/visuals)
 - [Martin Fowler](https://martinfowler.com/articles/201701-event-driven.html)
 - [Martin Fowler GOTO;](https://www.youtube.com/watch?v=STKCRSUsyP0)
 - [Confluent](https://martinfowler.com/articles/201701-event-driven.html)
