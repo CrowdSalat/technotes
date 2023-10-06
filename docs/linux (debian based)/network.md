@@ -65,6 +65,13 @@ ssh-keyscan SERVER_NAME >> ~/.ssh/known_hosts
 ## check open ports
 
 ```shell
+
+# from host
+nc -zv -w 1 TARGET_PORT TARGET_PORT
+
+# from bastion on SERVER
+ssh SERVER -o StrictHostKeyChecking=accept-new "nc -zv -w 1 TARGET_PORT TARGET_PORT"
+
 # local machine: check for open ports and which process is listening on them
 sudo netstat -lptu 
 
