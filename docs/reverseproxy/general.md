@@ -1,4 +1,12 @@
-# Misc reverse preoxy stuff
+# Misc reverse proxy stuff
+
+## general issue you might face when usimg a reverse proxy
+
+- false redirect
+  - use X-Forward-Headers
+  - may need custom redirect rules in proxy
+- SameSite Cookie Attribute
+- CORS issues
 
 ## Terms Reverseproxy vs API Gateway
 
