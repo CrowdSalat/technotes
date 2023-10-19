@@ -30,6 +30,34 @@ Configuration in Traefik can refer to two different things:
 
 [Traefik Proxy 2.x and TLS 101](https://traefik.io/blog/traefik-2-tls-101-23b4fbee81f1/)
 
+Example for dynamic tls config file:
+
+```shell
+# Dynamic Configuration
+## https://doc.traefik.io/traefik/https/tls/#default-certificate
+tls:
+  stores:
+    default:
+      defaultCertificate:
+        certFile: /etc/mycerts/fullchain.pem
+        keyFile: /etc/mycerts/privkey.pem
+```
+
+## trust certificates of backend services (import CA certificates)
+
+configure on global level:
+
+```shell
+https://doc.traefik.io/traefik/routing/overview/#rootcas
+## Static configuration
+serversTransport:
+  rootCAs:
+    - foo.crt
+    - bar.crt
+```
+
+configure for service only: [Source](https://doc.traefik.io/traefik/routing/services/#rootcas)
+
 ## simple reverse proxy example
 
 static conf
@@ -54,6 +82,9 @@ http:
       service: my-service
       middlewares:
         - stripPath
+      ## If not specified, HTTP routers will accept requests from all defined entry points
+      # entrypoints:
+      #  - web
   # examples for path resultin blue box "Behavior examples": https://doc.traefik.io/traefik/middlewares/http/stripprefix/#forceslash
   middlewares:
     stripPath:
