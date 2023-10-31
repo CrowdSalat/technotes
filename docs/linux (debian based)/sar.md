@@ -1,4 +1,18 @@
-# sar - Linux performance measurement 
+# Linux performance measurement 
+
+## minial memory consuption 
+
+```shell
+while true
+do
+    current_time=$(date "+%Y%m%d-%H:%M:%S")
+    memory_usage=$(free -m | awk 'NR==2{printf "%.2f%%\t\t", $3*100/$2}')
+    echo "${current_time} ${memory_usage}" | tee -a ~/memory_usage.txt
+    sleep 5
+done
+```
+
+## sar 
 
 ```bash
 # sar
