@@ -123,3 +123,13 @@ You might want to forward existing X-Forwarded-* Headers or create some of you o
 
 1. Traefik creates The X-Forwarded-* Headers by default. The list of created X-Forwarded headers can be found [here](https://doc.traefik.io/traefik/getting-started/faq/#what-are-the-forwarded-headers-when-proxying-http-requests).
 2. To keep existing X-Forwarded Headers you need to configure trusted IPs on the endpoint ([forwardedHeaders.trustedIPs](https://doc.traefik.io/traefik/routing/entrypoints/#forwarded-headers))
+3. you need to be aware of [HostRules](https://doc.traefik.io/traefik/routing/routers/#rule). It might be that the first traefik has another domain as the second. In this case you HostRule will not work properly
+4. To debug requests and mapping logic of rules activate accessLogs with json format
+
+```shell
+# /path/to/dynamic/conf.yaml
+accessLog:
+# without file path logs to stdout
+#  filePath: "/path/to/access.log"
+  format: json
+```
