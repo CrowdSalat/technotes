@@ -30,8 +30,6 @@ ARM templates:
 
 #### 3. manual cli <https://github.com/Azure/Enterprise-Scale/tree/main/eslzArm#deploying-in-azure-global-regions>
 
-
-
 ## transition to azure landing zone
 
 - [Scenario: Transition existing Azure environments to the Azure landing zone conceptual architecture](https://learn.microsoft.com/en-us/azure/cloud-adoption-framework/ready/landing-zone/align-scenarios#transition-to-the-azure-landing-zone-conceptual-architecture)

@@ -468,3 +468,9 @@ Are linked to one or more vnet. They are account global and can be linked to vne
 -	A Virtual Network Gateway is the Azure-side component of a VPN connection. It acts as a gateway for connecting your Azure virtual network to one or more on-premises networks.
 -	A Local Network Gateway represents the on-premises network that you want to connect to your Azure virtual network.
 -	A Connection in Azure represents the actual link or tunnel between a Virtual Network Gateway (VNG) and a Local Network Gateway (LNG).
+
+## services to regularly check
+
+- [security center](https://portal.azure.com/#view/Microsoft_AAD_IAM/SecurityMenuBlade/~/SecurityCenter)
+- [advisor](https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/overview)
+- [policy](https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview)
