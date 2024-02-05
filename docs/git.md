@@ -1,6 +1,6 @@
 # Git
 
-## initial setup 
+## initial setup
 
 ### mac
 
@@ -89,6 +89,30 @@ echo "default-cache-ttl 43200" > ~/.gnupg/gpg-agent.conf
 cat ~/.ssh/id_rsa.pub
 ## view gpg pub key
 gpg --armor --export 7C37CF3A > ~/gpg-public.pem
+```
+
+## https and password manager
+
+### windows
+
+```shell
+# check existing methods
+git help -a | grep credential
+
+# there options might be available 
+## credential           Retrieve and store user 
+## credential-cache     Helper to temporarily store passwords in memory
+## credential-store     Helper to store credentials on disk in plaintext (~/.git-credentials)
+
+# credential-cache
+git config --global credential.helper "cache --timeout 30000"
+
+# credential-store 
+git config --global credential.helper "store"
+
+# you might need to install manager-core to use it
+# and then set it via
+# git config --global credential.helper "manager-core"
 ```
 
 ## configure output behavior (disable pager)
@@ -211,28 +235,6 @@ git push --delete oririn 1.2.3
 # delete local
 git tag -d 1.2.3
 
-```
-
-## password manager
-
-```
-# check existing methods
-git help -a | grep credential
-
-# there options might be available 
-## credential           Retrieve and store user 
-## credential-cache     Helper to temporarily store passwords in memory
-## credential-store     Helper to store credentials on disk in plaintext (~/.git-credentials)
-
-# credential-cache
-git config --global credential.helper "cache --timeout 30000"
-
-# credential-store 
-git config --global credential.helper "store"
-
-# you might need to install manager-core to use it
-# and then set it via
-# git config --global credential.helper "manager-core"
 ```
 
 ## ssh generate keys
