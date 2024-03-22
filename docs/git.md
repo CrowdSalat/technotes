@@ -115,6 +115,15 @@ git config --global credential.helper "store"
 # git config --global credential.helper "manager-core"
 ```
 
+Workaround if no credential manager works (in windows probably):
+
+`git config --global credential.helper manager` stores the credentials in plain text file ~/.git-credentials the next time you log in. The format in the file is like this: https://user:password@git.example.de. It only works, when using https. Sometimes the password is not saved after the frist prompt, in this case you can add the following to ~/.gitconfig:
+ 
+```ini
+[credential "https://git.example.de"]
+ provider = generic
+```
+
 ## configure output behavior (disable pager)
 
 https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
