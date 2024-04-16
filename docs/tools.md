@@ -25,9 +25,7 @@
 
 ## boot usb
 
-- [rufus](https://rufus.ie/)
-- [etcher](https://www.balena.io/etcher/)
-- deepin boot maker
+[balena etcher](https://www.balena.io/etcher/)
 
 ## screen recorder
 
@@ -65,3 +63,8 @@ asciinema rec
 # exit via crlt + D
 # press enter
 ```
+
+## disk usage on mac
+
+- [space-radar](https://github.com/zz85/space-radar)
+- 
