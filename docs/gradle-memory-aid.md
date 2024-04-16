@@ -59,4 +59,7 @@ Solution:
 ```shell
 gralde --stop
 gradle assemble 
+
+#or when this occurs "Timeout waiting to lock journal cache (/Users/wej/.gradle/caches/journal-1). It is currently in use by another Gradle instance."
+find ~/.gradle -type f -name "*.lock" -delete
 ```
