@@ -1,5 +1,35 @@
 # Pulumi
 
+## see current state
+
+```shell
+# show urns of resources
+pulumi state -u
+
+# see state of stack
+pulumi stack 
+pulumi stack export
+
+# not sure if this works
+pulumi state -u -l
+```
+
+## work with secrets
+
+"By default, the encryption method uses automatic, per-stack encryption keys provided by Pulumi Cloud, but you can also use [a provider of your own choosing instead](https://www.pulumi.com/docs/cli/commands/pulumi_stack_change-secrets-provider/)."
+
+```shell
+# configure secret provider in new project
+pulumi stack init dev --secrets-provider passphrase
+
+# configure secret provider in existing project
+# see https://www.pulumi.com/docs/cli/commands/pulumi_stack_change-secrets-provider/
+pulumi stack change-secrets-provider TYPE
+
+# your passphrase to unlock config/secrets
+export PULUMI_CONFIG_PASSPHRASE="STACKPASSWORD"
+```
+
 ## login to cloud provider
 
 ### azure
@@ -48,6 +78,7 @@ If you got diff between pulumi state and actual state.
 pulumi up --refresh
 pulumi refresh
 ```
+
 ## see diff
 
 `pulumi preview -diff` or `pulumi up -diff`
