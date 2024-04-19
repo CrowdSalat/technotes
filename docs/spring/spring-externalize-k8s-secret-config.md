@@ -38,12 +38,60 @@ stringData:
   second_secret_entry: also_secret
 ```
 
-### Import with k spring.cloud.kubernetes.secrets.paths
+### Import with with spring.config.import=configtree:/
+
+noteworthy:
+
+- runs out of the box
+- is able to read
+  - property keys from directory paths + filename
+  - or only from filename
+
+```yaml
+# e.g. Deplyoment
+#...
+            env:
+              - name: SPRING_CONFIG_IMPORT
+                # use * to use all directories on this level and start searching one layer deeper 
+                value: "optional:configtree:/app/config/*/"
+            volumeMounts:
+              - mountPath: /app/config/firstsecret/
+                name: secret-properties
+              - mountPath: /app/config/secondsecret/
+                name: secret-properties-2
+        volumes:
+        - name: secret-properties
+            secret:
+            secretName: secret-properties
+            # using path
+            items:
+                # use same property
+              - key: spring.datasource.url
+                path: spring/datasource/url
+                # remap property 
+              - key: password.super
+                path: spring/datasource/password
+        - name: secret-properties-2
+            secret:
+            secretName: secret-properties-2
+            # using plain files
+            items:
+              # remap property
+              - key: second_secret_entry
+                path: second.secret.entry
+```
+
+### DEPRECATED Import with k spring.cloud.kubernetes.secrets.paths
+
+DEPRECATED in favor of `spring.config.import` see [issue](https://github.com/spring-cloud/spring-cloud-kubernetes/issues/631).
 
 noteworthy:
 
 - The spring boot application needs the following dependency: `org.springframework.cloud:spring-cloud-starter-kubernetes-client-config`
 - `spring.cloud.kubernetes.secrets.paths` searches recursivly so you can create one mountpoint where every secret is mounted
+- if you want to deactivate other features:
+  - management.health.kubernetes.enabled: false
+  - spring.cloud.kubernetes.config.enabled: true
 
 Example yaml and conf:
 
@@ -70,46 +118,6 @@ Example yaml and conf:
         - name: secret-properties-2
           secret:
             secretName: secret-properties-2
-```
-
-### Import with with spring.config.import=configtree:/
-
-noteworthy:
-
-- runs out of the box
-- you need to map every secret entry to a path when defining `volumes:`
-
-
-```yaml
-# e.g. Deplyoment
-#...
-            env:
-              - name: SPRING_CONFIG_IMPORT
-                # use * to use all directories on this level and start searching one layer deeper 
-                value: "optional:configtree:/app/config/*/"
-            volumeMounts:
-              - mountPath: /app/config/firstsecret/
-                name: secret-properties
-              - mountPath: /app/config/secondsecret/
-                name: secret-properties-2
-        volumes:
-        - name: secret-properties
-            secret:
-            secretName: secret-properties
-            items:
-                # use same property
-              - key: spring.datasource.url
-                path: spring/datasource/url
-                # remap property
-              - key: password.super
-                path: spring/datasource/password
-        - name: secret-properties-2
-            secret:
-            secretName: secret-properties-2
-            items:
-              # remap property
-              - key: second_secret_entry
-                path: my/own/property
 ```
 
 ### Addtional application.yaml with spring.config.additional-location
