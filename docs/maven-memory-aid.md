@@ -25,6 +25,16 @@ find ~/.m2/repository -name _maven.repositories -exec rm -v {} \;
 find ~/.m2/repository -name _remote.repositories -exec rm -v {} \;
 ```
 
+## phase vs. goal
+
+Nice graphic:
+
+https://medium.com/@yetanothersoftwareengineer/maven-lifecycle-phases-plugins-and-goals-25d8e33fa22
+
+Default phase and goal bindings:
+
+https://maven.apache.org/guides/introduction/introduction-to-the-lifecycle.html#Built-in_Lifecycle_Bindings
+
 ## maven and ci
 
 - [Maven revisions](https://maven.apache.org/maven-ci-friendly.html)
@@ -167,3 +177,24 @@ Solution: run ``mvn install`` or ``mvn deploy`` to save the pom in local or remo
 
 - [Artpie](https://github.com/artipie/artipie)
 - [How to](https://dzone.com/articles/private-remote-maven-repository-with-artipie-1)
+
+## generate build-info.properties
+
+1. add spring-boot-maven-plugin with execution goal build-info
+
+```xml
+<plugin>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-maven-plugin</artifactId>
+    <version>2.0.1.RELEASE</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>build-info</goal>
+            </goals>
+        </execution>
+    </executions>
+</plugin>
+```
+
+2. run `mvn spring-boot:build-info`
