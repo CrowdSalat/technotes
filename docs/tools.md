@@ -1,5 +1,16 @@
 # helpful stuff
 
+## rest/api test tools
+
+- postman might be 
+
+So here are a few alternatives:
+
+- OSS [bruno](https://www.usebruno.com/)
+- [Insonmia](https://docs.insomnia.rest/insomnia/insomnia-storage-options-guide) allows to use with coud or offline
+- OSS [hoppscotch](https://github.com/hoppscotch/hoppscotch)
+- OSS [Restfox](https://github.com/flawiddsouza/Restfox)
+
 ## compare tools
 
 - [StackShare](https://github.com/ncskier/myapp)
@@ -67,4 +78,3 @@ asciinema rec
 ## disk usage on mac
 
 - [space-radar](https://github.com/zz85/space-radar)
-- 
