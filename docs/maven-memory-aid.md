@@ -198,3 +198,7 @@ Solution: run ``mvn install`` or ``mvn deploy`` to save the pom in local or remo
 ```
 
 2. run `mvn spring-boot:build-info`
+
+## generate asciidoctor if plugin is configured properly
+
+`mvn org.asciidoctor:asciidoctor-maven-plugin:process-asciidoc`
