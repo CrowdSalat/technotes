@@ -30,6 +30,14 @@
 
 ```
 
+## oracle thin
+
+If you want to query a table which has lower case letters in it, you need to add quotes to the query e.g.:
+
+´´´sql
+select + from "flyway_schema_history"
+```
+
 
 ## integration into spring boot
 
