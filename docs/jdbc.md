@@ -36,12 +36,13 @@ If you want to query a table which has lower case letters in it, you need to add
 
 ´´´sql
 select + from "flyway_schema_history"
-```
+´´´
 
+Same goes for fieldnames. By default oracle thin driver send every table and field name in uppercase even if you wrote lowercase letter.
 
 ## integration into spring boot
 
-- For mininal setup use `spring-boot-starter-jdbc`. 
+- For mininal setup use `spring-boot-starter-jdbc`.
 - If you want spring data like access use `spring-boot-starter-data-jdbc`, but then you may just use spring-data-jpa
 
 ### maven
