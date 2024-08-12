@@ -126,7 +126,9 @@ Workaround if no credential manager works (in windows probably):
 
 ## configure output behavior (disable pager)
 
-https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less
+`git config --global pager.branch false` 
+
+[see here](https://stackoverflow.com/questions/48341920/git-branch-command-behaves-like-less)
 
 ## wording
 
