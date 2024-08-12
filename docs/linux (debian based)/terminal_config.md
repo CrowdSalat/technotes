@@ -2,7 +2,6 @@
 
 ## alias
 
-
 ```shell
 # Linux version of OSX pbcopy and pbpaste.
 alias pbcopy=’xsel — clipboard — input’
