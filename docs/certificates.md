@@ -156,6 +156,15 @@ openssl pkcs12 -info -in truststore.p12 -passin pass:$PASSWORD
 openssl pkcs12 -info -in keystore.p12 -passin pass:$PASSWORD -nodes
 ```
 
+## create full chain pem public cert
+
+
+```
+cat cert.pem intermediate-ca.pem root-ca.pem cert-fullchain.pem
+```
+
+Or while exporting the cert with chrome (or other browser) choose as filetype certficate-chain instead of certificat
+
 ## tools
 
 ### mkcert
