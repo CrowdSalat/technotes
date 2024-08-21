@@ -149,6 +149,10 @@ public class WebserviceConfig {
 }
 ```
 
+## prevent circular dependecies in generated JSON
+
+Use `@JsonManagedReference` and `@JsonBackReference` see [here](https://www.baeldung.com/jackson-bidirectional-relationships-and-infinite-recursion).
+
 ## Misc
 
 General adive on spell you can: 
