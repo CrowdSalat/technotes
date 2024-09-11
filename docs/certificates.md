@@ -70,6 +70,21 @@ update-ca-trust
 - add pem certs to /usr/share/pki/anchors
 - run `sudo update-ca-certificates`
 
+## create pem from p12
+
+```shell
+PASSWORD="test"
+
+# ca.crt (PEM)
+openssl pkcs12 -in keystore.p12 -nodes -out out/ca.crt -cacerts -nokeys -passin pass:$PASSWORD
+
+# tls.crt (PEM)
+openssl pkcs12 -in keystore.p12 -nodes -out out/tls.crt -nokeys -passin pass:$PASSWORD
+  
+# tls.key (PEM)
+openssl pkcs12 -in keystore.p12 -nodes -out out/tls.key -nocerts -passin pass:$PASSWORD
+```
+
 ## generate certificate and private key in pem format (self signed)
 
 ```shell
@@ -157,7 +172,6 @@ openssl pkcs12 -info -in keystore.p12 -passin pass:$PASSWORD -nodes
 ```
 
 ## create full chain pem public cert
-
 
 ```
 cat cert.pem intermediate-ca.pem root-ca.pem cert-fullchain.pem
