@@ -5,6 +5,9 @@
 
 ## terminal
 
+- My [default profile](https://gist.github.com/CrowdSalat/980c7f653e13bbb519d9efbb01640314)
+- MY [quake profile](https://gist.github.com/CrowdSalat/708bd7c631efa87f986d69537d6c8230) which open on f12
+
 ### warp
 
 - "sticky" current command
@@ -14,6 +17,8 @@
 - workflows/snippets
 - caveat: login needed
 
-### iterm2 
+### iterm2
+
+
 
 ### Tillix
