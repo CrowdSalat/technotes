@@ -49,6 +49,10 @@ Lower levels inherit settings from higher levels.
 
 Management groups provide a governance scope above subscriptions. You organize subscriptions into management groups; the governance conditions you apply cascade by inheritance to all associated subscriptions.
 
+## generate graphics
+
+Use https://github.com/microsoft/ARI
+
 ## azure policy vs. azure rbac (governence)
 
 - Azure RBAC - manages who has access to Azure resources, what areas they have access to and what they can do with those resources. 
