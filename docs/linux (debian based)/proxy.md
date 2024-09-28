@@ -9,8 +9,8 @@ HTTPS_PROXY
 NO_PROXY
 
 Set it via the environmental variables settings ui or via cmd with setx.
-```
 
+```shell
 # show current proxies 
 netsh winhttp show proxy
 
@@ -18,13 +18,14 @@ netsh winhttp show proxy
 setx HTTP_PROXY myproxy.de
 setx HTTPS_PROXY myproxy.de
 setx NO_PROXY ".mycompanydomain.de,localhost,127.0.0.*"
-
 ```
 
 ## Linux
 
-```linux
+```shell
 export HTTP_PROXY=myproxy.de
 export HTTPS_PROXY=myproxy.de
 export NO_PROXY=".mycompanydomain.de,localhost,127.0.0.*"
 ```
+
+# Proxy with authentification
