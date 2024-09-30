@@ -2,7 +2,7 @@
 
 [Example of Unittest for SpringBoot Rest Controller](https://github.com/CrowdSalat/boilerplate/tree/main/springboot/resttest)
 
-## rest general principles 
+## rest general principles
 
 Representational State Transfer (REST) is a collection of (six) architectural constraints:
 
@@ -19,7 +19,6 @@ Representational State Transfer (REST) is a collection of (six) architectural co
 
 Hypermedia as the Engine of Application State (HATEOAS): you can find all available resources through the publication of links which point to these resources. Like a landing page of a website which leads to all further links on the website.  
 
-
 ## spring rest (via spring mvc)
 
 [Official hands on guide with emphasis on hateoas](https://spring.io/guides/tutorials/rest/)
@@ -34,7 +33,7 @@ Hypermedia as the Engine of Application State (HATEOAS): you can find all availa
     - @DeleteMapping
     - @PatchMapping
     - RequestMapping (generic mapper/ old way)
-- the @*Mapping annotations allow: 
+- the @*Mapping annotations allows:
     - to define which http verb is used
     - `value=""`. to define under which path the method is called (based on the path defined in @RequestMapping on the class) 
     - `produces=`: to define which representation formats are allowed
@@ -44,6 +43,7 @@ Hypermedia as the Engine of Application State (HATEOAS): you can find all availa
     - @RequestParam defines it to be a query-string (?id=...&name=...)
     - @PathVariable defines it as a path variable (http://rooturl.de/books/myPathVariable/)
     - @RequestBody binds the parameter to the body of the HTTP (usually used by http post)
+    - @ModelAttribute for complex objects as query params or post bodys
     - note: *@PathParam and @QueryParam,* are the jax-rs annotations
 
 ## spring hateoas (HAL by default)
@@ -59,12 +59,15 @@ Hypermedia as the Engine of Application State (HATEOAS): you can find all availa
 
 *LEGACY: Spring HATEOAS Version 1.0 dropped the [resourceSupport/Resource/Resources/PagedResources group of classes](https://docs.spring.io/spring-hateoas/docs/current/reference/html/#migrate-to-1.0)*
 
-## error handling 
+## error handling
 
 - @ControllerAdvice works on **global** level for all controller beans and allows to save all @ExceptionHandler in one place
 - ResponseStatusException allows to define error handling for one **method**
-- [@ExceptionHandler](https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc) works only for the **class** where a method is annotated with. 
+- [@ExceptionHandler](https://spring.io/blog/2013/11/01/exception-handling-in-spring-mvc) works only for the **class** where a method is annotated with.
 - HandlerExceptionResolver can be extended or just use [predefined implementations](https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/servlet/HandlerExceptionResolver.html)
+- Spring also support "Problem Details for HTTP APIs" (RFC 7807 and RFC 9457)
+  - `spring.mvc.problemdetails.enabled`
+  - Example [here](https://dev.to/abdelrani/error-handling-in-spring-web-using-rfc-9457-specification-5dj1)
 
 ## parsing date query parameters
 
@@ -88,10 +91,10 @@ class RestConfiguration {
     }
 }
 ```
+
 - Set default value for a LocalDate param
     - `methodname(@RequestParam(defaultValue="#{T(java.time.LocalDate).now()}") LocalDate date)` 
     - calls to `<resturl>?requestParam=` or `<resturl>?requestParam=&requestParam2=bla` or just `<resturl>` would trigger the default value
-
 
 ## cache control
 
