@@ -75,6 +75,9 @@ update-ca-trust
 ```shell
 PASSWORD="test"
 
+## deprecared: -nodes = "no DES" no password for private keys
+## --d - private key will not be encrypted (no password for private keys neeed)
+
 # ca.crt (PEM)
 openssl pkcs12 -in keystore.p12 -nodes -out out/ca.crt -cacerts -nokeys -passin pass:$PASSWORD
 
@@ -114,6 +117,12 @@ openssl req -new -key client.demo.key -subj "/CN=client.demo.de" -out client.dem
 # create signed client certificate
 openssl x509 -req -in client.demo.csr -signkey client.demo.key -out client.demo.crt
 ```
+
+## download leaf cert from url
+ 
+HOSTNAME=
+PORT=
+openssl s_client -showcerts -connect ${HOSTNAME}:${PORT} </dev/null 2>/dev/null|openssl x509 -outform PEM >leafcert-${HOSTNAME}.pem
 
 ## pem headers examples
 
