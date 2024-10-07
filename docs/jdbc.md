@@ -9,6 +9,7 @@
 - complete query will executed in lowerCase. Casesensitive string compares may therefore be effected. You may want to use the lower() to workaround this issue. 
 - you may need to execute ``Class.forName("com.ibm.db2.jcc.DB2Driver");`` before calling the connection if you are using jdbc version < 4.0
 - example from ibm: https://www.ibm.com/support/knowledgecenter/SSEPEK_10.0.0/java/src/tpc/imjcc_cjvjdbas.html
+- if you want to use Hibernate UUID in DB2, create it in DB with varchar36 so you can edit it by yourself (see @JdbcTypeCode(SqlTypes.VARCHAR))
 
 ## druid/ avatica core
 
