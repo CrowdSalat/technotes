@@ -15,7 +15,8 @@
 - **if you use spring boot** 
   - just use slf4j loggers in code (Spring boot uses logback under the hood)
   - if you want to configuration
-    - configure with logging.level.* properties. 
+    - configure with logging.level.* in properties.yaml
+        - e.g. ogging.level.org=DEBUG  
     - or add a logback-spring.xml to resources folder
   - if you use logback-spring.xml you can use properties from appliyation.yaml with `<springProperty name="targetname" source="spring.property.name"/>`
 
