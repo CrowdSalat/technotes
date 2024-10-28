@@ -69,6 +69,24 @@ Not all cli command support ignoring or setting ca certs (*e.g. `helm dependency
 
 [Helm template guide](https://helm.sh/docs/chart_template_guide/) gives a quick overview of the flow control and the available template functions. Under the hood helm uses a mix of [Go template language](https://pkg.go.dev/text/template?utm_source=godoc) and [Sprig template library](https://masterminds.github.io/sprig/).
 
+### required values
+
+```yaml
+value: {{ required "A valid .Values.who entry required!" .Values.who }}
+```
+
+### doc in values.yaml
+
+see [best practices](https://helm.sh/docs/chart_best_practices/values/#document-valuesyaml)
+ 
+```yaml
+# serverHost is the host name for the webserver
+serverHost: example
+# serverPort is the HTTP listener port for the webserver
+serverPort: 9191
+```
+
+
 ### range
 
 - [Different examples with result](https://kb.novaordis.com/index.php/Helm_Template_range)
