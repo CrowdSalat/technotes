@@ -67,7 +67,7 @@ helm get values tmp
 The version and the chart name need to match event when the reference is locally.
 
 In Chart.yaml
-...yaml
+```yaml
 ...
 
 dependencies:
@@ -88,6 +88,16 @@ Not all cli command support ignoring or setting ca certs (*e.g. `helm dependency
 
 ```yaml
 value: {{ required "A valid .Values.who entry required!" .Values.who }}
+```
+
+### load file
+
+``` yaml
+
+spec:
+  inlineMultilineField: |
+{{ tpl (.Files.Get "relativePath/file.json" ) . | indent 4 }}
+
 ```
 
 ### doc in values.yaml
@@ -132,7 +142,7 @@ If you want to compare a value with a integer literal it might say that you cann
 
 ### access dotted values
 
-'''shell
+```yaml
 # values.yaml
 ca.password: bla
 
@@ -145,7 +155,7 @@ metadata:
   # variable usage
   name: {{ index .Values "ca.password" }}
 ....
-'''
+```
 
 ### variables
 
@@ -159,6 +169,7 @@ metadata:
   name: name-{{ $random }}
 ....
 ```
+
 
 ### runtime values
 
