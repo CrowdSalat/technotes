@@ -176,3 +176,14 @@ metadata:
 Runtime values can be accessed with the [lookup](https://helm.sh/docs/chart_template_guide/functions_and_pipelines/#using-the-lookup-function) function. The lookup values will only be visible when calling install. Helm template will not substitute these values. It might not work with argocd, because argo uses helm template and kubectl apply and not helm install.
 
 You can find an nice example how to lookup a password [here](https://codersociety.com/de/blog/articles/helm-best-practices#11-use-the-lookup-function-to-avoid-secret-regeneration).
+
+### trigger reload of resource when connfigmap or secret changes
+
+```yaml
+kind: Deployment
+spec:
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/configmap.yaml") . | sha256sum }}
+```
