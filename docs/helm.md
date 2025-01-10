@@ -61,6 +61,21 @@ helm get values tmp
 - once to initiate run: `helm dep up`
 - to support multiple environments or tenants you can add additional value.yaml files
 
+
+## local dependecy
+
+The version and the chart name need to match event when the reference is locally.
+
+In Chart.yaml
+...yaml
+...
+
+dependencies:
+  - name: your-dependency-name
+    version: "1.2.3"
+    repository: "file://../path/to/your/local/chart"
+```
+
 ## notes on certificates
 
 Not all cli command support ignoring or setting ca certs (*e.g. `helm dependency update` does not*) so you might consider to add the needed certificates system wide on os/container level.
@@ -86,7 +101,6 @@ serverHost: example
 serverPort: 9191
 ```
 
-
 ### range
 
 - [Different examples with result](https://kb.novaordis.com/index.php/Helm_Template_range)
@@ -102,6 +116,8 @@ serverPort: 9191
 {{- end }}
 
 ```
+
+**If you want to access all values (not only the looped on) inside of range, you need to access the global scope e.g. $.Values.bla**
 
 ### compare numbers (eq, ne, lt, gt, le, ge)
 
