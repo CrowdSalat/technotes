@@ -61,6 +61,9 @@ helm get values tmp
 - once to initiate run: `helm dep up`
 - to support multiple environments or tenants you can add additional value.yaml files
 
+## extend content of fields
+
+It is easiert to extend a map than a list. In short, you can not extend/merge lists which is defined in a another values.yaml. A list is overriden by default. A map entry can be overriden by its name. Or the map is extended if you use a new entry field name.
 
 ## local dependecy
 
@@ -85,6 +88,19 @@ Not all cli command support ignoring or setting ca certs (*e.g. `helm dependency
 [Helm template guide](https://helm.sh/docs/chart_template_guide/) gives a quick overview of the flow control and the available template functions. Under the hood helm uses a mix of [Go template language](https://pkg.go.dev/text/template?utm_source=godoc) and [Sprig template library](https://masterminds.github.io/sprig/).
 
 ### required values
+
+
+If you want to check at the top of the file without rendering it to the template:
+```yaml
+{{ $_ := required "A valid .Values.who entry required!" .Values.who}}
+{{ $_ := required "A valid .Values.who entry required!" .Values.who2}}
+
+...
+
+value: {{ .Values.who }}
+```
+
+or inline
 
 ```yaml
 value: {{ required "A valid .Values.who entry required!" .Values.who }}
@@ -116,7 +132,7 @@ serverPort: 9191
 - [Different examples with result](https://kb.novaordis.com/index.php/Helm_Template_range)
   - iterate over inline array
   - iterate over array
-  - iterate over dictionary 
+  - iterate over dictionary/map
   - iterate over complex type
 
 ```go
