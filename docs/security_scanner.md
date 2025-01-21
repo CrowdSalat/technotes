@@ -4,6 +4,8 @@
 
 A software bill of materials (SBOM) is an industry standard mechanism of surfacing metadata about dependencies in images or applications. [Source](https://paketo.io/docs/concepts/sbom/). An SBOM can be created based on the source code, binaries (language-specific artifacts or container images) or dynamically at runtime.
 
+Static SBOM attributes like package metadata can be created at build time. Dynamic data like CVE might change without a new build and need to be handled differently. 
+
 ### formats
 
 - [spdx from linux foundation](https://spdx.dev/)
