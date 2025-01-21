@@ -62,6 +62,13 @@ ssh-keygen -R SERVER_NAME -f ~/.ssh/known_hosts
 ssh-keyscan SERVER_NAME >> ~/.ssh/known_hosts
 ```
 
+## find and kill aplication which occupies port (windows)
+
+```
+netstat -ano | findstr :8080
+taskkill /PID 13744 /F
+```
+
 ## check open ports
 
 ```shell
