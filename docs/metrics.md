@@ -1,5 +1,17 @@
 # Metrics
 
+## k8s components
+
+- Components:
+    - [metric-server](https://github.com/kubernetes-sigs/metrics-server) - Is used for vertical and horizontal pod autoscaler and should not be used for other purposes. Only in memory, no history.
+    - [kube-state-metrics (KSM)](https://github.com/kubernetes/kube-state-metrics/) - expose metrics. Is used by prometheus. Only in memory, no history.
+    - [prometheus](https://github.com/prometheus-community/helm-charts/tree/main/charts/prometheus)
+- interaction of components:
+    - metric-server (in memory) is used to collect metrics 
+    - kubelet: exposes the metrics of the node (and all its pods) which can then be collected by the metric server
+    - cAdvisor is the subcomponent of the kubelet who collect the metrics from the pods
+- metrics-server can be deployed with: `kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml`
+
 ## Prometheus
 
 ### promql snippets
