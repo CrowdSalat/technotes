@@ -2,6 +2,10 @@
 
 For overview of Mockito see the [mockito memory aid](../mockito-memoery-aid.md) on this page.
 
+## MockitoBean
+
+As of Spring Boot 3.4 MockitoBean is replacement for deprecated MockBean.
+
 ## @MockBean & @Autowired
 
 @MockBean allows to addd a mocked bean to the spring application context. So when you use @Autowired on another class it will load the mocked bean if it was referenced. It is a convenient way to work with mocks, because **you do not need to mock every field of the (autowired) class under test.** Just the ones you need to behave differently.
