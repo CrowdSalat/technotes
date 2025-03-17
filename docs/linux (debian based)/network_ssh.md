@@ -22,7 +22,8 @@ ssh -i ~/.ssh/id_rsa <user>@<ip or url>
 ```shell
 # ssh tunnel which connects my local port 1025 with the remote port 4000 over the standard ssh port 22
 ssh -L1025:192.168.x.x:4000 -v <user>@<ip or url>
-# can be used via
+
+# if ssh is forwarded it can be used via -p flag
 ssh -p1025 <user>@192.168.x.x
 ```
 
