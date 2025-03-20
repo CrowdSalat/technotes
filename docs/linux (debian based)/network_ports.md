@@ -23,6 +23,12 @@ netstat -ano | findstr :8080
 taskkill /PID 13744 /F
 ```
 
+## access non http traffic on a port
+
+```shell
+nc -vz IP PORT
+```
+
 ## scan for open ports from remote
 
 ```shell
