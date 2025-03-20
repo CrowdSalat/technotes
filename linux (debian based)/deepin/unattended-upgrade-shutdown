@@ -1,0 +1,9 @@
+# Shutdown prevention
+
+It may happen that unattended-upgrade-shutdown blocks the shutdown. To see if theres any progress you can look into the following logs:
+
+```
+sudo tail -f /var/log/dpkg.log
+sudo tail -f /var/log/unattended-upgrades/unattended-upgrades.log
+sudo tail -f /var/log/unattended-upgrades/unattended-upgrades-dpkg.log
+```
