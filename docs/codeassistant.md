@@ -12,9 +12,13 @@ brew install ollama
 # run ollama server
 ollama serve
 
+
 # pull granite model in other terminal 
+# see list of models (and tags): https://ollama.com/library
 ollama pull granite-code:20b # ~11GB
 ollama pull granite-code:8b # ~4,6GB
+ollama pull granite3-dense:2b # ~1,6GB
+
 
 # install continue in vscode
 code --install-extension continue.continue
