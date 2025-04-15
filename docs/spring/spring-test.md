@@ -18,3 +18,11 @@ The MockRestServiceServer allows to intercepts the calls to a RestTemplate. It i
 ## @InjectMock & @Mock 
 
 You may want to **avoid using @InjectMock**, because it fails silently without an exception, which is kind of annoying. Alternatively use @MockBean when using spring or just call the constructor of the class under test and mock every parameter of it with @Mock. Remember that a class which is instantiated by a constructor call is not spring managed.
+
+
+## Do not load full fledged spring boot server while testing
+
+@SpringBootTest -> @ContextConfiguration
+@AutoConfigureMockMVC -> @WebMVCTest
+
+Use test slices to acitvate functionality in bulk: https://docs.spring.io/spring-boot/appendix/test-auto-configuration/slices.html
