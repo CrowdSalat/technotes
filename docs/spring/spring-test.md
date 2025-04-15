@@ -22,7 +22,8 @@ You may want to **avoid using @InjectMock**, because it fails silently without a
 
 ## Do not load full fledged spring boot server while testing
 
-@SpringBootTest -> @ContextConfiguration
+@SpringBootTest -> @ContextConfiguration + @ExtendWith(SpringExtension.class)
+
 @AutoConfigureMockMVC -> @WebMVCTest
 
 Use test slices to acitvate functionality in bulk: https://docs.spring.io/spring-boot/appendix/test-auto-configuration/slices.html
