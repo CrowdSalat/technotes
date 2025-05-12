@@ -2,6 +2,10 @@
 
 Source: https://stackabuse.com/how-to-permanently-set-path-in-linux/
 
+## alternativ
+
+move executables on existing path e.g. `/usr/local/bin`
+
 ## decision
 
 variable needed **system wide** : edit  /etc/profile
