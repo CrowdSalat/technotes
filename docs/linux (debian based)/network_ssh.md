@@ -7,10 +7,10 @@ The -i flag for connection can be omitted if the standard file names id_ALGORITH
 
 ```shell
 # generate a private and public key pair in ~/.ssh/ folder
-ssh-keygen -t ed25519 -b 4096
+ssh-keygen -t ed25519 
 
 # in specifig folder
-ssh-keygen -t ed25519 -b 4096 -f /tmp/
+ssh-keygen -t ed25519  -f /tmp/
 
 # needed permisions of files. Normally created automatically
 chmod 700 ~/.ssh

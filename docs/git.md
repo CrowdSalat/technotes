@@ -17,7 +17,7 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 ## generate ssh key
-ssh-keygen -t ed25519 -b 4096 -C "$MAIL_ADDRESS"
+ssh-keygen -t ed25519  -C "$MAIL_ADDRESS"
 
 # add ssh key agent for passwort prompt
 # see https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent
@@ -70,7 +70,7 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 # ssh
-ssh-keygen -t ed25519 -b 4096 -C "$MAIL_ADDRESS"
+ssh-keygen -t ed25519  -C "$MAIL_ADDRESS"
 echo 'eval `ssh-agent -s`' >> ~/.bashrc && source ~/.bashrc
 ssh-add ~/.ssh/*_rsa
 
@@ -251,7 +251,7 @@ git tag -d 1.2.3
 ## ssh generate keys
 
 ```shell
-ssh-keygen -t ed25519 -b 4096
+ssh-keygen -t ed25519 
 ```
 
 ## ssh remember passphrase
