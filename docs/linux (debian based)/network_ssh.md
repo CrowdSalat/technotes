@@ -18,17 +18,6 @@ chmod 644 ~/.ssh/id_ed25519.pub
 chmod 600 ~/.ssh/id_ed25519
 ```
 
-If the "-----BEGIN OPENSSH PRIVATE KEY-----" format is not accepted use plain openssl cli:
-
-```shell
-openssl genpkey -algorithm ed25519 -out key.pem
-openssl pkey -in key.pem -pubout -out public.pem
-
-# or for rsa
-openssl genrsa -out key.pem 4096
-openssl rsa -in key.pem -out pubkey.pem -outform PEM -pubout
-```
-
 ## connect via ssh
 
 ```shell

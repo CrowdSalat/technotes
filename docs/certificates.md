@@ -25,6 +25,23 @@
 - .pfx - pkcs12
 - .csr (certificate signing request): temporary 
 
+### more on pem
+
+A PEM file looks like this:
+
+```
+-----BEGIN [TYPE OF DATA]-----
+[Base64 encoded binary data]
+-----END [TYPE OF DATA]-----
+```
+
+The [TYPE OF DATA] part indicates the format of the binary data within the base64 block. This is where PKCS#1, PKCS#8, and OpenSSH formats come into play for private keys.
+
+- PKCS#1 PEM Format (-----BEGIN RSA PRIVATE KEY-----) - : PKCS#1 (Public-Key Cryptography Standards #1) specifically defines the syntax for RSA public and private keys
+- PKCS#8 PEM Format (-----BEGIN PRIVATE KEY----- or -----BEGIN ENCRYPTED PRIVATE KEY-----) -  PKCS#8 (Private-Key Information Syntax Specification) is a more generic standard for storing private keys for any public-key algorithm, not just RSA.
+- OpenSSH Private Key Format (-----BEGIN OPENSSH PRIVATE KEY-----) - This is a custom, OpenSSH-specific format, introduced in OpenSSH 7.8 (released in 2017).
+
+
 ## default locations
 
 ### Linux
