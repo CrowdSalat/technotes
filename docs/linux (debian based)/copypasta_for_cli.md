@@ -104,7 +104,7 @@ git config --global alias.ci commit
 git config --global alias.st status
 
 # ssh keygen
-ssh-keygen -t rsa -b 4096
+ssh-keygen -t ed25519 -b 4096
 
 # remember ssh password
 ssh-add ~/.ssh/*_rsa

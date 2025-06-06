@@ -124,7 +124,7 @@ git config --global user.email "$MAIL_ADDRESS"
 git config --global core.hooksPath .githooks
 
 ## generate ssh key
-ssh-keygen -t rsa -b 4096 -C "$MAIL_ADDRESS"
+ssh-keygen -t ed25519 -b 4096 -C "$MAIL_ADDRESS"
 
 # add ssh key agent for passwort prompt
 # see https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent

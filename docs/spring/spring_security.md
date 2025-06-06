@@ -1,5 +1,21 @@
 # Spring security
 
+## add custom authentication
+
+- implement AuthenticationProvider in you own class
+- and register it via
+    - 
+
+- nice example: https://github.com/dewantrie/springboot-custom-authentication-provider/blob/master/src/main/java/com/example/demo/config/SecurityConfig.java
+
+
+- Authentication
+- AuthenticationProvider
+- AuthenticationManager
+- UserDetailsService
+- UserDetails
+- SecurityFilterChain
+
 ## Configure exception for auth filter
 
 Disable for:

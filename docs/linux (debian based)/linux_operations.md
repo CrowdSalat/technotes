@@ -132,7 +132,7 @@ ssh-copy-id -i ~/.ssh/mykey user@host
 e.g. for authentication on another machine where the public/private key pair is authorized
 
 ```shell
-ssh-keygen -t rsa -b 4096
+ssh-keygen -t ed25519 -b 4096
 ```
 
 ### Allow user to use sudo

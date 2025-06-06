@@ -1,6 +1,24 @@
 # SSH
 
-## general overview
+
+## generate ssh key
+
+The -i flag for connection can be omitted if the standard file names id_ALGORITHM (private key) and id_ALGORITHM.pub (public key) are used.
+
+```shell
+# generate a private and public key pair in ~/.ssh/ folder
+ssh-keygen -t ed25519 -b 4096
+
+# in specifig folder
+ssh-keygen -t ed25519 -b 4096 -f /tmp/
+
+# needed permisions of files. Normally created automatically
+chmod 700 ~/.ssh
+chmod 644 ~/.ssh/id_ed25519.pub
+chmod 600 ~/.ssh/id_ed25519
+```
+
+## connect via ssh
 
 ```shell
 # add -v for verbose mode
@@ -46,20 +64,6 @@ if ! check_key_added; then
   echo "Add ssh key for 8 hours"
   ssh-add -t 28800 ~/.ssh/id_ed25519 # 8 hours timeout
 fi
-```
-
-## generate ssh key
-
-The -i flag can be omitted if the standard file names id_rsa (private key) and id_rsa.pub (public key) are used.
-
-```shell
-# generate a private and public key pair in ~/.ssh/ folder
-ssh-keygen
-
-# permisions of pub files
-chmod 700 ~/.ssh
-chmod 644 ~/.ssh/id_rsa.pub
-chmod 600 ~/.ssh/id_rsa
 ```
 
 ## trust ssh key on remote server
