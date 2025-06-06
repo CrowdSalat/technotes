@@ -1,0 +1,6 @@
+# Container images
+
+## quality images 
+
+- [Linuxserver.io](https://www.linuxserver.io/) provides many images via a image registry named [fleet](https://fleet.linuxserver.io/)
+- [Bitnami](https://bitnami.com/) provide container images as well as helm charts and such via a [web search](https://bitnami.com/stacks)
