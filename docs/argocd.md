@@ -2,7 +2,9 @@
 
 ## argo projects
 
-if you use argo project != default you might need to add additional configuration to them e.g. "Source Repositories" or "Destinations" in order that the argo applications in the project work as expected. To make it work you can also use "*" for these configurations, but if possible better be specific. 
+if you use argo project != default you might need to add additional configuration to them e.g. "Source Repositories" or "Destinations" in order that the argo applications in the project work as expected. To make it work you can also use "*" for these configurations, but I would not recommend it. Better to understand it correctly and set specific values, have a look at  [Argo official Project doc](https://argo-cd.readthedocs.io/en/latest/user-guide/projects/)
+
+To see this in UI: Settings -> Projects
 
 ## Self-signed & Untrusted TLS Certificates
 
@@ -96,4 +98,21 @@ stringData:
   url: https://github.com/argoproj
   password: my-password
   username: my-username
+```
+
+## example application
+
+```yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: test
+spec:
+  destination:
+    server: 'https://kubernetes.default.svc'
+  project: default
+  source:
+    path: .
+    repoURL: 'https://gitlab.apps.ocp.weyrich.dev/gitops/vms.git'
+    targetRevision: HEAD
 ```
