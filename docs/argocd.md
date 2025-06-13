@@ -83,7 +83,7 @@ oc apply -f argo-repositorytemplate.secret.yaml -n openshift-gitops
 
 #### or for https instead of ssh
 
-Tbh a bit less failure prone while creating and also no issues when you host git server via K8s/OpenShift with Ingress/Route
+Tbh a bit less failure prone while creating and also no issues when you host git server via K8s/OpenShift with Ingress/Route:
 
 ```yaml
 apiVersion: v1
@@ -98,7 +98,10 @@ stringData:
   url: https://github.com/argoproj
   password: my-password
   username: my-username
+  insecure: false
 ```
+
+The command `argocd repo add example/repo.git --insecure-skip-server-verification --name test --type git --username=BLA --password=BLA` will generate a similar secret (but insecure=true) with the name repo-**** in the ArgoCD namespace
 
 ## example application
 
