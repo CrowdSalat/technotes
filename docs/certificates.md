@@ -1,5 +1,13 @@
 # Certificates and encryption
 
+## download pem with cli
+
+```shell
+openssl s_client -showcerts -connect www.serverfault.com:443
+ < /dev/null
+
+```
+
 ## certificate expiration
 
 - validity period: when this period ends the certificate and all derived certs are expired 
