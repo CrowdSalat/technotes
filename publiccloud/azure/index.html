@@ -1,0 +1,2967 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Azure - Technotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#azure" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Technotes" class="md-header-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Technotes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Azure
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Technotes" class="md-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Technotes
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../WSL/" class="md-nav__link">
+      Linux Subsystem for Windows (WSL)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ansible-overview/" class="md-nav__link">
+      ansible
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../argocd/" class="md-nav__link">
+      Argocd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../buildpacks/" class="md-nav__link">
+      Buildpacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../certificates/" class="md-nav__link">
+      Certificates and encryption
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citrix/" class="md-nav__link">
+      Citrix troubleshoot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cockroach/" class="md-nav__link">
+      minimal notes on cockroach
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code-analysis/" class="md-nav__link">
+      code analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codeassistant/" class="md-nav__link">
+      Setup local ai code assistent
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codespace/" class="md-nav__link">
+      codespaces / devcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../confidential_computing/" class="md-nav__link">
+      Confidential Computing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cors/" class="md-nav__link">
+      Cross-Origin Resource Sharing (CORS)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" class="md-nav__link">
+      DNS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../flyway/" class="md-nav__link">
+      Flyway
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../git/" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitlab/" class="md-nav__link">
+      Gitlab Runner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitpod/" class="md-nav__link">
+      Gitpod
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle-memory-aid/" class="md-nav__link">
+      Gradle memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle/" class="md-nav__link">
+      Gradle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../helm/" class="md-nav__link">
+      Helm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jackson/" class="md-nav__link">
+      Jackson
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../java-logging/" class="md-nav__link">
+      Logging with Java
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jdbc/" class="md-nav__link">
+      jdbc
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jenkins/" class="md-nav__link">
+      Jenkins (pipeline)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jwt/" class="md-nav__link">
+      JWT
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../k3d/" class="md-nav__link">
+      k3d
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../logging-stacks/" class="md-nav__link">
+      Logging stacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mac/" class="md-nav__link">
+      Notes on mac usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../maven-memory-aid/" class="md-nav__link">
+      maven memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../medium/" class="md-nav__link">
+      Medium
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mockito-memoery-aid/" class="md-nav__link">
+      Mockito memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../nginx/" class="md-nav__link">
+      nginx memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../oh-my-zsh/" class="md-nav__link">
+      oh-my-zsh
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../pulumi/" class="md-nav__link">
+      Pulumi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../raspberry/" class="md-nav__link">
+      raspberry pi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../rpm/" class="md-nav__link">
+      RPMs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../security_scanner/" class="md-nav__link">
+      Security scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../sql-dialects/" class="md-nav__link">
+      SQL Dialects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terminal/" class="md-nav__link">
+      Terminals & Shells
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terraform/" class="md-nav__link">
+      Terraform
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../test-domain/" class="md-nav__link">
+      How to test a HTTP/HTTPS URL with a given IP address
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../testcontainers/" class="md-nav__link">
+      Testcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/" class="md-nav__link">
+      helpful stuff
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tracing/" class="md-nav__link">
+      Tracing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vagrant/" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vscode/" class="md-nav__link">
+      VS Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yaml-overview/" class="md-nav__link">
+      yaml overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yubikey/" class="md-nav__link">
+      Yubikey 5 series
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-51" type="checkbox" id="nav-51">
+    
+    <label class="md-nav__link" for="nav-51">
+      Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-51">
+        <span class="md-nav__icon md-icon"></span>
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/01_docker-memory-aid/" class="md-nav__link">
+      Docker CLI useful command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/02_dockerfile/" class="md-nav__link">
+      Dockerfile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/03_docker-persisting-data/" class="md-nav__link">
+      Docker persisting data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/04_docker-networking/" class="md-nav__link">
+      Docker networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-build/" class="md-nav__link">
+      Docker build
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-compose/" class="md-nav__link">
+      Docker compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-database-examples/" class="md-nav__link">
+      Examples for containerized databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker_headless_wsl/" class="md-nav__link">
+      Docker in WSL2 without docker desktop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/registry/" class="md-nav__link">
+      Registry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-52" type="checkbox" id="nav-52">
+    
+    <label class="md-nav__link" for="nav-52">
+      Kafka
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kafka" data-md-level="1">
+      <label class="md-nav__title" for="nav-52">
+        <span class="md-nav__icon md-icon"></span>
+        Kafka
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kafka/security/" class="md-nav__link">
+      Kafka security
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-53" type="checkbox" id="nav-53">
+    
+    <label class="md-nav__link" for="nav-53">
+      Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-53">
+        <span class="md-nav__icon md-icon"></span>
+        Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/ingress/" class="md-nav__link">
+      Ingress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubectl/" class="md-nav__link">
+      kubectl snippets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes-networking/" class="md-nav__link">
+      kubernetes networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes/" class="md-nav__link">
+      Kuberentes overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54" type="checkbox" id="nav-54">
+    
+    <label class="md-nav__link" for="nav-54">
+      Linux (debian based)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Linux (debian based)" data-md-level="1">
+      <label class="md-nav__title" for="nav-54">
+        <span class="md-nav__icon md-icon"></span>
+        Linux (debian based)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/cockpit/" class="md-nav__link">
+      red hat cockpit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/copypasta_for_cli/" class="md-nav__link">
+      Copy&Pasta CLI installations & config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/desktop-files/" class="md-nav__link">
+      Application Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/linux_filesystem/" class="md-nav__link">
+      Linux filesystem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/linux_operations/" class="md-nav__link">
+      linux operations (without containers)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_capture_traffic/" class="md-nav__link">
+      Capture network traffic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_ports/" class="md-nav__link">
+      Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_ssh/" class="md-nav__link">
+      SSH
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_utility_scripts/" class="md-nav__link">
+      Network shell snipptes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/proxy/" class="md-nav__link">
+      Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/python/" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/sar/" class="md-nav__link">
+      Linux performance measurement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/screen/" class="md-nav__link">
+      screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/set-path/" class="md-nav__link">
+      set path variable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/shell_script/" class="md-nav__link">
+      shell script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/terminal_config/" class="md-nav__link">
+      Terminal/Shell config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54-17" type="checkbox" id="nav-54-17">
+    
+    <label class="md-nav__link" for="nav-54-17">
+      Deepin
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Deepin" data-md-level="2">
+      <label class="md-nav__title" for="nav-54-17">
+        <span class="md-nav__icon md-icon"></span>
+        Deepin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/beep/" class="md-nav__link">
+      Disable hardware beep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/file-watchers/" class="md-nav__link">
+      not enough files watchers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove-firefox-titlebar/" class="md-nav__link">
+      remove titlebar form firefox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove-vscode-titlebar/" class="md-nav__link">
+      remove titlebar form vscode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove_ulauncher_black_frame/" class="md-nav__link">
+      remove black frame from ulauncher
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-55" type="checkbox" id="nav-55">
+    
+    <label class="md-nav__link" for="nav-55">
+      My server
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="My server" data-md-level="1">
+      <label class="md-nav__title" for="nav-55">
+        <span class="md-nav__icon md-icon"></span>
+        My server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/drone_ci/" class="md-nav__link">
+      setup drone ci
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/server-infra/" class="md-nav__link">
+      my server setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-56" type="checkbox" id="nav-56">
+    
+    <label class="md-nav__link" for="nav-56">
+      Patterns
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Patterns" data-md-level="1">
+      <label class="md-nav__title" for="nav-56">
+        <span class="md-nav__icon md-icon"></span>
+        Patterns
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/adr/" class="md-nav__link">
+      Architecture decision records
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/aws/" class="md-nav__link">
+      AWS patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/eda/" class="md-nav__link">
+      event driven architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/event-sourcing/" class="md-nav__link">
+      Notes on event sourcing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-57" type="checkbox" id="nav-57" checked>
+    
+    <label class="md-nav__link" for="nav-57">
+      Publiccloud
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Publiccloud" data-md-level="1">
+      <label class="md-nav__title" for="nav-57">
+        <span class="md-nav__icon md-icon"></span>
+        Publiccloud
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../aws/" class="md-nav__link">
+      AWS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Azure
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Azure
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    orientation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    terms
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scopes" class="md-nav__link">
+    scopes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-groups" class="md-nav__link">
+    management groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-graphics" class="md-nav__link">
+    generate graphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-policy-vs-azure-rbac-governence" class="md-nav__link">
+    azure policy vs. azure rbac (governence)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collect-logging-in-resource-group" class="md-nav__link">
+    collect logging in resource group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-apps-vs-container-instances" class="md-nav__link">
+    Container apps vs container instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgres-single-server-vs-flex" class="md-nav__link">
+    Postgres single server vs flex
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blob-vs-container" class="md-nav__link">
+    blob vs container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-regionlocation-codes" class="md-nav__link">
+    list region/location codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-service-account-for-pulumiterraform-in-pipeline" class="md-nav__link">
+    create service account for pulumi/terraform in pipeline:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-identities" class="md-nav__link">
+    managed identities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-exctensions" class="md-nav__link">
+    azure exctensions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-arm-template-of-resource-with-az" class="md-nav__link">
+    see arm template of resource with az
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-registration-vs-enterprise-app-service-principal" class="md-nav__link">
+    app registration vs enterprise app / service principal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-apps-comunication" class="md-nav__link">
+    Container apps comunication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-app-debugging" class="md-nav__link">
+    container app debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipelines-user-for-az-and-pulumi" class="md-nav__link">
+    pipelines user for az and pulumi
+  </a>
+  
+    <nav class="md-nav" aria-label="pipelines user for az and pulumi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-for-pulumi" class="md-nav__link">
+    example for pulumi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-logs" class="md-nav__link">
+    azure logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-old-images-in-a-repo" class="md-nav__link">
+    delete old images in a repo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brew-az-completion" class="md-nav__link">
+    brew + az + completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pulumi-examples" class="md-nav__link">
+    pulumi examples
+  </a>
+  
+    <nav class="md-nav" aria-label="pulumi examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-with-userassignedidentities-in-typescript" class="md-nav__link">
+    work with userAssignedIdentities in typescript
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rule-for-azure-service" class="md-nav__link">
+    add firewall rule for azure service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-gateway" class="md-nav__link">
+    application gateway
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pitfalls" class="md-nav__link">
+    pitfalls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-instances" class="md-nav__link">
+    container instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    Policies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-endpoints" class="md-nav__link">
+    private endpoints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-dns-zones" class="md-nav__link">
+    private dns zones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn" class="md-nav__link">
+    VPN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-to-regularly-check" class="md-nav__link">
+    services to regularly check
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../azure_enterprise/" class="md-nav__link">
+      Azure Enterprise
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../billing/" class="md-nav__link">
+      Billing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../gcp/" class="md-nav__link">
+      GCP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patterns/" class="md-nav__link">
+      Patterns
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-58" type="checkbox" id="nav-58">
+    
+    <label class="md-nav__link" for="nav-58">
+      Reverseproxy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reverseproxy" data-md-level="1">
+      <label class="md-nav__title" for="nav-58">
+        <span class="md-nav__icon md-icon"></span>
+        Reverseproxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/apache/" class="md-nav__link">
+      Apache http webserver (httpd)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/general/" class="md-nav__link">
+      Misc reverse proxy stuff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/nginx/" class="md-nav__link">
+      Apache webserver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/traefik/" class="md-nav__link">
+      Traefik
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-59" type="checkbox" id="nav-59">
+    
+    <label class="md-nav__link" for="nav-59">
+      Spring
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Spring" data-md-level="1">
+      <label class="md-nav__title" for="nav-59">
+        <span class="md-nav__icon md-icon"></span>
+        Spring
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/0_spring-fundamentals/" class="md-nav__link">
+      Spring fundamentals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/1_spring-boot/" class="md-nav__link">
+      Spring Boot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/2_spring-boot-data/" class="md-nav__link">
+      Spring Boot Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/3_spring-rest/" class="md-nav__link">
+      Spring Boot rest (with HATEOAS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/Swagger-ui/" class="md-nav__link">
+      Spring swagger ui
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-boot-docker/" class="md-nav__link">
+      Spring Boot Dockerize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-externalize-k8s-secret-config/" class="md-nav__link">
+      Load mounted secrets as spring boot properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-helpful-properties/" class="md-nav__link">
+      Spring Boot useful properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-soap-client/" class="md-nav__link">
+      Spring Soap client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-test/" class="md-nav__link">
+      Spring Boot test
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_security/" class="md-nav__link">
+      Spring security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_vs_jakartaee/" class="md-nav__link">
+      Spring vs. Jakarta EE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/time/" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-60" type="checkbox" id="nav-60">
+    
+    <label class="md-nav__link" for="nav-60">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="1">
+      <label class="md-nav__title" for="nav-60">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/css/" class="md-nav__link">
+      css
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/dom/" class="md-nav__link">
+      dom vs. virtual dom vs. shadow dom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/javascript/" class="md-nav__link">
+      javascript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/layout/" class="md-nav__link">
+      css layout techniques
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/planning-steps/" class="md-nav__link">
+      Webpage planning steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/vue/" class="md-nav__link">
+      Vue JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/web-evolution/" class="md-nav__link">
+      overlook over web evolution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#orientation" class="md-nav__link">
+    orientation
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#terms" class="md-nav__link">
+    terms
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scopes" class="md-nav__link">
+    scopes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-groups" class="md-nav__link">
+    management groups
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#generate-graphics" class="md-nav__link">
+    generate graphics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-policy-vs-azure-rbac-governence" class="md-nav__link">
+    azure policy vs. azure rbac (governence)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#collect-logging-in-resource-group" class="md-nav__link">
+    collect logging in resource group
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-apps-vs-container-instances" class="md-nav__link">
+    Container apps vs container instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#postgres-single-server-vs-flex" class="md-nav__link">
+    Postgres single server vs flex
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#blob-vs-container" class="md-nav__link">
+    blob vs container
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#list-regionlocation-codes" class="md-nav__link">
+    list region/location codes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#create-service-account-for-pulumiterraform-in-pipeline" class="md-nav__link">
+    create service account for pulumi/terraform in pipeline:
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#managed-identities" class="md-nav__link">
+    managed identities
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-exctensions" class="md-nav__link">
+    azure exctensions
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-arm-template-of-resource-with-az" class="md-nav__link">
+    see arm template of resource with az
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#app-registration-vs-enterprise-app-service-principal" class="md-nav__link">
+    app registration vs enterprise app / service principal
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-apps-comunication" class="md-nav__link">
+    Container apps comunication
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-app-debugging" class="md-nav__link">
+    container app debugging
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pipelines-user-for-az-and-pulumi" class="md-nav__link">
+    pipelines user for az and pulumi
+  </a>
+  
+    <nav class="md-nav" aria-label="pipelines user for az and pulumi">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#example-for-pulumi" class="md-nav__link">
+    example for pulumi
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#azure-logs" class="md-nav__link">
+    azure logs
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#delete-old-images-in-a-repo" class="md-nav__link">
+    delete old images in a repo
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#brew-az-completion" class="md-nav__link">
+    brew + az + completion
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pulumi-examples" class="md-nav__link">
+    pulumi examples
+  </a>
+  
+    <nav class="md-nav" aria-label="pulumi examples">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#work-with-userassignedidentities-in-typescript" class="md-nav__link">
+    work with userAssignedIdentities in typescript
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-firewall-rule-for-azure-service" class="md-nav__link">
+    add firewall rule for azure service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application-gateway" class="md-nav__link">
+    application gateway
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pitfalls" class="md-nav__link">
+    pitfalls
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#container-instances" class="md-nav__link">
+    container instances
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#policies" class="md-nav__link">
+    Policies
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-endpoints" class="md-nav__link">
+    private endpoints
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-dns-zones" class="md-nav__link">
+    private dns zones
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vpn" class="md-nav__link">
+    VPN
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#services-to-regularly-check" class="md-nav__link">
+    services to regularly check
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrowdSalat/technotes/edit/master/docs/publiccloud/azure.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="azure">Azure</h1>
+<h2 id="orientation">orientation</h2>
+<ul>
+<li>information on service: Look into the FAQ</li>
+<li>general health of service: <a href="https://portal.azure.com/#view/Microsoft_Azure_Health/AzureHealthBrowseBlade/~/serviceIssues">Service Health</a></li>
+<li><a href="https://azure.microsoft.com/de-de/explore/global-infrastructure/products-by-region/">availability of service</a></li>
+<li>automatic analysis of resources: advisor recommendations</li>
+<li>create graphic: Resource Visualizer (part of Resource Group)</li>
+<li>IaC:</li>
+<li>Azure Resource Manager templates (ARM templates)</li>
+<li>can be used to be copie to pulumi azure native provider</li>
+<li>UI Azure Portal: in most resources under 'Export template'</li>
+<li>CLI az: <ul>
+<li><code>az &lt;service&gt; list &lt;resourcename&gt;</code></li>
+<li><code>az &lt;service&gt; show &lt;resourcename&gt;</code></li>
+<li>sometimes as yaml: <code>az &lt;service&gt; export &lt;resourcename&gt;</code></li>
+</ul>
+</li>
+<li>audit and see erros in deployment: Monitor | Activity log</li>
+<li><a href="https://learn.microsoft.com/en-us/azure/architecture/aws-professional/services">AWS to Azure services comparison</a></li>
+</ul>
+<h2 id="terms">terms</h2>
+<ul>
+<li>directory: company</li>
+<li>tenant id belongs to directory</li>
+<li>subscription: part of a directory</li>
+<li>account: me and belongs to one or more directory and has access to one or more subscriptions</li>
+<li>Object Id = principal id</li>
+<li>Object Id != client id</li>
+<li>application ≈ managed identity ≈ service principal</li>
+</ul>
+<pre><code class="language-shell">az login
+az account list
+e --subscription=&lt;id&gt;
+</code></pre>
+<h2 id="scopes">scopes</h2>
+<p>RBAC and Policies can be applied to:</p>
+<ol>
+<li>management groups</li>
+<li>subscriptions</li>
+<li>resource groups</li>
+<li>individual resources. </li>
+</ol>
+<p>Lower levels inherit settings from higher levels.</p>
+<h2 id="management-groups">management groups</h2>
+<p>Management groups provide a governance scope above subscriptions. You organize subscriptions into management groups; the governance conditions you apply cascade by inheritance to all associated subscriptions.</p>
+<h2 id="generate-graphics">generate graphics</h2>
+<p>Use https://github.com/microsoft/ARI</p>
+<h2 id="azure-policy-vs-azure-rbac-governence">azure policy vs. azure rbac (governence)</h2>
+<ul>
+<li>Azure RBAC - manages who has access to Azure resources, what areas they have access to and what they can do with those resources. </li>
+<li>Azure Policy – focus on resource properties during deployment and for already existing resources. They are able to block or allow specific values for the properties or add properties like tags after deployment.</li>
+</ul>
+<p><img alt="Azure RBAC and Policy" src="../../img/azure_rbac_policy.png" /></p>
+<p><a href="https://techcommunity.microsoft.com/t5/itops-talk-blog/governance-101-the-difference-between-rbac-and-policies/ba-p/1015556">Source: Governance 101: The Difference Between RBAC and Policies</a></p>
+<h2 id="collect-logging-in-resource-group">collect logging in resource group</h2>
+<p>If you want to access all logs on resource group level you need to create a log analytic workspace.</p>
+<h2 id="container-apps-vs-container-instances">Container apps vs container instances</h2>
+<p>Use container apps when you</p>
+<ul>
+<li>need autoscaling</li>
+<li>want easy loadbalancer integration (each app separately) with azure domain (or custom domain)</li>
+</ul>
+<p><a href="https://learn.microsoft.com/en-us/azure/container-apps/compare-options">Source</a></p>
+<h2 id="postgres-single-server-vs-flex">Postgres single server vs flex</h2>
+<p>Flexible server</p>
+<ul>
+<li>recommended service according to azure portal</li>
+<li>newer postgres versions available</li>
+<li>zone replication</li>
+</ul>
+<p><a href="https://learn.microsoft.com/en-us/azure/postgresql/single-server/overview-postgres-choose-server-options">Source</a></p>
+<h2 id="blob-vs-container">blob vs container</h2>
+<p>Blob are grouped in containers. Containers belong to storage accounts.</p>
+<h2 id="list-regionlocation-codes">list region/location codes</h2>
+<p>Run <code>az account list-locations -o table</code> or look <a href="https://stackoverflow.com/a/56309831">here</a></p>
+<h2 id="create-service-account-for-pulumiterraform-in-pipeline">create service account for pulumi/terraform in pipeline:</h2>
+<p>See <a href="https://gist.github.com/CrowdSalat/07a07e923ed29933eaf9abe54bf1f83b">here</a> or:</p>
+<pre><code class="language-shell">#!/usr/bin/env bash
+
+set -e
+
+SUBSCRIPTION=
+NAME=XXXX-pipeline-service-principal
+YEARS=10
+
+az ad sp create-for-rbac --name=&quot;${NAME}&quot; --role=&quot;Contributor&quot; --scopes=&quot;/subscriptions/${SUBSCRIPTION}&quot; --years=$YEARS --sdk-auth &gt; .localsecret_pipeline
+
+## to get information on user
+# az ad sp list --display-name=${NAME}
+
+## reset password and print it (if old password is lost)
+# az ad sp credential reset --name=${NAME}
+
+## delete service principal
+# az ad sp delete --id 00000000-0000-0000-0000-00000000000000000
+</code></pre>
+<h2 id="managed-identities">managed identities</h2>
+<p><a href="https://learn.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview">Managed identities</a> are an alternative to credentials. They are bound to a resource and allow the resource to interact with other resources with the rights of the identity (similar to aws roles). </p>
+<ul>
+<li>System-assigned: identities are created by azure and the lifecycle is bound to the resource in which it was created (e.g. the container app)</li>
+<li>User-assigned: configure a service principal for the resource. Lifecycle is controled by user.</li>
+</ul>
+<h2 id="azure-exctensions">azure exctensions</h2>
+<p>Some commands <code>az containerapp</code> do not run out of the box. You need to install the extension to use it.</p>
+<pre><code class="language-shell"># list extensions and see if they are installed
+az extension list-available --output table
+
+# add containerapp extension
+az extension add --name containerapp
+</code></pre>
+<p><a href="https://learn.microsoft.com/en-us/cli/azure/azure-cli-extensions-overview">Official doc</a></p>
+<h2 id="see-arm-template-of-resource-with-az">see arm template of resource with az</h2>
+<pre><code>az containerapp connection list
+</code></pre>
+<h2 id="app-registration-vs-enterprise-app-service-principal">app registration vs enterprise app / service principal</h2>
+<p><a href="https://marileeturscak.medium.com/the-difference-between-app-registrations-enterprise-applications-and-service-principals-in-azure-4f70b9a80fe5">blog article</a>
+<a href="https://learn.microsoft.com/en-us/azure/active-directory/develop/howto-create-service-principal-portal?WT.mc_id=AZ-MVP-5004737">Create service principal in UI</a></p>
+<h2 id="container-apps-comunication">Container apps comunication</h2>
+<p>Online as well as communication between to container apps need to use the ingress. You can choose if ingress is public available or only for other container apps.</p>
+<p>The url is: CONTAINER_APP_NAME.CONTAINER_APP_ENV_NAME.REGION_NAME.azurecontainerapps.io
+E.g. can be look like this: app.kindflower-050d0634.germanywestcentral.azurecontainerapps.io</p>
+<p>Every container app revision got an URL as well. This URL contains the revision name as subdomain instead of the conainter app name.</p>
+<h2 id="container-app-debugging">container app debugging</h2>
+<p>It may happen that a container is killed but you got no log entry other than "killed".</p>
+<p>Troubleshooting:s set the memory and cpu to max (or check in metrics if the memory metric is too high before it collapesesz</p>
+<h2 id="pipelines-user-for-az-and-pulumi">pipelines user for az and pulumi</h2>
+<p><a href="https://github.com/Azure/login#configure-deployment-credentials">How to create and use a service principal</a></p>
+<p><code>az ad sp create-for-rbac --name="myapp-service-principal" --role="Contributor" --scopes="/subscriptions/BLA" --years=10 --sdk-auth</code></p>
+<p>Create sp with <code>--sdk-auth</code> flag so your output looks something like this. Action does not work with the normal outoput of four properties. </p>
+<pre><code class="language-json"> {
+ &quot;clientId&quot;: &quot;&quot;,
+ &quot;clientSecret&quot;: &quot;&quot;,
+ &quot;subscriptionId&quot;: &quot;&quot;,
+ &quot;tenantId&quot;: &quot;&quot;,
+ &quot;activeDirectoryEndpointUrl&quot;: &quot;&quot;,
+ &quot;resourceManagerEndpointUrl&quot;: &quot;&quot;,
+ &quot;activeDirectoryGraphResourceId&quot;: &quot;&quot;,
+ &quot;sqlManagementEndpointUrl&quot;: &quot;&quot;,
+ &quot;galleryEndpointUrl&quot;: &quot;&quot;,
+ &quot;managementEndpointUrl&quot;: &quot;&quot;
+ }
+ ```
+
+### example for az
+
+Add the following to a Action Secret `AZURE_CREDENTIALS`:
+
+Pipeline example:
+
+```yaml
+name: Deploy Backend feat
+
+on:
+  push:
+    branches:
+      - azure-env
+    paths:
+      - 'graphql_backend/**/*'
+      - '.github/workflows/azure-feat-backend.yml'
+env:
+  AZURE_REGISTRY_USERNAME: myapp
+  REGISTRY: myapp.azurecr.io
+  REPOSITORY: myapp-2834-repo
+  IMAGE_TAG:  backend-${{github.sha }}
+  AZURE_RESOURCE_GROUP: dev-myapp322577c2
+  AZURE_CONTAINER_APP_NAME: dev-myapp-app-backend
+
+jobs:
+  build:
+    name: Build Backend
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - uses: azure/docker-login@v1
+        with:
+          login-server: ${{ env.REGISTRY }}
+          username: ${{ env.AZURE_REGISTRY_USERNAME }}
+          password: ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+
+      - name: Build, tag, and push Backend container registry
+        id: build-image-backend
+        run: |
+          docker build -t ${{ env.REGISTRY }}/${{ env.REPOSITORY}}:${{ env.IMAGE_TAG }} graphql_backend
+          docker push ${{ env.REGISTRY }}/${{ env.REPOSITORY}}:${{ env.IMAGE_TAG }}
+          echo &quot;::set-output name=image::${{ env.REGISTRY }}/${{ env.REPOSITORY}}:${{ env.IMAGE_TAG }}&quot;    
+
+  deploy:
+      name: Deploy Backend
+      runs-on: ubuntu-latest
+      environment: dev
+      needs: build
+      steps:
+        - name: Azure Login
+          uses: azure/login@v1
+          with:
+            creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+        - name: Deploy to containerapp
+          uses: azure/CLI@v1
+          with:
+            inlineScript: |
+              echo &quot;Installing containerapp extension&quot;
+              az extension add --name containerapp
+              az config set extension.use_dynamic_install=yes_without_prompt
+
+              # note needed when access is already created
+              echo &quot;Configure registry&quot;
+              az containerapp registry set -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_RESOURCE_GROUP }} --server ${{ env.REGISTRY }} --username  ${{ env.AZURE_REGISTRY_USERNAME }} --password ${{ secrets.AZURE_REGISTRY_PASSWORD }}
+
+              echo &quot;Deploy ${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}:${{ github.sha }}&quot;
+              az containerapp update -n ${{ env.AZURE_CONTAINER_APP_NAME }} -g ${{ env.AZURE_RESOURCE_GROUP }} --image ${{ env.REGISTRY }}/${{ env.IMAGE_TAG }}
+</code></pre>
+<h3 id="example-for-pulumi">example for pulumi</h3>
+<p>If you want to use a service principal with pulumi you need to configure the following configs <a href="https://www.pulumi.com/registry/packages/azure-native/installation-configuration/#authenticate-using-a-service-principal">Source</a></p>
+<p>Depends on backend. <strong>If you use multiple backends e.g. azure and azure-native you need to fullfill all login requirements.</strong></p>
+<pre><code class="language-shell">pulumi config set azure-native:clientId &quot;&quot;
+pulumi config set azure-native:clientSecret &quot;&quot; --secret
+pulumi config set azure-native:tenantId &quot;&quot;
+pulumi config set azure-native:subscriptionId &quot;&quot;
+</code></pre>
+<pre><code>name: Pulumi
+on:
+  - pull_request
+jobs:
+  preview:
+    name: Preview
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v3
+        with:
+          node-version-file: .nvmrc
+      - run: npm install
+      # see https://github.com/pulumi/actions
+      # or for full parameter overview https://github.com/pulumi/actions/blob/master/action.yml
+      - uses: pulumi/actions@v3
+        with:
+          command: preview
+          stack-name: staging
+          comment-on-pr: true
+          cloud-url: azblob://fairmanager-pulumistate
+          #github-token: ${{ secrets.GITHUB_TOKEN }}
+        env:
+          PULUMI_CONFIG_PASSPHRASE: ${{ secrets.PULUMI_CONFIG_PASSPHRASE }}
+          AZURE_STORAGE_ACCOUNT: ${{ secrets.AZURE_STORAGE_ACCOUNT }}
+          AZURE_STORAGE_KEY: ${{ secrets.AZURE_STORAGE_KEY }}
+</code></pre>
+<h2 id="azure-logs">azure logs</h2>
+<p><a href="https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/">KQL reference</a></p>
+<p>Examples:</p>
+<pre><code># container app 
+
+## app log
+ContainerAppConsoleLogs_CL
+| project TimeGenerated,  Log_s, RevisionName_s, ContainerImage_s
+| sort by TimeGenerated desc  
+
+## kubernetes events/logs
+ContainerAppConsoleLogs_CL
+| project TimeGenerated,  Log_s, RevisionName_s, ContainerImage_s
+| sort by TimeGenerated desc  
+
+## example timerange relative
+let endDateTime = now();
+let startDateTime = ago(1h);
+ContainerAppConsoleLogs_CL
+| where TimeGenerated &gt;= startDateTime
+| where TimeGenerated &lt; endDateTime
+| sort by TimeGenerated desc  
+
+</code></pre>
+<h2 id="delete-old-images-in-a-repo">delete old images in a repo</h2>
+<p><a href="https://learn.microsoft.com/en-us/azure/container-registry/container-registry-auto-purge#run-in-an-on-demand-task">on-demand task + az acr purge</a></p>
+<h2 id="brew-az-completion">brew + az + completion</h2>
+<pre><code class="language-shell"># workaround no az completion in zsh
+# https://medium.com/@MyDiemHo/enable-azure-cli-autocomplete-in-oh-my-zsh-93e79019a20d
+autoload -U +X bashcompinit &amp;&amp; bashcompinitsource 
+source /opt/homebrew/etc/bash_completion.d/az
+</code></pre>
+<h2 id="pulumi-examples">pulumi examples</h2>
+<p><a href="https://github.com/pulumi/pulumi-azure-native/tree/master/examples">Official List</a></p>
+<h3 id="work-with-userassignedidentities-in-typescript">work with userAssignedIdentities in typescript</h3>
+<p>As long as this <a href="https://github.com/pulumi/pulumi-azure-native/issues/812">issue</a> is not implemented you may need to workaround limitations of dynamic properties in typescript in conjunction with pulumi.Output<String> type.</p>
+<pre><code class="language-typescript">const userIdentity = new managedidentity.UserAssignedIdentity(&quot;uai&quot;, {
+    resourceGroupName: resourceGroup.name,
+    location: resourceGroup.location,
+});
+// userIdentity.id is from type pulumi.Output&lt;String&gt;
+
+// this does not work
+...
+userAssignedIdentities: {
+  [userIdentity.id]: {}
+}
+...
+
+// this does
+...
+identity: {
+        type: containerinstance.ResourceIdentityType.UserAssigned,
+        userAssignedIdentities: userIdentity.id.apply(id =&gt; {
+            const dict: { [key: string] : object } = {};
+            dict[id] = {};
+            return dict;
+        }),
+    },
+...
+
+// translates to this:
+userAssignedIdentities: {
+  /subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/Microsoft.ManagedIdentity/userAssignedIdentities/{identityName}: {}
+}
+</code></pre>
+<h3 id="add-firewall-rule-for-azure-service">add firewall rule for azure service</h3>
+<p>To confgure IaC as the azure portal checkbox "Allow public access from any Azure service within Azure to this serve" does you need to add the firewall rule with start ip and end ip address 0.0.0.0</p>
+<p>See example in ARM:</p>
+<pre><code class="language-bicep">        {
+            &quot;type&quot;: &quot;Microsoft.DBforPostgreSQL/flexibleServers/firewallRules&quot;,
+            &quot;apiVersion&quot;: &quot;2022-01-20-preview&quot;,
+            &quot;name&quot;: &quot;[concat(parameters('flexibleServers_dev_fairmanager_postgres_name'), '/allow_all_azure_resources')]&quot;,
+            &quot;dependsOn&quot;: [
+                &quot;[resourceId('Microsoft.DBforPostgreSQL/flexibleServers', parameters('flexibleServers_dev_fairmanager_postgres_name'))]&quot;
+            ],
+            &quot;properties&quot;: {
+                &quot;startIpAddress&quot;: &quot;0.0.0.0&quot;,
+                &quot;endIpAddress&quot;: &quot;0.0.0.0&quot;
+            }
+        },
+</code></pre>
+<p>or pulumi </p>
+<pre><code class="language-typescript">import * as dbforpostgresql from &quot;@pulumi/azure-native/dbforpostgresql&quot;;
+
+const pgFirewallRules = [
+    { firewallRuleName: &quot;AllowAllAzureServicesAndResourcesWithinAzureIps&quot;, startIpAddress: &quot;0.0.0.0&quot;, endIpAddress: &quot;0.0.0.0&quot; },
+]
+
+pgFirewallRules.forEach((rule, index) =&gt; {
+    new dbforpostgresql.FirewallRule(`${stack}-postgres-firewall-${index}`, {
+        resourceGroupName: resourceGroup.name,
+        serverName: pgServer.name,
+        firewallRuleName: rule.firewallRuleName,
+        endIpAddress: rule.endIpAddress,
+        startIpAddress: rule.startIpAddress,
+    });
+});
+
+</code></pre>
+<h3 id="application-gateway">application gateway</h3>
+<p>If you can, avoid this resource at all. It is tedious complex to configure. Use frontdoor instead if possible.</p>
+<p>Pitfall: If you got multiple Level 7 routing mechanism e.g. application gateway which points on container apps you need to ensure that the host header is correct otherwise you get a 404 on the gateway probes. In doubt override the host name in the backend setting of the application gateway to the exact dns name of the target application.</p>
+<p><a href="https://gist.github.com/CrowdSalat/376cb24dc11e031b3daf83e38b89f419">Here is a gist</a> which contains pulumi code to create an application gateway with TLS and the necessary certificate generation as well as a vault to save the certificate. At this point it is not possible to import a certificate to a vault via pulumi. <a href="https://github.com/pulumi/pulumi-azure-native/issues/742">See this issue.</a>.</p>
+<h2 id="pitfalls">pitfalls</h2>
+<p>Reason: You gave azure an resource group id but it expected a resoure group name.</p>
+<p>Message:</p>
+<pre><code class="language-shell"> error: cannot check existence of resource '/subscriptions/SUBID/resourceGroups/%2Fsubscriptions%2FSUBID%2FresourceGroups%2FRGNAME/providers/Microsoft.Network/applicationGateways/staging-fairmanager-gateway': status code 400, {&quot;error&quot;:{&quot;code&quot;:&quot;InvalidApiVersionParameter&quot;,&quot;message&quot;:&quot;The api-version '2020-11-01' is invalid. The supported versions are '2022-09-01,2022-06-01,2022-05-01,2022-03-01-preview,2022-01-01,2021-04-01,2021-01-01,2020-10-01,2020-09-01,2020-08-01,2020-07-01,2020-06-01,2020-05-01,2020-01-01,2019-11-01,2019-10-01,2019-09-01,2019-08-01,2019-07-01,2019-06-01,2019-05-10,2019-05-01,2019-03-01,2018-11-01,2018-09-01,2018-08-01,2018-07-01,2018-06-01,2018-05-01,2018-02-01,2018-01-01,2017-12-01,2017-08-01,2017-06-01,2017-05-10,2017-05-01,2017-03-01,2016-09-01,2016-07-01,2016-06-01,2016-02-01,2015-11-01,2015-01-01,2014-04-01-preview,2014-04-01,2014-01-01,2013-03-01,2014-02-26,2014-04'.&quot;}}
+</code></pre>
+<h2 id="container-instances">container instances</h2>
+<p>They change their IP Adresse. To expose them in a application gateway you need to:</p>
+<ul>
+<li>set dns-name-label when they have public ip addresses.</li>
+<li>if they are in a private vnet you can add a private dns zone and configure a init container which adds its ip adress to the dns</li>
+</ul>
+<h2 id="policies">Policies</h2>
+<ul>
+<li><a href="https://www.azadvertizer.net/">Overview of Azure Policies</a>
+-<a href="https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit">Azure Policy</a> is a service in Azure which allows you create polices which enforce and control the properties of a resource</li>
+<li>An <a href="https://learn.microsoft.com/de-de/azure/governance/policy/overview?WT.mc_id=itopstalk-blog-phschmit">Azure initiative</a> is a collection of Azure policy definitions that are grouped together towards a specific goal or purpose in mind.</li>
+</ul>
+<h2 id="private-endpoints">private endpoints</h2>
+<p>The domains  of a private endpoint have a public DNS entry and a public IP. If you want to use the endpoint you must override this on the client machiines. If you are inside an Azure vnet you can use a private DNS zone. Otherwise you can <a href="https://learn.microsoft.com/en-us/azure/private-link/private-endpoint-dns#on-premises-workloads-using-a-dns-forwarder">follow this guide</a>.</p>
+<h2 id="private-dns-zones">private dns zones</h2>
+<p>Are linked to one or more vnet. They are account global and can be linked to vnets in different ressource groups or subscriptions. The <a href="https://learn.microsoft.com/en-us/azure/dns/private-dns-overview#capabilities">main features are</a> auto registration of VMs in the network, forward and reverse lookup for all VMs which are in the connected Vnets.</p>
+<h2 id="vpn">VPN</h2>
+<ul>
+<li>A Virtual Network Gateway is the Azure-side component of a VPN connection. It acts as a gateway for connecting your Azure virtual network to one or more on-premises networks.</li>
+<li>A Local Network Gateway represents the on-premises network that you want to connect to your Azure virtual network.</li>
+<li>A Connection in Azure represents the actual link or tunnel between a Virtual Network Gateway (VNG) and a Local Network Gateway (LNG).</li>
+</ul>
+<h2 id="services-to-regularly-check">services to regularly check</h2>
+<ul>
+<li><a href="https://portal.azure.com/#view/Microsoft_AAD_IAM/SecurityMenuBlade/~/SecurityCenter">security center</a></li>
+<li><a href="https://portal.azure.com/#view/Microsoft_Azure_Expert/AdvisorMenuBlade/~/overview">advisor</a></li>
+<li><a href="https://portal.azure.com/#view/Microsoft_Azure_Policy/PolicyMenuBlade/~/Overview">policy</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../aws/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                AWS
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../azure_enterprise/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Azure Enterprise
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

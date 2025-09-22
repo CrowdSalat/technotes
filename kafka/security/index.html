@@ -1,0 +1,2262 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Kafka security - Technotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#kafka-security" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Technotes" class="md-header-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Technotes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Kafka security
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Technotes" class="md-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Technotes
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../WSL/" class="md-nav__link">
+      Linux Subsystem for Windows (WSL)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ansible-overview/" class="md-nav__link">
+      ansible
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../argocd/" class="md-nav__link">
+      Argocd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../buildpacks/" class="md-nav__link">
+      Buildpacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../certificates/" class="md-nav__link">
+      Certificates and encryption
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citrix/" class="md-nav__link">
+      Citrix troubleshoot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cockroach/" class="md-nav__link">
+      minimal notes on cockroach
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code-analysis/" class="md-nav__link">
+      code analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codeassistant/" class="md-nav__link">
+      Setup local ai code assistent
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codespace/" class="md-nav__link">
+      codespaces / devcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../confidential_computing/" class="md-nav__link">
+      Confidential Computing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cors/" class="md-nav__link">
+      Cross-Origin Resource Sharing (CORS)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" class="md-nav__link">
+      DNS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../flyway/" class="md-nav__link">
+      Flyway
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../git/" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitlab/" class="md-nav__link">
+      Gitlab Runner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitpod/" class="md-nav__link">
+      Gitpod
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle-memory-aid/" class="md-nav__link">
+      Gradle memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle/" class="md-nav__link">
+      Gradle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../helm/" class="md-nav__link">
+      Helm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jackson/" class="md-nav__link">
+      Jackson
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../java-logging/" class="md-nav__link">
+      Logging with Java
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jdbc/" class="md-nav__link">
+      jdbc
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jenkins/" class="md-nav__link">
+      Jenkins (pipeline)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jwt/" class="md-nav__link">
+      JWT
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../k3d/" class="md-nav__link">
+      k3d
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../logging-stacks/" class="md-nav__link">
+      Logging stacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mac/" class="md-nav__link">
+      Notes on mac usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../maven-memory-aid/" class="md-nav__link">
+      maven memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../medium/" class="md-nav__link">
+      Medium
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mockito-memoery-aid/" class="md-nav__link">
+      Mockito memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../nginx/" class="md-nav__link">
+      nginx memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../oh-my-zsh/" class="md-nav__link">
+      oh-my-zsh
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../pulumi/" class="md-nav__link">
+      Pulumi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../raspberry/" class="md-nav__link">
+      raspberry pi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../rpm/" class="md-nav__link">
+      RPMs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../security_scanner/" class="md-nav__link">
+      Security scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../sql-dialects/" class="md-nav__link">
+      SQL Dialects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terminal/" class="md-nav__link">
+      Terminals & Shells
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terraform/" class="md-nav__link">
+      Terraform
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../test-domain/" class="md-nav__link">
+      How to test a HTTP/HTTPS URL with a given IP address
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../testcontainers/" class="md-nav__link">
+      Testcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/" class="md-nav__link">
+      helpful stuff
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tracing/" class="md-nav__link">
+      Tracing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vagrant/" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vscode/" class="md-nav__link">
+      VS Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yaml-overview/" class="md-nav__link">
+      yaml overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yubikey/" class="md-nav__link">
+      Yubikey 5 series
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-51" type="checkbox" id="nav-51">
+    
+    <label class="md-nav__link" for="nav-51">
+      Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-51">
+        <span class="md-nav__icon md-icon"></span>
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/01_docker-memory-aid/" class="md-nav__link">
+      Docker CLI useful command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/02_dockerfile/" class="md-nav__link">
+      Dockerfile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/03_docker-persisting-data/" class="md-nav__link">
+      Docker persisting data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/04_docker-networking/" class="md-nav__link">
+      Docker networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-build/" class="md-nav__link">
+      Docker build
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-compose/" class="md-nav__link">
+      Docker compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-database-examples/" class="md-nav__link">
+      Examples for containerized databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker_headless_wsl/" class="md-nav__link">
+      Docker in WSL2 without docker desktop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/registry/" class="md-nav__link">
+      Registry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-52" type="checkbox" id="nav-52" checked>
+    
+    <label class="md-nav__link" for="nav-52">
+      Kafka
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kafka" data-md-level="1">
+      <label class="md-nav__title" for="nav-52">
+        <span class="md-nav__icon md-icon"></span>
+        Kafka
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Kafka security
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Kafka security
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#on-prem" class="md-nav__link">
+    on-prem
+  </a>
+  
+    <nav class="md-nav" aria-label="on-prem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-trust-and-keystores" class="md-nav__link">
+    create trust- and keystores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encyption-tls-and-authentification-via-mtls" class="md-nav__link">
+    encyption (TLS) and authentification (via mTLS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acls-autorization" class="md-nav__link">
+    ACLs (autorization)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-53" type="checkbox" id="nav-53">
+    
+    <label class="md-nav__link" for="nav-53">
+      Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-53">
+        <span class="md-nav__icon md-icon"></span>
+        Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/ingress/" class="md-nav__link">
+      Ingress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubectl/" class="md-nav__link">
+      kubectl snippets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes-networking/" class="md-nav__link">
+      kubernetes networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes/" class="md-nav__link">
+      Kuberentes overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54" type="checkbox" id="nav-54">
+    
+    <label class="md-nav__link" for="nav-54">
+      Linux (debian based)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Linux (debian based)" data-md-level="1">
+      <label class="md-nav__title" for="nav-54">
+        <span class="md-nav__icon md-icon"></span>
+        Linux (debian based)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/cockpit/" class="md-nav__link">
+      red hat cockpit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/copypasta_for_cli/" class="md-nav__link">
+      Copy&Pasta CLI installations & config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/desktop-files/" class="md-nav__link">
+      Application Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/linux_filesystem/" class="md-nav__link">
+      Linux filesystem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/linux_operations/" class="md-nav__link">
+      linux operations (without containers)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_capture_traffic/" class="md-nav__link">
+      Capture network traffic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_ports/" class="md-nav__link">
+      Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_ssh/" class="md-nav__link">
+      SSH
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/network_utility_scripts/" class="md-nav__link">
+      Network shell snipptes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/proxy/" class="md-nav__link">
+      Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/python/" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/sar/" class="md-nav__link">
+      Linux performance measurement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/screen/" class="md-nav__link">
+      screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/set-path/" class="md-nav__link">
+      set path variable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/shell_script/" class="md-nav__link">
+      shell script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/terminal_config/" class="md-nav__link">
+      Terminal/Shell config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54-17" type="checkbox" id="nav-54-17">
+    
+    <label class="md-nav__link" for="nav-54-17">
+      Deepin
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Deepin" data-md-level="2">
+      <label class="md-nav__title" for="nav-54-17">
+        <span class="md-nav__icon md-icon"></span>
+        Deepin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/beep/" class="md-nav__link">
+      Disable hardware beep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/file-watchers/" class="md-nav__link">
+      not enough files watchers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove-firefox-titlebar/" class="md-nav__link">
+      remove titlebar form firefox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove-vscode-titlebar/" class="md-nav__link">
+      remove titlebar form vscode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../linux%20%28debian%20based%29/deepin/remove_ulauncher_black_frame/" class="md-nav__link">
+      remove black frame from ulauncher
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-55" type="checkbox" id="nav-55">
+    
+    <label class="md-nav__link" for="nav-55">
+      My server
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="My server" data-md-level="1">
+      <label class="md-nav__title" for="nav-55">
+        <span class="md-nav__icon md-icon"></span>
+        My server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/drone_ci/" class="md-nav__link">
+      setup drone ci
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/server-infra/" class="md-nav__link">
+      my server setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-56" type="checkbox" id="nav-56">
+    
+    <label class="md-nav__link" for="nav-56">
+      Patterns
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Patterns" data-md-level="1">
+      <label class="md-nav__title" for="nav-56">
+        <span class="md-nav__icon md-icon"></span>
+        Patterns
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/adr/" class="md-nav__link">
+      Architecture decision records
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/aws/" class="md-nav__link">
+      AWS patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/eda/" class="md-nav__link">
+      event driven architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/event-sourcing/" class="md-nav__link">
+      Notes on event sourcing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-57" type="checkbox" id="nav-57">
+    
+    <label class="md-nav__link" for="nav-57">
+      Publiccloud
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Publiccloud" data-md-level="1">
+      <label class="md-nav__title" for="nav-57">
+        <span class="md-nav__icon md-icon"></span>
+        Publiccloud
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/aws/" class="md-nav__link">
+      AWS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/azure/" class="md-nav__link">
+      Azure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/azure_enterprise/" class="md-nav__link">
+      Azure Enterprise
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/billing/" class="md-nav__link">
+      Billing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/gcp/" class="md-nav__link">
+      GCP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/patterns/" class="md-nav__link">
+      Patterns
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-58" type="checkbox" id="nav-58">
+    
+    <label class="md-nav__link" for="nav-58">
+      Reverseproxy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reverseproxy" data-md-level="1">
+      <label class="md-nav__title" for="nav-58">
+        <span class="md-nav__icon md-icon"></span>
+        Reverseproxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/apache/" class="md-nav__link">
+      Apache http webserver (httpd)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/general/" class="md-nav__link">
+      Misc reverse proxy stuff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/nginx/" class="md-nav__link">
+      Apache webserver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/traefik/" class="md-nav__link">
+      Traefik
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-59" type="checkbox" id="nav-59">
+    
+    <label class="md-nav__link" for="nav-59">
+      Spring
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Spring" data-md-level="1">
+      <label class="md-nav__title" for="nav-59">
+        <span class="md-nav__icon md-icon"></span>
+        Spring
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/0_spring-fundamentals/" class="md-nav__link">
+      Spring fundamentals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/1_spring-boot/" class="md-nav__link">
+      Spring Boot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/2_spring-boot-data/" class="md-nav__link">
+      Spring Boot Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/3_spring-rest/" class="md-nav__link">
+      Spring Boot rest (with HATEOAS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/Swagger-ui/" class="md-nav__link">
+      Spring swagger ui
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-boot-docker/" class="md-nav__link">
+      Spring Boot Dockerize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-externalize-k8s-secret-config/" class="md-nav__link">
+      Load mounted secrets as spring boot properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-helpful-properties/" class="md-nav__link">
+      Spring Boot useful properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-soap-client/" class="md-nav__link">
+      Spring Soap client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-test/" class="md-nav__link">
+      Spring Boot test
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_security/" class="md-nav__link">
+      Spring security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_vs_jakartaee/" class="md-nav__link">
+      Spring vs. Jakarta EE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/time/" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-60" type="checkbox" id="nav-60">
+    
+    <label class="md-nav__link" for="nav-60">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="1">
+      <label class="md-nav__title" for="nav-60">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/css/" class="md-nav__link">
+      css
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/dom/" class="md-nav__link">
+      dom vs. virtual dom vs. shadow dom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/javascript/" class="md-nav__link">
+      javascript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/layout/" class="md-nav__link">
+      css layout techniques
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/planning-steps/" class="md-nav__link">
+      Webpage planning steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/vue/" class="md-nav__link">
+      Vue JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/web-evolution/" class="md-nav__link">
+      overlook over web evolution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#on-prem" class="md-nav__link">
+    on-prem
+  </a>
+  
+    <nav class="md-nav" aria-label="on-prem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-trust-and-keystores" class="md-nav__link">
+    create trust- and keystores
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encyption-tls-and-authentification-via-mtls" class="md-nav__link">
+    encyption (TLS) and authentification (via mTLS)
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#acls-autorization" class="md-nav__link">
+    ACLs (autorization)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrowdSalat/technotes/edit/master/docs/kafka/security.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="kafka-security">Kafka security</h1>
+<h2 id="on-prem">on-prem</h2>
+<h3 id="create-trust-and-keystores">create trust- and keystores</h3>
+<pre><code class="language-shell">#!/bin/bash
+
+validity=&quot;354&quot;
+keystore-pass=&quot;testtest&quot;
+key-pass=&quot;test&quot;
+distinguished-name=&quot;CN=myhost.de,OU=,DC=de&quot;
+hostname=&quot;myhost&quot;
+ca-passwort=&quot;testtest&quot;
+
+# create keystore for a broker
+keytool -keystore kafka.server.keystore.jks -alias localhost -keyalg RSA -validity {validity} -genkey -storepass {keystore-pass} -keypass {key-pass} -dname {distinguished-name} -ext SAN=DNS:{hostname}
+
+# private ca key
+openssl req -new -x509 -keyout ca-key -out ca-cert -days {validity}
+
+# create a client truststore and  add ca cert to it
+keytool -keystore kafka.client.truststore.jks -alias CARoot -import -file ca-cert
+
+# create a server truststore and add a ca cert to it
+keytool -keystore kafka.server.truststore.jks -alias CARoot -importcert -file ca-cert
+
+# export the certificate from the boker keystore
+keytool -keystore kafka.server.keystore.jks -alias localhost -certreq -file cert-file
+
+# sign the exportet certificate with the ca key
+openssl x509 -req -CA ca-cert -CAkey ca-key -in cert-file -out cert-signed -days {validity} -CAcreateserial -passin pass:{ca-password}
+
+# import the signed certificate and the ca cert to the broker keystore
+keytool -keystore kafka.server.keystore.jks -alias CARoot -import -file ca-cert
+keytool -keystore kafka.server.keystore.jks -alias localhost -import -file cert-signed
+</code></pre>
+<h3 id="encyption-tls-and-authentification-via-mtls">encyption (TLS) and authentification (via mTLS)</h3>
+<p>You can encrypt the traffic between brokers and the traffic between brokers and clients with TLS. If you want to use ACLs on topics you also can configure authentification via mTLS. Every participant needs to have a public/private keypair (keystore) and a list of trustet partners (truststore which holds root certificate). To configure a kafka broker follow the steps in <a href="https://docs.confluent.io/current/kafka/encryption.html">this manual</a>. By default hostname verification (<code>ssl.endpoint.identification.algorithm</code>) is enabled, so clients (brokers/producer/consumer) will check if the fully qualified domain name (FQDN) of the server (broker) equals the common name (CN) or the subject alternative name (SAN) of the server (broker) certificate.</p>
+<pre><code class="language-properties"># listenerName:endpoint;
+listener=INTERNAL:localhost:9092
+# the listeners which get send to zookeeper and the clients. if not set will equal to listener
+# advertised.listener=
+
+# The first is the listener name (e.g. INTERNAL) the second is the protocol (PLAINTEXT, SSL, ...)
+listener.security.protocol.map=INTERNAL:SSL
+</code></pre>
+<p>If SSL protocol is activated for one listener you must locate the private/public key pair and you should set a accepted TLS Version. This can be achieved for all listeners with the ssl.* properties. If you want to adress a specific listener you need to prefix the properties with the listener.name.<listener_name> e.g. listener.name.internal.ssl.*.</p>
+<pre><code class="language-properties"># set tls version
+ssl.enabled.protocols=TLSv1.3
+# locate private/public key for broker
+ssl.keystore.location=
+ssl.keystore.password=
+ssl.key.password=
+</code></pre>
+<p>If you want to activate <strong>encryption between the borkers</strong> you need to activate it and trust the certificates/private keys of the other brokers:</p>
+<pre><code class="language-properties"># activate inter encryption
+security.inter.broker.protocol=SSL
+# add the certificate of the root ca to the truststore (or each broker certificate if there is no common ca) 
+ssl.truststore.location=
+ssl.truststore.password=
+
+</code></pre>
+<p>If a <strong>client needs to encrypt the connection to kafka</strong> via TLS a client need to activate encryption and trust the certificates/private keys of the brokers:</p>
+<pre><code class="language-properties"># activate encryption
+security.protocol=SSL
+
+# add brokers certificate to truststore
+ssl.truststore.location=
+ssl.truststore.password=
+
+# to deactivate host name validation of the server certificate set it to blank
+# ssl.endpoint.identification.algorithm=
+</code></pre>
+<p>If a <strong>client should authentificate via mTLS</strong> you need to set <code>ssl.client.auth=requested</code> or <code>ssl.client.auth=required</code> in the broker settings. Additionally to the encryption properties the client must configure a private/public key pair (which is trusted by the broker).</p>
+<pre><code class="language-properties"># acitvate encryption
+security.protocol=SSL
+
+# add brokers certificate to truststore
+ssl.truststore.location=
+ssl.truststore.password=
+
+# add your own private/public keypair to the keystore (needs to be trusted by brokers)
+ssl.keystore.location=
+ssl.keystore.password=
+ssl.key.password=
+
+# to deactivate host name validation of the server certificate set it to blank
+# ssl.endpoint.identification.algorithm=
+</code></pre>
+<p>After version 2.7 you can <strong>use inline PEMs</strong> for trusted certificates and private/public key/certificate:</p>
+<pre><code class="language-properties"># encryption
+security.protocol=SSL
+
+# truststore replacement
+ssl.truststore.type=PEM
+ssl.truststore.certificates=-----BEGIN CERTIFICATE----- \
+&lt;SECRET_HERE&gt; \
+-----END CERTIFICATE-----
+
+# keystore replacement
+ssl.keystore.type=PEM
+ssl.keystore.key=
+ssl.keystore.certificate.chain= 
+</code></pre>
+<h3 id="acls-autorization">ACLs (autorization)</h3>
+<p>With ACLs you can permit <a href="https://docs.confluent.io/current/kafka/authorization.html#operations">operations</a> on resources (topic, Cluster, ..) Follow the <a href="https://docs.confluent.io/current/kafka/authorization.html">instruction link</a> to setup ACLs, but read the following keypoints and pitfalls before you do it:</p>
+<ul>
+<li><a href="https://docs.confluent.io/current/kafka/authorization.html#authorizer">Define a Authorizer for the broker: <code>authorizer.class.name=kafka.security.authorizer.AclAuthorizer</code></a></li>
+<li>When a client connects via mTLS the principal will be the certificate 'subject'/'distinguished name'. <a href="https://docs.confluent.io/current/kafka/authorization.html#tls-ssl-principal-user-names">If you want to use only the a part of it you need to configure the <code>ssl.principal.mapping.rules</code></a></li>
+<li>A valid <code>ssl.principal.mapping.rules</code> to extract the CN from a cert is: <code>RULE: ^.*[Cc][Nn]=(([a-zA-Z0-9\.\-\-]*).*$/$1/L), DEFAULT</code>.<em>The leading <code>^.*</code> and the trailing <code>.*$</code> seems to be needed. Do not forget to append th DEFAULT rule after a comma at the end</em></li>
+<li>If you want to debug if you Authorizer and your mapping rule work you should look into the <code>kafka-authorizer.log</code>. You may need to set the log level of the authorizer to DEBUG in the <a href="./config/log4j.xml">log4j.xml</a> file.</li>
+<li>Use <code>allow.everyone.if.no.acl.found=true</code> when you want to dry run your setup.</li>
+<li>when defining a <code>super.user</code> you might want to set the whole 'distinguished name' as well as the CN in case your <code>ssl.principal.mapping.rules</code> does not work: <code>super.user=User:CN=bla,OU=bla;User:bla</code>. The <code>User</code> and the <code>;</code> enclose one entry.</li>
+<li>To add ACLs you can use the <a href="https://kafka.apache.org/documentation/#security_authz_cli">kafka-acl</a> command. If an authorizer is active you will also need an certificate for the admin user or the use you want to use when creating ACLs</li>
+<li>If you setup an authorizer you need to allow the broker of your cluster to operate on reosurce 'Cluster' or it may not function as expected</li>
+<li>Information on ACLs is stored in zookeeper (so you might want to activate <a href="https://kafka.apache.org/documentation/#zk_authz">ZooKeepers security</a> as well)</li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../../docker/registry/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Registry
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../../kubernetes/ingress/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Ingress
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
