@@ -1,5 +1,18 @@
 # Copy&Pasta CLI installations & config
 
+## create multiple direcotries with one command
+
+```shell
+mkdir -p applications/my-new-app/{base,overlays/{dev,staging,prod}}
+```
+
+The shell expands this into:
+
+- applications/my-new-app/base
+- applications/my-new-app/overlays/dev
+- applications/my-new-app/overlays/staging
+- applications/my-new-app/overlays/prod
+
 ## homebrew - add to path
 
 ```
