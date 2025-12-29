@@ -1,0 +1,2322 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>Copy&Pasta CLI installations & config - Technotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#copypasta-cli-installations-config" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="../.." title="Technotes" class="md-header-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Technotes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              Copy&Pasta CLI installations & config
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Technotes" class="md-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Technotes
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../.." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../WSL/" class="md-nav__link">
+      Linux Subsystem for Windows (WSL)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../ansible-overview/" class="md-nav__link">
+      ansible
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../argocd/" class="md-nav__link">
+      Argocd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../buildpacks/" class="md-nav__link">
+      Buildpacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../certificates/" class="md-nav__link">
+      Certificates and encryption
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../citrix/" class="md-nav__link">
+      Citrix troubleshoot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cockroach/" class="md-nav__link">
+      minimal notes on cockroach
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../code-analysis/" class="md-nav__link">
+      code analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codeassistant/" class="md-nav__link">
+      Setup local ai code assistent
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../codespace/" class="md-nav__link">
+      codespaces / devcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../confidential_computing/" class="md-nav__link">
+      Confidential Computing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../cors/" class="md-nav__link">
+      Cross-Origin Resource Sharing (CORS)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../dns/" class="md-nav__link">
+      DNS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../flyway/" class="md-nav__link">
+      Flyway
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../git/" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitlab/" class="md-nav__link">
+      Gitlab Runner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gitpod/" class="md-nav__link">
+      Gitpod
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle-memory-aid/" class="md-nav__link">
+      Gradle memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../gradle/" class="md-nav__link">
+      Gradle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../helm/" class="md-nav__link">
+      Helm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jackson/" class="md-nav__link">
+      Jackson
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../java-logging/" class="md-nav__link">
+      Logging with Java
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jdbc/" class="md-nav__link">
+      jdbc
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jenkins/" class="md-nav__link">
+      Jenkins (pipeline)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../jwt/" class="md-nav__link">
+      JWT
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../k3d/" class="md-nav__link">
+      k3d
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../logging-stacks/" class="md-nav__link">
+      Logging stacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mac/" class="md-nav__link">
+      Notes on mac usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../maven-memory-aid/" class="md-nav__link">
+      maven memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../medium/" class="md-nav__link">
+      Medium
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../metrics/" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../mockito-memoery-aid/" class="md-nav__link">
+      Mockito memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../nginx/" class="md-nav__link">
+      nginx memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../oh-my-zsh/" class="md-nav__link">
+      oh-my-zsh
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../pulumi/" class="md-nav__link">
+      Pulumi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../raspberry/" class="md-nav__link">
+      raspberry pi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../rpm/" class="md-nav__link">
+      RPMs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../security_scanner/" class="md-nav__link">
+      Security scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../sql-dialects/" class="md-nav__link">
+      SQL Dialects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terminal/" class="md-nav__link">
+      Terminals & Shells
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../terraform/" class="md-nav__link">
+      Terraform
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../test-domain/" class="md-nav__link">
+      How to test a HTTP/HTTPS URL with a given IP address
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../testcontainers/" class="md-nav__link">
+      Testcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tools/" class="md-nav__link">
+      helpful stuff
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../tracing/" class="md-nav__link">
+      Tracing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vagrant/" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../vscode/" class="md-nav__link">
+      VS Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yaml-overview/" class="md-nav__link">
+      yaml overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../../yubikey/" class="md-nav__link">
+      Yubikey 5 series
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-51" type="checkbox" id="nav-51">
+    
+    <label class="md-nav__link" for="nav-51">
+      Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-51">
+        <span class="md-nav__icon md-icon"></span>
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/01_docker-memory-aid/" class="md-nav__link">
+      Docker CLI useful command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/02_dockerfile/" class="md-nav__link">
+      Dockerfile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/03_docker-persisting-data/" class="md-nav__link">
+      Docker persisting data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/04_docker-networking/" class="md-nav__link">
+      Docker networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-build/" class="md-nav__link">
+      Docker build
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-compose/" class="md-nav__link">
+      Docker compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker-database-examples/" class="md-nav__link">
+      Examples for containerized databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/docker_headless_wsl/" class="md-nav__link">
+      Docker in WSL2 without docker desktop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../docker/registry/" class="md-nav__link">
+      Registry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-52" type="checkbox" id="nav-52">
+    
+    <label class="md-nav__link" for="nav-52">
+      Kafka
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kafka" data-md-level="1">
+      <label class="md-nav__title" for="nav-52">
+        <span class="md-nav__icon md-icon"></span>
+        Kafka
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kafka/security/" class="md-nav__link">
+      Kafka security
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-53" type="checkbox" id="nav-53">
+    
+    <label class="md-nav__link" for="nav-53">
+      Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-53">
+        <span class="md-nav__icon md-icon"></span>
+        Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/ingress/" class="md-nav__link">
+      Ingress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubectl/" class="md-nav__link">
+      kubectl snippets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes-networking/" class="md-nav__link">
+      kubernetes networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../kubernetes/kubernetes/" class="md-nav__link">
+      Kuberentes overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54" type="checkbox" id="nav-54" checked>
+    
+    <label class="md-nav__link" for="nav-54">
+      Linux (debian based)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Linux (debian based)" data-md-level="1">
+      <label class="md-nav__title" for="nav-54">
+        <span class="md-nav__icon md-icon"></span>
+        Linux (debian based)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../cockpit/" class="md-nav__link">
+      red hat cockpit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Copy&Pasta CLI installations & config
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      Copy&Pasta CLI installations & config
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-multiple-direcotries-with-one-command" class="md-nav__link">
+    create multiple direcotries with one command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homebrew-add-to-path" class="md-nav__link">
+    homebrew - add to path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-on-debian" class="md-nav__link">
+    docker - on debian
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s-ecosystem" class="md-nav__link">
+    k8s ecosystem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash-completion" class="md-nav__link">
+    bash completion
+  </a>
+  
+    <nav class="md-nav" aria-label="bash completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#any-binary-installed-with-brew" class="md-nav__link">
+    any binary installed with brew
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-bash-auto-completion" class="md-nav__link">
+    kubectl - bash auto-completion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helm-bash-auto-completion" class="md-nav__link">
+    helm - bash auto-completion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k3d" class="md-nav__link">
+    k3d
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    git
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../desktop-files/" class="md-nav__link">
+      Application Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux_filesystem/" class="md-nav__link">
+      Linux filesystem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux_operations/" class="md-nav__link">
+      linux operations (without containers)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../network_capture_traffic/" class="md-nav__link">
+      Capture network traffic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../network_ports/" class="md-nav__link">
+      Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../network_ssh/" class="md-nav__link">
+      SSH
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../network_utility_scripts/" class="md-nav__link">
+      Network shell snipptes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../proxy/" class="md-nav__link">
+      Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../python/" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../sar/" class="md-nav__link">
+      Linux performance measurement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../screen/" class="md-nav__link">
+      screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../set-path/" class="md-nav__link">
+      set path variable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../shell_script/" class="md-nav__link">
+      shell script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../terminal_config/" class="md-nav__link">
+      Terminal/Shell config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54-17" type="checkbox" id="nav-54-17">
+    
+    <label class="md-nav__link" for="nav-54-17">
+      Deepin
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Deepin" data-md-level="2">
+      <label class="md-nav__title" for="nav-54-17">
+        <span class="md-nav__icon md-icon"></span>
+        Deepin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deepin/beep/" class="md-nav__link">
+      Disable hardware beep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deepin/file-watchers/" class="md-nav__link">
+      not enough files watchers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deepin/remove-firefox-titlebar/" class="md-nav__link">
+      remove titlebar form firefox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deepin/remove-vscode-titlebar/" class="md-nav__link">
+      remove titlebar form vscode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../deepin/remove_ulauncher_black_frame/" class="md-nav__link">
+      remove black frame from ulauncher
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-55" type="checkbox" id="nav-55">
+    
+    <label class="md-nav__link" for="nav-55">
+      My server
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="My server" data-md-level="1">
+      <label class="md-nav__title" for="nav-55">
+        <span class="md-nav__icon md-icon"></span>
+        My server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/drone_ci/" class="md-nav__link">
+      setup drone ci
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../my-server/server-infra/" class="md-nav__link">
+      my server setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-56" type="checkbox" id="nav-56">
+    
+    <label class="md-nav__link" for="nav-56">
+      Patterns
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Patterns" data-md-level="1">
+      <label class="md-nav__title" for="nav-56">
+        <span class="md-nav__icon md-icon"></span>
+        Patterns
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/adr/" class="md-nav__link">
+      Architecture decision records
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/aws/" class="md-nav__link">
+      AWS patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/eda/" class="md-nav__link">
+      event driven architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../patterns/event-sourcing/" class="md-nav__link">
+      Notes on event sourcing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-57" type="checkbox" id="nav-57">
+    
+    <label class="md-nav__link" for="nav-57">
+      Publiccloud
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Publiccloud" data-md-level="1">
+      <label class="md-nav__title" for="nav-57">
+        <span class="md-nav__icon md-icon"></span>
+        Publiccloud
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/aws/" class="md-nav__link">
+      AWS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/azure/" class="md-nav__link">
+      Azure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/azure_enterprise/" class="md-nav__link">
+      Azure Enterprise
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/billing/" class="md-nav__link">
+      Billing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/gcp/" class="md-nav__link">
+      GCP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../publiccloud/patterns/" class="md-nav__link">
+      Patterns
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-58" type="checkbox" id="nav-58">
+    
+    <label class="md-nav__link" for="nav-58">
+      Reverseproxy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reverseproxy" data-md-level="1">
+      <label class="md-nav__title" for="nav-58">
+        <span class="md-nav__icon md-icon"></span>
+        Reverseproxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/apache/" class="md-nav__link">
+      Apache http webserver (httpd)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/general/" class="md-nav__link">
+      Misc reverse proxy stuff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/nginx/" class="md-nav__link">
+      Apache webserver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../reverseproxy/traefik/" class="md-nav__link">
+      Traefik
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-59" type="checkbox" id="nav-59">
+    
+    <label class="md-nav__link" for="nav-59">
+      Spring
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Spring" data-md-level="1">
+      <label class="md-nav__title" for="nav-59">
+        <span class="md-nav__icon md-icon"></span>
+        Spring
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/0_spring-fundamentals/" class="md-nav__link">
+      Spring fundamentals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/1_spring-boot/" class="md-nav__link">
+      Spring Boot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/2_spring-boot-data/" class="md-nav__link">
+      Spring Boot Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/3_spring-rest/" class="md-nav__link">
+      Spring Boot rest (with HATEOAS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/Swagger-ui/" class="md-nav__link">
+      Spring swagger ui
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-boot-docker/" class="md-nav__link">
+      Spring Boot Dockerize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-externalize-k8s-secret-config/" class="md-nav__link">
+      Load mounted secrets as spring boot properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-helpful-properties/" class="md-nav__link">
+      Spring Boot useful properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-soap-client/" class="md-nav__link">
+      Spring Soap client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring-test/" class="md-nav__link">
+      Spring Boot test
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_security/" class="md-nav__link">
+      Spring security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/spring_vs_jakartaee/" class="md-nav__link">
+      Spring vs. Jakarta EE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../spring/time/" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-60" type="checkbox" id="nav-60">
+    
+    <label class="md-nav__link" for="nav-60">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="1">
+      <label class="md-nav__title" for="nav-60">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/css/" class="md-nav__link">
+      css
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/dom/" class="md-nav__link">
+      dom vs. virtual dom vs. shadow dom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/javascript/" class="md-nav__link">
+      javascript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/layout/" class="md-nav__link">
+      css layout techniques
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/planning-steps/" class="md-nav__link">
+      Webpage planning steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/vue/" class="md-nav__link">
+      Vue JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../../web/web-evolution/" class="md-nav__link">
+      overlook over web evolution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#create-multiple-direcotries-with-one-command" class="md-nav__link">
+    create multiple direcotries with one command
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#homebrew-add-to-path" class="md-nav__link">
+    homebrew - add to path
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-on-debian" class="md-nav__link">
+    docker - on debian
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k8s-ecosystem" class="md-nav__link">
+    k8s ecosystem
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bash-completion" class="md-nav__link">
+    bash completion
+  </a>
+  
+    <nav class="md-nav" aria-label="bash completion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#any-binary-installed-with-brew" class="md-nav__link">
+    any binary installed with brew
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubectl-bash-auto-completion" class="md-nav__link">
+    kubectl - bash auto-completion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#helm-bash-auto-completion" class="md-nav__link">
+    helm - bash auto-completion
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#k3d" class="md-nav__link">
+    k3d
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#git" class="md-nav__link">
+    git
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrowdSalat/technotes/edit/master/docs/linux (debian based)/copypasta_for_cli.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="copypasta-cli-installations-config">Copy&amp;Pasta CLI installations &amp; config</h1>
+<h2 id="create-multiple-direcotries-with-one-command">create multiple direcotries with one command</h2>
+<pre><code class="language-shell">mkdir -p applications/my-new-app/{base,overlays/{dev,staging,prod}}
+</code></pre>
+<p>The shell expands this into:</p>
+<ul>
+<li>applications/my-new-app/base</li>
+<li>applications/my-new-app/overlays/dev</li>
+<li>applications/my-new-app/overlays/staging</li>
+<li>applications/my-new-app/overlays/prod</li>
+</ul>
+<h2 id="homebrew-add-to-path">homebrew - add to path</h2>
+<pre><code>echo 'export PATH=$PATH:/home/linuxbrew/.linuxbrew/bin/' &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc &amp;&amp; brew help
+</code></pre>
+<h2 id="docker-on-debian">docker - on debian</h2>
+<p><a href="https://github.com/Linuxbrew/brew/issues/723">You cannot use linuxbrew to install docker engine</a>. SO you need to install it manually. Brew can however be used to install docker cli with bashcompletion.</p>
+<pre><code class="language-shell"># install docker 
+## you may want to check the script before running it
+## source: https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+
+# allow current user to manage docker
+## source: https://docs.docker.com/engine/install/debian/#install-using-the-convenience-script
+sudo groupadd docker
+sudo usermod -aG docker $USER
+## log out current user
+docker run hello-world
+</code></pre>
+<h2 id="k8s-ecosystem">k8s ecosystem</h2>
+<pre><code># kubectl
+brew install kubernetes-cli
+kubectl version
+
+# kubectl package manager
+brew install krew
+/home/linuxbrew/.linuxbrew/bin/kubectl-krew install krew
+echo 'export PATH=${PATH}:~/.krew/bin/' &gt;&gt; ~/.bashrc &amp;&amp; source ~/.bashrc
+
+## for changing context Usage: kubectl ctx
+kubectl krew install ctx
+
+## for changing namespace Usage: kubectl ns
+kubectl krew install ns
+
+## for merging k8s config files. Usage: kubectl konfig
+kubectl krew install konfig
+</code></pre>
+<h2 id="bash-completion">bash completion</h2>
+<h3 id="any-binary-installed-with-brew">any binary installed with brew</h3>
+<p>If the binary is installed with brew there is a chance that the bash completion script is genereted to the <code>$(brew --prefix)/etc/bash_completion.d/</code> direcoty. If so brew will tell you at the end of the installation. </p>
+<pre><code class="language-shell"># run once after installing brew
+echo 'for BREW_COMPLETION in &quot;$(brew --prefix)/etc/bash_completion.d/&quot;*; do 
+    [[ -r &quot;$BREW_COMPLETION&quot; ]] &amp;&amp; source &quot;$BREW_COMPLETION&quot; 
+done' \
+&gt;&gt;~/.bashrc &amp;&amp; source ~/.bashrc
+
+# after brew added a new completion script just source 
+source ~/.bashrc
+</code></pre>
+<h3 id="kubectl-bash-auto-completion">kubectl - bash auto-completion</h3>
+<pre><code class="language-shell">echo 'source &lt;(kubectl completion bash)' &gt;&gt;~/.bashrc &amp;&amp; source ~/.bashrc
+</code></pre>
+<h3 id="helm-bash-auto-completion">helm - bash auto-completion</h3>
+<pre><code class="language-shell">echo 'source &lt;(helm completion bash)' &gt;&gt;~/.bashrc &amp;&amp; source ~/.bashrc
+</code></pre>
+<h3 id="k3d">k3d</h3>
+<p>bash auto-completion</p>
+<pre><code class="language-shell">echo 'source &lt;(k3d completion bash)' &gt;&gt;~/.bashrc &amp;&amp; source ~/.bashrc
+</code></pre>
+<p>Create cluster</p>
+<pre><code class="language-shell">k3d cluster create
+</code></pre>
+<p>Add image from local container host to k3d cluster (# prerequisite see <a href="../../k3d/">k3d page</a>)</p>
+<pre><code class="language-shell">k3d image import IMAGENAME --cluster local-cluster
+</code></pre>
+<h3 id="git">git</h3>
+<pre><code class="language-shell"># alias
+git config --global alias.co checkout
+git config --global alias.br branch
+git config --global alias.ci commit
+git config --global alias.st status
+
+# ssh keygen
+ssh-keygen -t ed25519 
+
+# remember ssh password
+ssh-add ~/.ssh/*_rsa
+
+
+</code></pre>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../cockpit/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                red hat cockpit
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../desktop-files/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Application Interface
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "../..",
+          features: [],
+          search: Object.assign({
+            worker: "../../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

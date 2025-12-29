@@ -1,0 +1,2558 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
+    
+    
+      
+        <title>ansible - Technotes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.bc7e593a.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab28b872.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#009485">
+        
+      
+    
+    
+    
+      
+        
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="teal" data-md-color-accent="">
+      
+  
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ansible" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="Technotes" class="md-header-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            Technotes
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              ansible
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Technotes" class="md-nav__button md-logo" aria-label="Technotes">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    Technotes
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/CrowdSalat/technotes/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href=".." class="md-nav__link">
+      Home
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../WSL/" class="md-nav__link">
+      Linux Subsystem for Windows (WSL)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        ansible
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="./" class="md-nav__link md-nav__link--active">
+      ansible
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#up-and-running" class="md-nav__link">
+    up and running
+  </a>
+  
+    <nav class="md-nav" aria-label="up and running">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-inventory" class="md-nav__link">
+    create inventory
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ad-hoc-commands" class="md-nav__link">
+    ad-hoc commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#playbooks" class="md-nav__link">
+    playbooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-grouping-of-managed-nodes" class="md-nav__link">
+    optional grouping of managed nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-stuff-locally" class="md-nav__link">
+    test stuff locally
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-dicitonary" class="md-nav__link">
+    access dicitonary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-ansible-in-vagrant" class="md-nav__link">
+    test ansible in vagrant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-failed-task" class="md-nav__link">
+    restart failed task
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-anisble-in-pipeline" class="md-nav__link">
+    running anisble in pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-output-config" class="md-nav__link">
+    ansible output config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-user" class="md-nav__link">
+    change user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#becoming-unpriviliged-user" class="md-nav__link">
+    becoming unpriviliged user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-bashrc" class="md-nav__link">
+    update bashrc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hostvars-naming-convention-of-variables-in-roles" class="md-nav__link">
+    hostvars naming convention of variables in roles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-accessing-templates-in-playbooks" class="md-nav__link">
+    roles accessing templates in playbooks
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../argocd/" class="md-nav__link">
+      Argocd
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../buildpacks/" class="md-nav__link">
+      Buildpacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../certificates/" class="md-nav__link">
+      Certificates and encryption
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../citrix/" class="md-nav__link">
+      Citrix troubleshoot
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cockroach/" class="md-nav__link">
+      minimal notes on cockroach
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../code-analysis/" class="md-nav__link">
+      code analysis
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../codeassistant/" class="md-nav__link">
+      Setup local ai code assistent
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../codespace/" class="md-nav__link">
+      codespaces / devcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../confidential_computing/" class="md-nav__link">
+      Confidential Computing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../cors/" class="md-nav__link">
+      Cross-Origin Resource Sharing (CORS)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../dns/" class="md-nav__link">
+      DNS
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../flyway/" class="md-nav__link">
+      Flyway
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../git/" class="md-nav__link">
+      Git
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gitlab/" class="md-nav__link">
+      Gitlab Runner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gitpod/" class="md-nav__link">
+      Gitpod
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gradle-memory-aid/" class="md-nav__link">
+      Gradle memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../gradle/" class="md-nav__link">
+      Gradle
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../helm/" class="md-nav__link">
+      Helm
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../jackson/" class="md-nav__link">
+      Jackson
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../java-logging/" class="md-nav__link">
+      Logging with Java
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../jdbc/" class="md-nav__link">
+      jdbc
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../jenkins/" class="md-nav__link">
+      Jenkins (pipeline)
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../jwt/" class="md-nav__link">
+      JWT
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../k3d/" class="md-nav__link">
+      k3d
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../logging-stacks/" class="md-nav__link">
+      Logging stacks
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../mac/" class="md-nav__link">
+      Notes on mac usage
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../maven-memory-aid/" class="md-nav__link">
+      maven memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../medium/" class="md-nav__link">
+      Medium
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../metrics/" class="md-nav__link">
+      Metrics
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../mockito-memoery-aid/" class="md-nav__link">
+      Mockito memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../nginx/" class="md-nav__link">
+      nginx memory aid
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../oh-my-zsh/" class="md-nav__link">
+      oh-my-zsh
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../pulumi/" class="md-nav__link">
+      Pulumi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../raspberry/" class="md-nav__link">
+      raspberry pi
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../rpm/" class="md-nav__link">
+      RPMs
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../security_scanner/" class="md-nav__link">
+      Security scanner
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../sql-dialects/" class="md-nav__link">
+      SQL Dialects
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../terminal/" class="md-nav__link">
+      Terminals & Shells
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../terraform/" class="md-nav__link">
+      Terraform
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../test-domain/" class="md-nav__link">
+      How to test a HTTP/HTTPS URL with a given IP address
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../testcontainers/" class="md-nav__link">
+      Testcontainers
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tools/" class="md-nav__link">
+      helpful stuff
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../tracing/" class="md-nav__link">
+      Tracing
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vagrant/" class="md-nav__link">
+      Vagrant
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../vscode/" class="md-nav__link">
+      VS Code
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../yaml-overview/" class="md-nav__link">
+      yaml overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../yubikey/" class="md-nav__link">
+      Yubikey 5 series
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-51" type="checkbox" id="nav-51">
+    
+    <label class="md-nav__link" for="nav-51">
+      Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-51">
+        <span class="md-nav__icon md-icon"></span>
+        Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/01_docker-memory-aid/" class="md-nav__link">
+      Docker CLI useful command
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/02_dockerfile/" class="md-nav__link">
+      Dockerfile
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/03_docker-persisting-data/" class="md-nav__link">
+      Docker persisting data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/04_docker-networking/" class="md-nav__link">
+      Docker networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/docker-build/" class="md-nav__link">
+      Docker build
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/docker-compose/" class="md-nav__link">
+      Docker compose
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/docker-database-examples/" class="md-nav__link">
+      Examples for containerized databases
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/docker_headless_wsl/" class="md-nav__link">
+      Docker in WSL2 without docker desktop
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../docker/registry/" class="md-nav__link">
+      Registry
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-52" type="checkbox" id="nav-52">
+    
+    <label class="md-nav__link" for="nav-52">
+      Kafka
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kafka" data-md-level="1">
+      <label class="md-nav__title" for="nav-52">
+        <span class="md-nav__icon md-icon"></span>
+        Kafka
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kafka/security/" class="md-nav__link">
+      Kafka security
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-53" type="checkbox" id="nav-53">
+    
+    <label class="md-nav__link" for="nav-53">
+      Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-53">
+        <span class="md-nav__icon md-icon"></span>
+        Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kubernetes/ingress/" class="md-nav__link">
+      Ingress
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kubernetes/kubectl/" class="md-nav__link">
+      kubectl snippets
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kubernetes/kubernetes-networking/" class="md-nav__link">
+      kubernetes networking
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../kubernetes/kubernetes/" class="md-nav__link">
+      Kuberentes overview
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54" type="checkbox" id="nav-54">
+    
+    <label class="md-nav__link" for="nav-54">
+      Linux (debian based)
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Linux (debian based)" data-md-level="1">
+      <label class="md-nav__title" for="nav-54">
+        <span class="md-nav__icon md-icon"></span>
+        Linux (debian based)
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/cockpit/" class="md-nav__link">
+      red hat cockpit
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/copypasta_for_cli/" class="md-nav__link">
+      Copy&Pasta CLI installations & config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/desktop-files/" class="md-nav__link">
+      Application Interface
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/linux_filesystem/" class="md-nav__link">
+      Linux filesystem
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/linux_operations/" class="md-nav__link">
+      linux operations (without containers)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/network_capture_traffic/" class="md-nav__link">
+      Capture network traffic
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/network_ports/" class="md-nav__link">
+      Ports
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/network_ssh/" class="md-nav__link">
+      SSH
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/network_utility_scripts/" class="md-nav__link">
+      Network shell snipptes
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/proxy/" class="md-nav__link">
+      Proxy
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/python/" class="md-nav__link">
+      Python
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/sar/" class="md-nav__link">
+      Linux performance measurement
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/screen/" class="md-nav__link">
+      screen
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/set-path/" class="md-nav__link">
+      set path variable
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/shell_script/" class="md-nav__link">
+      shell script
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/terminal_config/" class="md-nav__link">
+      Terminal/Shell config
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-54-17" type="checkbox" id="nav-54-17">
+    
+    <label class="md-nav__link" for="nav-54-17">
+      Deepin
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Deepin" data-md-level="2">
+      <label class="md-nav__title" for="nav-54-17">
+        <span class="md-nav__icon md-icon"></span>
+        Deepin
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/deepin/beep/" class="md-nav__link">
+      Disable hardware beep
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/deepin/file-watchers/" class="md-nav__link">
+      not enough files watchers
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/deepin/remove-firefox-titlebar/" class="md-nav__link">
+      remove titlebar form firefox
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/deepin/remove-vscode-titlebar/" class="md-nav__link">
+      remove titlebar form vscode
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../linux%20%28debian%20based%29/deepin/remove_ulauncher_black_frame/" class="md-nav__link">
+      remove black frame from ulauncher
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-55" type="checkbox" id="nav-55">
+    
+    <label class="md-nav__link" for="nav-55">
+      My server
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="My server" data-md-level="1">
+      <label class="md-nav__title" for="nav-55">
+        <span class="md-nav__icon md-icon"></span>
+        My server
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../my-server/drone_ci/" class="md-nav__link">
+      setup drone ci
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../my-server/server-infra/" class="md-nav__link">
+      my server setup
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-56" type="checkbox" id="nav-56">
+    
+    <label class="md-nav__link" for="nav-56">
+      Patterns
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Patterns" data-md-level="1">
+      <label class="md-nav__title" for="nav-56">
+        <span class="md-nav__icon md-icon"></span>
+        Patterns
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patterns/adr/" class="md-nav__link">
+      Architecture decision records
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patterns/aws/" class="md-nav__link">
+      AWS patterns
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patterns/eda/" class="md-nav__link">
+      event driven architecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../patterns/event-sourcing/" class="md-nav__link">
+      Notes on event sourcing
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-57" type="checkbox" id="nav-57">
+    
+    <label class="md-nav__link" for="nav-57">
+      Publiccloud
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Publiccloud" data-md-level="1">
+      <label class="md-nav__title" for="nav-57">
+        <span class="md-nav__icon md-icon"></span>
+        Publiccloud
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/aws/" class="md-nav__link">
+      AWS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/azure/" class="md-nav__link">
+      Azure
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/azure_enterprise/" class="md-nav__link">
+      Azure Enterprise
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/billing/" class="md-nav__link">
+      Billing
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/gcp/" class="md-nav__link">
+      GCP
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../publiccloud/patterns/" class="md-nav__link">
+      Patterns
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-58" type="checkbox" id="nav-58">
+    
+    <label class="md-nav__link" for="nav-58">
+      Reverseproxy
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Reverseproxy" data-md-level="1">
+      <label class="md-nav__title" for="nav-58">
+        <span class="md-nav__icon md-icon"></span>
+        Reverseproxy
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reverseproxy/apache/" class="md-nav__link">
+      Apache http webserver (httpd)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reverseproxy/general/" class="md-nav__link">
+      Misc reverse proxy stuff
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reverseproxy/nginx/" class="md-nav__link">
+      Apache webserver
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../reverseproxy/traefik/" class="md-nav__link">
+      Traefik
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-59" type="checkbox" id="nav-59">
+    
+    <label class="md-nav__link" for="nav-59">
+      Spring
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Spring" data-md-level="1">
+      <label class="md-nav__title" for="nav-59">
+        <span class="md-nav__icon md-icon"></span>
+        Spring
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/0_spring-fundamentals/" class="md-nav__link">
+      Spring fundamentals
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/1_spring-boot/" class="md-nav__link">
+      Spring Boot
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/2_spring-boot-data/" class="md-nav__link">
+      Spring Boot Data
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/3_spring-rest/" class="md-nav__link">
+      Spring Boot rest (with HATEOAS)
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/Swagger-ui/" class="md-nav__link">
+      Spring swagger ui
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring-boot-docker/" class="md-nav__link">
+      Spring Boot Dockerize
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring-externalize-k8s-secret-config/" class="md-nav__link">
+      Load mounted secrets as spring boot properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring-helpful-properties/" class="md-nav__link">
+      Spring Boot useful properties
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring-soap-client/" class="md-nav__link">
+      Spring Soap client
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring-test/" class="md-nav__link">
+      Spring Boot test
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring_security/" class="md-nav__link">
+      Spring security
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/spring_vs_jakartaee/" class="md-nav__link">
+      Spring vs. Jakarta EE
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../spring/time/" class="md-nav__link">
+      Time
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-60" type="checkbox" id="nav-60">
+    
+    <label class="md-nav__link" for="nav-60">
+      Web
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Web" data-md-level="1">
+      <label class="md-nav__title" for="nav-60">
+        <span class="md-nav__icon md-icon"></span>
+        Web
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/css/" class="md-nav__link">
+      css
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/dom/" class="md-nav__link">
+      dom vs. virtual dom vs. shadow dom
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/javascript/" class="md-nav__link">
+      javascript
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/layout/" class="md-nav__link">
+      css layout techniques
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/planning-steps/" class="md-nav__link">
+      Webpage planning steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/vue/" class="md-nav__link">
+      Vue JS
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../web/web-evolution/" class="md-nav__link">
+      overlook over web evolution
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#concepts" class="md-nav__link">
+    concepts
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#up-and-running" class="md-nav__link">
+    up and running
+  </a>
+  
+    <nav class="md-nav" aria-label="up and running">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    install
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#create-inventory" class="md-nav__link">
+    create inventory
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ad-hoc-commands" class="md-nav__link">
+    ad-hoc commands
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#playbooks" class="md-nav__link">
+    playbooks
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optional-grouping-of-managed-nodes" class="md-nav__link">
+    optional grouping of managed nodes
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-stuff-locally" class="md-nav__link">
+    test stuff locally
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-dicitonary" class="md-nav__link">
+    access dicitonary
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#test-ansible-in-vagrant" class="md-nav__link">
+    test ansible in vagrant
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#restart-failed-task" class="md-nav__link">
+    restart failed task
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#running-anisble-in-pipeline" class="md-nav__link">
+    running anisble in pipeline
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ansible-output-config" class="md-nav__link">
+    ansible output config
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#change-user" class="md-nav__link">
+    change user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#becoming-unpriviliged-user" class="md-nav__link">
+    becoming unpriviliged user
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#update-bashrc" class="md-nav__link">
+    update bashrc
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#hostvars-naming-convention-of-variables-in-roles" class="md-nav__link">
+    hostvars naming convention of variables in roles
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#roles-accessing-templates-in-playbooks" class="md-nav__link">
+    roles accessing templates in playbooks
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/CrowdSalat/technotes/edit/master/docs/ansible-overview.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="ansible">ansible</h1>
+<p><a href="https://github.com/CrowdSalat/boilerplate/tree/main/ansible/test-playbook">My ansible boilerplate</a></p>
+<h2 id="concepts">concepts</h2>
+<ul>
+<li>Ansible runs agentless. The remote machine just needs ssh installed (and for many modules python and pip).</li>
+<li>the machine which got the executables installed is called <strong>control node</strong></li>
+<li>the managed machines are called <strong>managed nodes</strong> or informally <strong>hosts</strong></li>
+<li>a list of managed nodes is called <strong>inventory</strong> or informally <strong>hostfile</strong></li>
+<li><strong>modules</strong> are the units of code Ansible executes </li>
+<li>a <strong>task</strong> executes a module with very specific arguments</li>
+<li>a <strong>playbook</strong> is a executable list of ansible task</li>
+</ul>
+<p><em>playbook and play will often get used synonymously. A playbook is the yaml file which may container one or more plays. A play is seperated by --- in the yaml file)</em></p>
+<h2 id="up-and-running">up and running</h2>
+<h3 id="install">install</h3>
+<ul>
+<li>control node: intall ansible</li>
+<li>managed node</li>
+<li>open ssh port</li>
+<li>python installed (for most modules)</li>
+<li>pip installed (for most modules)</li>
+</ul>
+<h3 id="create-inventory">create inventory</h3>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_inventory.html">Official guide</a></p>
+<p>You can add managed nodes in the file <strong>/etc/ansible/hosts</strong> either via the ini format or via the yaml format. Or set path via the<code>-i</code> flag. Hostfiles need to have the following rights: <code>sudo chmod 744 /etc/ansible/hosts</code> and might otherwise clain that the file cannot be parsed ("Unable to parse /etc/ansible/hosts as an inventory source").</p>
+<p>A simple host file in ini format:</p>
+<pre><code class="language-ini">192.168.0.2 ansible_user=pi
+</code></pre>
+<p>A simple host file in yaml format:</p>
+<pre><code class="language-yaml">all:
+  hosts:
+    name_of_node:
+      ansible_host: 192.168.0.2
+      ansible_user: pi
+</code></pre>
+<p>Add your public ssh key to the managed nodes ~/.ssh/known_hosts files. Use the <code>ssh-copy-id</code> command or copy it manually. Use <code>ansible all -m ping</code> to test if all nodes in your inventory are reachable. </p>
+<h2 id="ad-hoc-commands">ad-hoc commands</h2>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/intro_adhoc.html#intro-adhoc">official guide</a></p>
+<p>The syntax of a ad-hoc command is as following:</p>
+<pre><code class="language-shell"># ansible [pattern] -m [module] -a &quot;[module options]&quot;
+
+# use of ping module
+ansible all -m ping
+
+# a exmaple which is run on all hosts 
+ansible all -a &quot;/bin/echo hello&quot;
+</code></pre>
+<p>If you do not specify otherwise the ad-hoc will be run by the command module.</p>
+<h2 id="playbooks">playbooks</h2>
+<p><a href="https://docs.ansible.com/ansible/latest/user_guide/playbooks.html#working-with-playbooks">official guide</a></p>
+<ul>
+<li>playbooks are defined in yaml format</li>
+<li>To run a playbook: <code>ansible-playbook playbook_file.yml</code></li>
+<li>prerequisite for most modules like docker_image or docker_container: <strong>the host has python and pip installed</strong></li>
+</ul>
+<p>To run a playbook on one host you can:</p>
+<ol>
+<li>define the host explicitly in the playbook instead of using the all target</li>
+<li>define the host field as a external variable (<code>{{target}}</code>) and set it via command line (<code>ansible-playbook playbook.yml --extra-vars "target=pi"</code>)</li>
+<li>run the playbook with a given a specific host file which contains only the one client (<code>ansible-playbook -i host-pi.yml playbook.yml</code>)</li>
+</ol>
+<p>install software via playbook:</p>
+<pre><code class="language-yml">---
+- hosts: name_of_node
+  tasks:
+    - name: Install Java
+      package: name='java-1.8.0-openjdk' state=latest
+</code></pre>
+<p><em>This example uses the <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/package_module.html">package</a> module with no arguments.</em></p>
+<p>start docker container via playbook:</p>
+<pre><code class="language-yml">---
+- hosts: all
+  become: true
+  vars:
+    container_name: hello-world
+    container_image: hypriot/armhf-hello-world
+  tasks:
+
+  - name: install docker module for python
+    pip:
+      name: docker
+
+  - name: pull docker image
+    docker_image:
+      name: &quot;{{ container_image }}&quot;
+      source: pull
+
+  - name: start docker containers
+    docker_container:
+      name: &quot;{{ container_name }}&quot;
+      image: &quot;{{ container_image }}&quot;
+      state: present
+</code></pre>
+<p><em>This example uses the <a href="https://docs.ansible.com/ansible/latest/collections/ansible/builtin/pip_module.html">pip</a>, <a href="https://docs.ansible.com/ansible/latest/collections/community/general/docker_image_module.html">docker_image</a> and the <a href="https://docs.ansible.com/ansible/latest/collections/community/general/docker_container_module.html">docker_container</a> module with a set of arguments.</em></p>
+<p><strong>Note: there was an error while using dokcer_image module <a href="https://github.com/docker/docker-py/issues/1502">No module named ssl_match_hostname</a>. The solution was to run <code>sudo apt-get remove python-configparser</code></strong></p>
+<h2 id="optional-grouping-of-managed-nodes">optional grouping of managed nodes</h2>
+<p>You can address the all nodes in a group via <code>ansible optional_group_name -m ping</code> and a specific node by its name <code>ansible name_of_node -m ping</code></p>
+<p>A host file witch uses groups (children) and a node without a group in yaml format:</p>
+<pre><code class="language-yaml">all:
+  hosts:
+    name_of_node_without_group:
+      ansible_host: 192.168.0.2
+      ansible_user: pi
+  children:
+    group_name1:
+      hosts:
+        name_of_node_g1_1:
+          ansible_host: 192.168.0.3
+          ansible_user: pi
+        name_of_node_g1_2:
+          ansible_host: 192.168.0.4
+          ansible_user: pi
+      group_name2:
+        hosts:
+          name_of_node_g2_1:
+            ansible_host: 192.168.0.5
+            ansible_user: pi
+</code></pre>
+<h2 id="test-stuff-locally">test stuff locally</h2>
+<p>run <code>ansible-playbook filename</code></p>
+<pre><code class="language-yaml">- name: My play
+  hosts: localhost
+  # to prevent ssh
+  connection: local
+  tasks:
+    - name: Caculate Free Harddrive Memory
+      assert:
+        that:
+          - not {{ item.mount == '/' and (item.size_available &lt; 8589934592 ) }}
+      with_items: &quot;{{ ansible_facts['mounts'] }}&quot;
+    - name: Print all Hostvars
+      debug:
+        msg: &quot;{{ hostvars }}&quot;
+</code></pre>
+<h2 id="access-dicitonary">access dicitonary</h2>
+<p>Define dictionary: </p>
+<pre><code class="language-yaml">example:
+  key1: val1
+  key2: val2
+
+selected_key: key1
+
+</code></pre>
+<pre><code class="language-yaml">    - name: print val1 by using literal key
+      debug:
+        msg: &quot;{{ example ['key1']}&quot;
+  - name: print val1 by using variable key
+      debug:
+        msg: &quot;{{ example [ selected_key ]}&quot;
+</code></pre>
+<h2 id="test-ansible-in-vagrant">test ansible in vagrant</h2>
+<p><a href="../vagrant">see</a></p>
+<h2 id="restart-failed-task">restart failed task</h2>
+<p>Seems not to be possible, but you can use <code>--start-at-task</code> parameter of ansible-playbook cli.</p>
+<h2 id="running-anisble-in-pipeline">running anisble in pipeline</h2>
+<ul>
+<li>Container images for ansible: <a href="https://github.com/cytopia/docker-ansible">2.3-2.13</a></li>
+<li>To use Ansible galaxy hosted on git you might need a <a href="../gitlab/">workaround for authentification via token access</a></li>
+<li>set <code>host_key_checking</code> in ansible.cfg to false otheriwse you will get a "Host key verification failed" or set env variable ANSIBLE_HOST_KEY_CHECKING in the variables part of the pipeline</li>
+</ul>
+<p>Container image requirements:</p>
+<ul>
+<li>bash (execute deploy.sh script)</li>
+<li>ansible</li>
+<li>git + ssh-agent (to check out ansible galaxy roles from git)</li>
+</ul>
+<h2 id="ansible-output-config">ansible output config</h2>
+<p>In ansible.cfg</p>
+<pre><code class="language-ini">[default]
+... 
+
+# more human readable log
+stdout_callback = yaml
+force_color = true
+
+# print summary of task with execution times at the end of play
+callback_whitelist = profile_tasks
+
+[callback_profile_tasks]
+sort_order = none
+task_output_limit = 200
+</code></pre>
+<p>Worked with ansible 2.8</p>
+<h2 id="change-user">change user</h2>
+<ul>
+<li><code>become</code> without <code>become_user</code> runs a command with a prepended sudo. </li>
+<li>When you add <code>become_user</code> it runs <code>sudo -u &lt;become_user&gt; /bin/sh -c &lt;command&gt;</code>. <em>Even though <code>sudo su - &lt;user&gt;</code> works without password prompt <code>sudo -u &lt;user&gt;</code> might not work without password prompt.</em></li>
+<li>If you add <code>become_method: su</code> it runs <code>su  &lt;become_user&gt; -c /bin/sh -c &lt;command&gt;</code></li>
+</ul>
+<p>To run <code>sudo su - &lt;become_user&gt; /bin/sh -c &lt;command&gt;</code> add <code>become_exe='sudo su -'</code> to ansible.cfg and add <code>become_method: su</code>.
+See <a href="https://www.coveros.com/ansible-privledge-escalation-using-sudo-su/">here</a> or <a href="https://stackoverflow.com/questions/50512402/can-ansible-use-sudo-su-if-the-sudo-user-is-not-allowed-to-run-arbitrary-scr">here</a></p>
+<h2 id="becoming-unpriviliged-user">becoming unpriviliged user</h2>
+<pre><code>Failed to set permissions on the temporary files Ansible needs to create when becoming an unprivileged user (rc: 1, err: chown: changing ownership of '/var/tmp/ansible-tmp-1672820952.604988-42392-112740864206926/': Operation not permitted
+    chown: changing ownership of '/var/tmp/ansible-tmp-1672820952.604988-42392-112740864206926/AnsiballZ_command.py': Operation not permitted
+    }). For information on working around this, see https://docs.ansible.com/ansible/become.html#becoming-an-unprivileged-user
+</code></pre>
+<ul>
+<li>You can put the <code>allow_world_readable_tmpfiles</code> in the ansible.cfg configuration file</li>
+<li>Or make sure the setfacl tool (provided by the acl package) is installed on the remote host.</li>
+</ul>
+<p><a href="https://github.com/georchestra/ansible/issues/55">Source</a></p>
+<h2 id="update-bashrc">update bashrc</h2>
+<p>Use lineinfile module.</p>
+<h2 id="hostvars-naming-convention-of-variables-in-roles">hostvars naming convention of variables in roles</h2>
+<p>Do not use dictionaries e.g. my.var.a, my.bla.b. If you access a top level part of the dictionary like my you likely overwrite all entries e.g. var, bla.</p>
+<p>You can change this default behavior by setting hash_behaviour=merge in ansible.cfg</p>
+<p><a href="https://stackoverflow.com/questions/25129728/ansible-override-single-dictionary-key">Source</a></p>
+<h2 id="roles-accessing-templates-in-playbooks">roles accessing templates in playbooks</h2>
+<p>The following path are searched by the template module (paths get printed as an error when it cannot find a template):</p>
+<p>Searched template file: template.yml.j2'</p>
+<p>Searched in:</p>
+<p>./../role/templates/template.yml.j2
+./../role/template.yml.j2
+./../role/tasks/templates/template.yml.j2
+./../role/tasks/template.yml.j2
+./../playbook/templates/template.yml.j2
+./../playbook/template.yml.j2</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="../WSL/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Linux Subsystem for Windows (WSL)
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="../argocd/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Argocd
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: [],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.4ac00218.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
