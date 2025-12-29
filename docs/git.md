@@ -1,5 +1,14 @@
 # Git
 
+## ssh-agent
+
+Even with the agent running, Git needs to know it should contact the agent to save those passwords. Make sure your ~/.ssh/config has this global setting (or a specific one for the git server):
+
+```
+Host *
+  AddKeysToAgent yes
+```
+
 ## initial setup
 
 ### mac
